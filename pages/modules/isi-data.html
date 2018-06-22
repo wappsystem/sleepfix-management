@@ -1,0 +1,24 @@
+<!-- this module is used on https://www.vmiis.com -->
+<div id=D__ID>
+  <div id=vm_dev_info__ID style='font-size:12px;dixplay:none'>
+    This module is located at
+    <a target=_blank href=https://codepen.io/vmiis/pen/mKOPOw>https://codepen.io/vmiis/pen/mKOPOw</a>
+  </div>
+  <div>
+    VmInclude:__COMPONENT__/grid/grid.v3.html
+  </div>
+  <script>
+    function F__ID(){
+      //-------------------------------------
+      VmInclude:__COMPONENT__/grid/grid.v3.js
+      VmInclude:__CURRENT_PATH__/task_data.js
+      //-------------------------------------
+      var fields="Participant ID|Participant_uid,ISI_1a,ISI_1b,ISI_1c,ISI_2,ISI_3,ISI_4,ISI_5,ISI_1,ISI";
+      _fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
+      //-------------------------------------
+    }
+  </script>
+  <style>
+    VmInclude:__COMPONENT__/grid/grid.v3.css
+  </style>
+</div>
