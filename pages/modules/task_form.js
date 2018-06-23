@@ -34,7 +34,7 @@ $('#D__ID').on('load',function(){
 })
 //-------------------------------------
 var _before_submit=function(record,dbv){
-   if(typeof(before_submit)!='undefined') before_submit(record,dbv);
+   if(typeof(before_submit)!='undefined') if(before_submit(record,dbv)==false) { $('#submit__ID').show();return false;}
    dbv.PUID=record.Participant_uid;
    dbv.S3=$vm.status_of_data(record);
    if(dbv.PUID==''){
