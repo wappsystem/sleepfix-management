@@ -214,26 +214,27 @@
          //-------------------------------------
          $('#D__ID').on('load',function(){
              if($('#hpq_4__ID').val()=='' || $('#hpq_4__ID').val()=='0' ){
+                 $('#hpq_4a__ID').prop('required',false);
                  $('#sleep__ID').hide();
              }
              else {
                  $('#sleep__ID').show();
+                 $('#hpq_4a__ID').prop('required', true);
              }
          })
          //-------------------------------------
          $('#hpq_4__ID').on('change', function(){
              if($('#hpq_4__ID').val()!=='0'){
                  $('#sleep__ID').show();
+                 $('#hpq_4a__ID').prop('required', true);
              }
              else {
+                 $('#hpq_4a__ID').prop('required',false);
                  $('#sleep__ID').hide();
              }
          })
          //-------------------------------------
          var before_submit=function(record,dbv){
-             if($('#hpq_4__ID').val()!=='0' && $('#hpq_4a__ID:checked').val()===undefined){
-                 $vm.alert('Please answer question 4a.'); return false;
-             }
 
          }
          //-------------------------------------

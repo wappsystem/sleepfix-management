@@ -98,8 +98,10 @@
             }
             if($('#Other__ID').is(":checked")==true ){
                 $('#specify__ID').show() ;
+                $('#Other_Specify__ID').prop('required', true);
             }
             else {
+                $('#Other_Specify__ID').prop('required',false);
                 $('#specify__ID').hide();
             }
         })
@@ -122,8 +124,10 @@
         $('#Other__ID').on('click', function(){
             if($('#Other__ID').is(":checked")==true ){
                 $('#specify__ID').show() ;
+                $('#Other_Specify__ID').prop('required', true);
             }
             else {
+                $('#Other_Specify__ID').prop('required',false);
                 $('#specify__ID').hide();
             }
         })
@@ -136,9 +140,9 @@
                 $('#Other__ID').is(":checked")!==true){
                 $vm.alert('Please select at least one employment status'); return false;
             }
-            if($('#Other__ID').is(":checked")===true && $('#Other_Specify__ID').val()===''){
-                $vm.alert('Please fill in question 4. "(please specify)"'); return false;
-            }
+            //if($('#Other__ID').is(":checked")===true && $('#Other_Specify__ID').val()===''){
+            //    $vm.alert('Please fill in question 4. "(please specify)"'); return false;
+            //}
          }
 	}
 </script>
