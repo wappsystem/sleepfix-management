@@ -9,13 +9,17 @@
         "registration-form":        {"table_id":"20011505","url":"modules/tasks/registration-form.html"},
         "registration-data":        {"table_id":"20011505","url":"modules/tasks/registration-data.html","form_module":"registration-form"},
         "bl-isi-data":              {"table_id":"20011508","url":"modules/tasks/isi-data.html","form_module":"bl-isi-form"},
-        "w1-isi-data":              {"table_id":"20011509","url":"modules/tasks/isi-data.html","form_module":"w1-isi-form"},
+
+        "w1-isi-data":              {"table_id":"20011509","url":"modules/tasks2/isi-data.html","form_module":"w1-isi-form"},
+
         "w2-isi-data":              {"table_id":"20011510","url":"modules/tasks/isi-data.html","form_module":"w2-isi-form"},
         "w3-isi-data":              {"table_id":"20011511","url":"modules/tasks/isi-data.html","form_module":"w3-isi-form"},
         "w6-isi-data":              {"table_id":"20011512","url":"modules/tasks/isi-data.html","form_module":"w6-isi-form"},
         "w12-isi-data":             {"table_id":"20011513","url":"modules/tasks/isi-data.html","form_module":"w12-isi-form"},
         "bl-isi-form":              {"table_id":"20011508","url":"modules/tasks/isi-form.html"},
-        "w1-isi-form":              {"table_id":"20011509","url":"modules/tasks/isi-form.html"},
+
+        "w1-isi-form":              {"table_id":"20011509","url":"modules/tasks2/isi-form.html"},
+
         "w2-isi-form":              {"table_id":"20011510","url":"modules/tasks/isi-form.html"},
         "w3-isi-form":              {"table_id":"20011511","url":"modules/tasks/isi-form.html"},
         "w6-isi-form":              {"table_id":"20011512","url":"modules/tasks/isi-form.html"},
