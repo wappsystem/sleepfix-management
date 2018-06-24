@@ -12,6 +12,14 @@
             <div menu id="vm_menu">
                 <a module=Home><i class="fa fa-home"></i> Home</a>
                 <a module=data-management><i class="fa fa-th"></i> Data Management</a>
+                <div class="vm_dropdown" id=permissions__ID>
+                    <button class="vm_dropbtn">Permissions <i class="fa fa-caret-down"></i></button>
+                    <div class="vm_dropdown-content">
+                        <a module=permission-role-data>Roles</a>
+                        <a module=permission-query-data>Queries</a>
+                        <a module=permission-check>Check</a>
+                    </div>
+                </div>
                 <div class="vm_dropdown" id=signin__ID>
                     <button class="vm_dropbtn"><i class="fa fa-user"></i> Sign In <i class="fa fa-caret-down"></i></button>
                     <div class="vm_dropdown-content">
@@ -54,7 +62,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style='word-wrap: break-word;'>
 
                 </div>
                 <div class="modal-footer">

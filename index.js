@@ -12,6 +12,7 @@ $vm.app_config={
     "default_production":"No",
 }
 //------------------------------------
+$vm.qid='20011572';
 $vm.website_module_list_for_search=[];
 //------------------------------------
 $vm.app_init=function(callback){

@@ -45,6 +45,6 @@ m.before_submit=function(record,dbv){
    return r;
 };
 //-------------------------------------
-$('#D__ID').on('load',function(){ m.load();})
-$('#F__ID').submit(function(event){m.submit(event);})
+//$('#D__ID').on('load',function(){ m.load();})
+//$('#F__ID').submit(function(event){m.submit(event);})
 //--------------------------------------------------------
