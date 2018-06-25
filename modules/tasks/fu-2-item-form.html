@@ -22,13 +22,13 @@
             </div>
             <div class="row row__ID" >
                 <div class="col-lg-12 text-center">
-                  <div class="star-rating">
+                  <div class="star-rating__ID">
                     <span class="fa fa-star-o" data-rating="1"></span>
                     <span class="fa fa-star-o" data-rating="2"></span>
                     <span class="fa fa-star-o" data-rating="3"></span>
                     <span class="fa fa-star-o" data-rating="4"></span>
                     <span class="fa fa-star-o" data-rating="5"></span>
-                    <input type="hidden" name="fu-item_1" id=fu-item_1__ID class="rating-value" value="0">
+                    <input type="text" name="fu-item_1" id=fu-item_1__ID class="rating-value__ID" required value="">
                   </div>
                 </div>
             </div>
@@ -53,19 +53,19 @@
 <script>
 function F__ID(){
     VmInclude:__CURRENT_PATH__/task_form.js
+    //-------------------------------------
     $('#D__ID').on('load',function(){
-        alert($('#fu-item_2__ID').val());
-        $star_rating.siblings('input.rating-value').val($('#fu-item_1__ID').val())
+        $star_rating.siblings('input.rating-value__ID').val($('#fu-item_1__ID').val())
         SetRatingStar();
     })
 
     //-------------------------------------
-    var $star_rating = $('.star-rating .fa');
+    var $star_rating = $('.star-rating__ID .fa');
     //-------------------------------------
     var SetRatingStar = function() {
       return $star_rating.each(function() {
-        $('#fu-item_1__ID').val($star_rating.siblings('input.rating-value').val())
-        if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+        $('#fu-item_1__ID').val($star_rating.siblings('input.rating-value__ID').val())
+        if (parseInt($star_rating.siblings('input.rating-value__ID').val()) >= parseInt($(this).data('rating'))) {
           return $(this).removeClass('fa-star-o').addClass('fa-star');
         } else {
           return $(this).removeClass('fa-star').addClass('fa-star-o');
@@ -74,7 +74,8 @@ function F__ID(){
     };
     //-------------------------------------
     $star_rating.on('click', function() {
-      $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+      $star_rating.siblings('input.rating-value__ID').val($(this).data('rating'));
+      $('#item_1__ID').prop('type','text')
       return SetRatingStar();
     });
     //-------------------------------------
@@ -84,12 +85,17 @@ function F__ID(){
 }
 </script>
 <style>
-.star-rating {
+#fu-item_1__ID{
+    opacity: 0;
+    width:0;
+    height:0;
+}
+.star-rating__ID {
   line-height:32px;
-  font-size:1.25em;
+  font-size:2.0em;
 }
 
-.star-rating .fa-star{color: orange;
+.star-rating__ID .fa-star{color: orange;
 }
 #D__ID{
     height:100%;
