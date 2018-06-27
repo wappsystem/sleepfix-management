@@ -106,15 +106,17 @@
    </section>
    <script>
       function F__ID(){
-         //-------------------------------------
-         VmInclude:__CURRENT_PATH__/task_form.0.js
-         //-------------------------------------
-         var before_submit=function(record,dbv){
-            record.ISI=(parseInt(record.ISI_2)+parseInt(record.ISI_3)+parseInt(record.ISI_4)+parseInt(record.ISI_5)+parseInt(record.ISI_1a)+parseInt(record.ISI_1b)+parseInt(record.ISI_1c)).toString();
-            record.ISI_1=(parseInt(record.ISI_1a)+parseInt(record.ISI_1b)+parseInt(record.ISI_1c)).toString();
-         }
-         //-------------------------------------
-         }
+          //-------------------------------------
+          VmInclude:__COMPONENT__/module/form.v1.js
+          VmInclude:__CURRENT_PATH__/task_form.js
+          //-------------------------------------
+          m.before_submit_2=function(record,dbv){
+              record.ISI=(parseInt(record.ISI_2)+parseInt(record.ISI_3)+parseInt(record.ISI_4)+parseInt(record.ISI_5)+parseInt(record.ISI_1a)+parseInt(record.ISI_1b)+parseInt(record.ISI_1c)).toString();
+              record.ISI_1=(parseInt(record.ISI_1a)+parseInt(record.ISI_1b)+parseInt(record.ISI_1c)).toString();
+              return true;
+          }
+          //-------------------------------------
+      }
    </script>
    <style>
       #F__ID div span{

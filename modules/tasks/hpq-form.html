@@ -209,10 +209,11 @@
    </section>
    <script>
       function F__ID(){
-         //-------------------------------------
-         VmInclude:__CURRENT_PATH__/task_form.0.js
-         //-------------------------------------
-         $('#D__ID').on('load',function(){
+          //-------------------------------------
+          VmInclude:__COMPONENT__/module/form.v1.js
+          VmInclude:__CURRENT_PATH__/task_form.js
+          //-------------------------------------
+          m.load_2=function(){
              if($('#hpq_4__ID').val()=='' || $('#hpq_4__ID').val()=='0' ){
                  $('#hpq_4a__ID').prop('required',false);
                  $('#sleep__ID').hide();
@@ -221,9 +222,13 @@
                  $('#sleep__ID').show();
                  $('#hpq_4a__ID').prop('required', true);
              }
-         })
-         //-------------------------------------
-         $('#hpq_4__ID').on('change', function(){
+          }
+          //-------------------------------------
+          m.before_submit_2=function(record,dbv){
+              return true;
+          }
+          //-------------------------------------
+          $('#hpq_4__ID').on('change', function(){
              if($('#hpq_4__ID').val()!=='0'){
                  $('#sleep__ID').show();
                  $('#hpq_4a__ID').prop('required', true);
@@ -232,12 +237,8 @@
                  $('#hpq_4a__ID').prop('required',false);
                  $('#sleep__ID').hide();
              }
-         })
-         //-------------------------------------
-         var before_submit=function(record,dbv){
-
-         }
-         //-------------------------------------
+          })
+          //-------------------------------------
      }
    </script>
    <style>

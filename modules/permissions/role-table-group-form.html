@@ -11,10 +11,10 @@ VmInclude:__COMPONENT__/module/form-toolbar.html
                     <input type=text class="form-control" name="Role" required ></input>
                 </div>
             </div>
-			<div class="row row__ID">
+            <div class="row row__ID">
                 <div class="col">
-                    <span>Login Names</span>
-                    <textarea class="form-control" name="Login" required style='min-height:100px'></textarea>
+                    <span>Permission</span>
+                    <input type=text class="form-control" name="Permission" required ></input>
                 </div>
             </div>
 			<div class="row row__ID">
@@ -49,12 +49,14 @@ VmInclude:__COMPONENT__/module/form-toolbar.html
 					var a=$vm.module_list[p].table_id
 					if(
 						txt.indexOf(a)==-1 &&
-						p!="permission-role-data" &&
-						p!="permission-role-form" &&
+                        p!="permission-role-login-data" &&
+						p!="permission-role-login-form" &&
+						p!="permission-role-table-group-data" &&
+						p!="permission-role-table-group-form" &&
 						p!="permission-query-data" &&
-						p!="permission-query-data"
+						p!="permission-query-form"
 					){
-						txt+=","+a+"<br>";
+						txt+=","+a+","+p+"\r\n";
 					}
 				}
 			}

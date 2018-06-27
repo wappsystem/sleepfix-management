@@ -88,8 +88,11 @@
 </section>
 <script>
 	function F__ID(){
-	    VmInclude:__CURRENT_PATH__/task_form.0.js
-        $('#D__ID').on('load',function(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/module/form.v1.js
+        VmInclude:__CURRENT_PATH__/task_form.js
+        //-------------------------------------
+        m.load_2=function(){
             if($('#Employment_Full_Time__ID').is(":checked")==true || $('#Employment_Part_Time__ID').is(":checked")==true ){
                 $('#Occupation__ID').show() ;
             }
@@ -104,7 +107,19 @@
                 $('#Other_Specify__ID').prop('required',false);
                 $('#specify__ID').hide();
             }
-        })
+        }
+        //-------------------------------------
+        m.before_submit_2=function(record,dbv){
+            if($('#Employment_Full_Time__ID').is(":checked")!==true &&
+                $('#Employment_Part_Time__ID').is(":checked")!==true &&
+                $('#Unemployed__ID').is(":checked")!==true &&
+                $('#Student__ID').is(":checked")!==true &&
+                $('#Retired__ID').is(":checked")!==true &&
+                $('#Other__ID').is(":checked")!==true){
+                    $vm.alert('Please select at least one employment status'); return false;
+            }
+        }
+        //-------------------------------------
         $('#Employment_Full_Time__ID').on('click', function(){
             if($('#Employment_Full_Time__ID').is(":checked")==true || $('#Employment_Part_Time__ID').is(":checked")==true ){
             $('#Occupation__ID').show() ;
@@ -131,19 +146,7 @@
                 $('#specify__ID').hide();
             }
         })
-         var before_submit=function(record,dbv){
-             if($('#Employment_Full_Time__ID').is(":checked")!==true &&
-                $('#Employment_Part_Time__ID').is(":checked")!==true &&
-                $('#Unemployed__ID').is(":checked")!==true &&
-                $('#Student__ID').is(":checked")!==true &&
-                $('#Retired__ID').is(":checked")!==true &&
-                $('#Other__ID').is(":checked")!==true){
-                $vm.alert('Please select at least one employment status'); return false;
-            }
-            //if($('#Other__ID').is(":checked")===true && $('#Other_Specify__ID').val()===''){
-            //    $vm.alert('Please fill in question 4. "(please specify)"'); return false;
-            //}
-         }
+        //-------------------------------------
 	}
 </script>
 <style>

@@ -1,35 +1,31 @@
+VmInclude:__COMPONENT__/module/form-toolbar.html
 <section id=form_container__ID>
 	<div id=header__ID>
-		Access Check
+		Access Role
 	</div>
 	<form id=F__ID>
 		<div class="container">
             <div class="row row__ID">
-                <div class="col-sm col-lg-6">
-                    <span>Command</span>
-                    <input type=text class="form-control" name="Command" required ></input>
+                <div class="col">
+                    <span>Role</span>
+                    <input type=text class="form-control" name="Role" required ></input>
                 </div>
-				<div class="col-sm col-lg-6">
-                    <span>Login Name</span>
-                    <input type=text class="form-control" name="Login" required />
+            </div>
+            <div class="row row__ID">
+                <div class="col">
+                    <span>Permission</span>
+                    <input type=text class="form-control" name="Permission" required ></input>
                 </div>
             </div>
 			<div class="row row__ID">
                 <div class="col">
-                    <span>Table ID or SQL Statement for read command</u></span>
-                    <textarea class="form-control" name="TID" required style='min-height:160px'></textarea>
+                    <span>Login Names</span>
+                    <textarea class="form-control" name="Login" required style='min-height:100px'></textarea>
                 </div>
             </div>
-			<div class="row row__ID">
-                <div class="col">
-                    <span>Resulte</span>
-                    <textarea id=resulte__ID type=text class="form-control" name="Resulte" ></textarea>
-                </div>
-            </div>
-            <br>
 			<div class="row">
 				<div class=col>
-					<button id=check__ID type="submit" class="btn btn-secondary">Check</button>
+					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
 				</div>
 			</div>
 		</div>
@@ -38,18 +34,13 @@
 <script>
     function F__ID(){
         //-------------------------------------
-		$('#F__ID').submit(function(event){
-			//--------------------------------------------------------
-		    event.preventDefault();
-		    //--------------------------------------------------------
-			$('#resulte__ID').val('');
-			var data=$vm.serialize('#F__ID');
-			var req={cmd:"check_permission",qid:$vm.qid,db_pid:data.TID,command:data.Command,login:data.Login};
-	        $VmAPI.request({data:req,callback:function(res){
-				$('#resulte__ID').val(res.permission);
-			}})
-		})
-		//-------------------------------------
+        VmInclude:__COMPONENT__/module/form.v1.js
+        //-------------------------------------
+        m.before_submit=function(record,dbv){
+            dbv.S1=record.Role;
+            return true;
+        }
+        //-------------------------------------
     }
 </script>
 <style>
@@ -61,7 +52,7 @@
 	}
     #form_container__ID{
         margin-top:20px;
-		max-width: 700px;
+		max-width: 1000px;
 		margin-left: auto;
 		margin-right: auto;
 		font-family: Verdana,sans-serif;

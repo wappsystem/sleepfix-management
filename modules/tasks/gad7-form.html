@@ -194,14 +194,16 @@
    </section>
    <script>
       function F__ID(){
-         //-------------------------------------
-         VmInclude:__CURRENT_PATH__/task_form.0.js
-         //-------------------------------------
-         var before_submit=function(record,dbv){
-            record.gad=(parseInt(record.gad_1)+parseInt(record.gad_2)+parseInt(record.gad_3)+parseInt(record.gad_4)+parseInt(record.gad_5)+parseInt(record.gad_6)+parseInt(record.gad_7)).toString();
-         }
-         //-------------------------------------
-         }
+          //-------------------------------------
+          VmInclude:__COMPONENT__/module/form.v1.js
+          VmInclude:__CURRENT_PATH__/task_form.js
+          //-------------------------------------
+          m.before_submit_2=function(record,dbv){
+              record.gad=(parseInt(record.gad_1)+parseInt(record.gad_2)+parseInt(record.gad_3)+parseInt(record.gad_4)+parseInt(record.gad_5)+parseInt(record.gad_6)+parseInt(record.gad_7)).toString();
+              return true;
+          }
+          //-------------------------------------
+      }
    </script>
    <style>
       #F__ID div span{
@@ -349,5 +351,5 @@
       .control-radio input:disabled ~ .control_indicator:after {
           background: #7b7b7b;
       }
-         </style>
+   </style>
 </div>

@@ -1,12 +1,15 @@
 {
     "modules":
 	{
-        "data-management":          {                      "url":"modules/data-management.html"},
-        "permission-check":         {                      "url":"modules/permissions/check.html"},
-        "permission-role-data":     {"table_id":"20011573","url":"modules/permissions/role-data.html","form_module":"permission-role-form"},
-        "permission-role-form":     {"table_id":"20011573","url":"modules/permissions/role-form.html"},
-    	"permission-query-data":    {"table_id":"20011572","url":"modules/permissions/query-data.html","form_module":"permission-query-form"},
-        "permission-query-form":    {"table_id":"20011572","url":"modules/permissions/query-form.html"},
+        "data-management":                      {                      "url":"modules/data-management.html"},
+        "permissions":                          {                      "url":"modules/permissions/panel.html"},
+        "permission-check":                     {                      "url":"modules/permissions/check.html"},
+        "permission-role-login-data":           {"table_id":"20011574","url":"modules/permissions/role-login-data.html","form_module":"permission-role-login-form"},
+        "permission-role-login-form":           {"table_id":"20011574","url":"modules/permissions/role-login-form.html"},
+        "permission-role-table-group-data":     {"table_id":"20011573","url":"modules/permissions/role-table-group-data.html","form_module":"permission-role-table-group-form"},
+        "permission-role-table-group-form":     {"table_id":"20011573","url":"modules/permissions/role-table-group-form.html"},
+    	"permission-query-data":                {"table_id":"20011572","url":"modules/permissions/query-data.html","form_module":"permission-query-form"},
+        "permission-query-form":                {"table_id":"20011572","url":"modules/permissions/query-form.html"},
 
 
         "screening-form":           {"table_id":"20011503","url":"modules/tasks/screening-form.html"},
@@ -17,15 +20,13 @@
         "registration-data":        {"table_id":"20011505","url":"modules/tasks/registration-data.html","form_module":"registration-form"},
         "bl-isi-data":              {"table_id":"20011508","url":"modules/tasks/isi-data.html","form_module":"bl-isi-form"},
 
-        "w1-isi-data":              {"table_id":"20011509","url":"modules/tasks2/isi-data.html","form_module":"w1-isi-form"},
-
+        "w1-isi-data":              {"table_id":"20011509","url":"modules/tasks/isi-data.html","form_module":"w1-isi-form"},
         "w2-isi-data":              {"table_id":"20011510","url":"modules/tasks/isi-data.html","form_module":"w2-isi-form"},
         "w3-isi-data":              {"table_id":"20011511","url":"modules/tasks/isi-data.html","form_module":"w3-isi-form"},
         "w6-isi-data":              {"table_id":"20011512","url":"modules/tasks/isi-data.html","form_module":"w6-isi-form"},
         "w12-isi-data":             {"table_id":"20011513","url":"modules/tasks/isi-data.html","form_module":"w12-isi-form"},
         "bl-isi-form":              {"table_id":"20011508","url":"modules/tasks/isi-form.html"},
-
-        "w1-isi-form":              {"table_id":"20011509","url":"modules/tasks2/isi-form.html"},
+        "w1-isi-form":              {"table_id":"20011509","url":"modules/tasks/isi-form.html"},
 
         "w2-isi-form":              {"table_id":"20011510","url":"modules/tasks/isi-form.html"},
         "w3-isi-form":              {"table_id":"20011511","url":"modules/tasks/isi-form.html"},

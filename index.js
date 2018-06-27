@@ -217,7 +217,7 @@ $vm.app_init(function(){
     //------------------------------------
     var over_write_alert=function(){
       $vm.alert=function(msg){
-        $('#vm_alert_information div.modal-body').html( $('<div/>').html(msg).text() );
+        $('#vm_alert_information div.modal-body').html( $('<div/>').html(msg).text().replace(/\n/g,'\n<br>') );
         $("#vm_alert_information").modal();
       }
       $vm.close_alert=function(){

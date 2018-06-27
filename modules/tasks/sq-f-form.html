@@ -80,10 +80,14 @@
 </section>
 <script>
     function F__ID(){
-        VmInclude:__CURRENT_PATH__/task_form.0.js
-        _before_submit=function(record,dbv){
-            return true
+        //-------------------------------------
+        VmInclude:__COMPONENT__/module/form.v1.js
+        VmInclude:__CURRENT_PATH__/task_form.js
+        //-------------------------------------
+        m.before_submit_2=function(record,dbv){
+            return true;
         }
+        //-------------------------------------
     }
 </script>
 <style>

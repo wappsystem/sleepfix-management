@@ -6,14 +6,15 @@
 		//-------------------------------------
         VmInclude:__COMPONENT__/module/grid.v1.js
         //-------------------------------------
-        var fields="Role,Login";
+        var fields="Role,Permission,Login";
         m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
-        m.form_fields=fields+",TID";
+        m.form_fields=fields;
         //-------------------------------------
         $('#D__ID').on('load',function(){  m.set_req(); m.request_data(); })
         //-------------------------------------
         m.before_submit=function(record,dbv){
             dbv.S1=record.Role;
+            dbv.S1=record.Permission;
             return true;
         }
         //-------------------------------------

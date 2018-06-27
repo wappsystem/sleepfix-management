@@ -1,5 +1,5 @@
 <div id=D__ID>
-   <section id=form_container__ID>
+    <section id=form_container__ID>
       <div id=header__ID>
          Patient Health Questionnaire (PHQ-9)
       </div>
@@ -240,18 +240,20 @@
          </div>
       </form>
    </section>
-   <script>
-      function F__ID(){
-         //-------------------------------------
-         VmInclude:__CURRENT_PATH__/task_form.0.js
-         //-------------------------------------
-         var before_submit=function(record,dbv){
-            record.phq=(parseInt(record.phq_1)+parseInt(record.phq_2)+parseInt(record.phq_3)+parseInt(record.phq_4)+parseInt(record.phq_5)+parseInt(record.phq_6)+parseInt(record.phq_7)+parseInt(record.phq_8)+parseInt(record.phq_9)).toString();
-         }
-         //-------------------------------------
-         }
-   </script>
-   <style>
+    <script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/module/form.v1.js
+        VmInclude:__CURRENT_PATH__/task_form.js
+        //-------------------------------------
+        m.before_submit_2=function(record,dbv){
+          record.phq=(parseInt(record.phq_1)+parseInt(record.phq_2)+parseInt(record.phq_3)+parseInt(record.phq_4)+parseInt(record.phq_5)+parseInt(record.phq_6)+parseInt(record.phq_7)+parseInt(record.phq_8)+parseInt(record.phq_9)).toString();
+          return true;
+        }
+        //-------------------------------------
+    }
+    </script>
+    <style>
       #F__ID div span{
          display:inline-block;
          padding-bottom:5px;
@@ -397,5 +399,5 @@
       .control-radio input:disabled ~ .control_indicator:after {
           background: #7b7b7b;
       }
-         </style>
+    </style>
 </div>
