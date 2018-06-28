@@ -130,7 +130,7 @@
         "w12-adherenceF-form":      {"table_id":"20011561","url":"modules/tasks/adherenceF-form.html"},
         "bl-questionnaire-data":    {"table_id":"20011570","url":"modules/tasks/bl-questionnaire-data.html","form_module":"bl-questionnaire-form"},
         "bl-questionnaire-form":    {"table_id":"20011570","url":"modules/tasks/bl-questionnaire-form.html"},
-        "w6-two-item-fu-data":      {"table_id":"20011571","url":"modules/tasks/two-item-fu-data.html","form_module":"two-item-fuF-form"},
+        "w6-two-item-fu-data":      {"table_id":"20011571","url":"modules/tasks/two-item-fu-data.html","form_module":"w6-two-item-fu-form"},
         "w6-two-item-fu-form":      {"table_id":"20011571","url":"modules/tasks/two-item-fu-form.html"}
 	}
 }
