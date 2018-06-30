@@ -7,13 +7,9 @@
       //-------------------------------------
       VmInclude:__COMPONENT__/module/grid.v1.js
       //-------------------------------------
-      var fields="between_18_65,english,smartphone,baby,shift,disease,mental_health,time_difference_2h,time_difference_1h";
+      var fields="between_18_65,english,smartphone,baby,shift,disease,mental_health,time_difference_2h,time_difference_1h,ISI_1a, ISI_1b, ISI_1c, ISI_2, ISI_3, ISI_4, ISI_5";
       m.fields="_Form,Record ID|UID,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
       m.form_fields=fields;
-      //-------------------------------------
-      var this_module=$vm.module_list[$vm.vm['__ID'].name];
-      var prefix=this_module.prefix; if(prefix==undefined) prefix="";
-      var form_module=prefix+this_module.form_module;
       //-------------------------------------
       m.cell_render=function(records,I,field,td,set_value,source){
         switch(field){
@@ -24,7 +20,7 @@
         }
       }
       //-------------------------------------
-      $('#new__ID').off('click').on('click',function(){$vm.load_module_v2(form_module,'',{goback:1})})
+      $('#new__ID').off('click').on('click',function(){$vm.load_module_v2(m.form_module,'',{goback:1})})
       $('#D__ID').on('load',function(){  if(m.preload==true) return; m.set_req(); m.request_data(); })
       //-------------------------------------
     }

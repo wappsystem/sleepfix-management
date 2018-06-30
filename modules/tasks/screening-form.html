@@ -31,7 +31,7 @@
                 <label><input type="radio" name="smartphone" value="No"> No</label><br>
             </div>
           </div>
-				</div>
+		</div>
         <div class="row row__ID">
           <div class=col>
             <span class=label__ID>4. Are you planning to have a baby or currently pregnant?</span>
@@ -40,7 +40,7 @@
                 <label><input type="radio" name="baby" value="No"> No</label><br>
             </div>
           </div>
-				</div>
+		</div>
         <div class="row row__ID">
           <div class=col>
             <span class=label__ID>5. Are you a shift worker (i.e. work commencing before 6am or later than
@@ -50,7 +50,7 @@
                 <label><input type="radio" name="shift" value="No"> No</label><br>
             </div>
           </div>
-				</div>
+		</div>
         <div class="row row__ID">
           <div class=col>
             <span class=label__ID>6. Have you been diagnosed with any of the following physical health
@@ -62,7 +62,7 @@
                 <label><input type="radio" name="disease" value="No"> No</label><br>
             </div>
           </div>
-				</div>
+		</div>
         <div class="row row__ID">
           <div class=col>
             <span class=label__ID>7. Have you been diagnosed with any of the following mental health
@@ -72,7 +72,7 @@
                 <label><input type="radio" name="mental_health" value="No"> No</label><br>
             </div>
           </div>
-				</div>
+		</div>
         <div class="row row__ID">
           <div class=col>
             <span class=label__ID>8. Have you travelled to a destination with a time difference of more than 2
@@ -82,7 +82,7 @@
                 <label><input type="radio" name="time_difference_2h" value="No"> No</label><br>
             </div>
           </div>
-				</div>
+		</div>
         <div class="row row__ID">
           <div class=col>
             <span class=label__ID>9. Do you anticipate on traveling to a destination more than an hour time
@@ -92,7 +92,7 @@
                 <label><input type="radio" name="time_difference_1h" value="No"> No</label><br>
             </div>
           </div>
-				</div>
+		</div>
         <div class="row">
           <div class=col>
             <br>
@@ -101,9 +101,11 @@
             SleepFix Research Team<br>
             02 9114 0481<br>
             sleepfix@woolcock.org.au
+            <hr/>
           </div>
         </div>
-        <hr/>
+
+
              <div class="row row__ID">
                <span class=label__ID>1. Please rate the CURRENT (i.e. PAST WEEK) SEVERITY of your insomnia problem(s).</span>
                <div class=radio__ID>
@@ -187,29 +189,52 @@
                   </div>
                </div>
             </div>
+
+
+
         <br>
-       <div class="row">
+        <div class="row">
           <div class=col>
             <button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
           </div>
         </div>
-			</div>
+	  </div>
     </form>
   </div>
   <script>
     function F__ID(){
       //-------------------------------------
-      if($vm.server=="development") $('#vm_dev_info__ID').show();
+      VmInclude:__COMPONENT__/module/form.v1.js
       //-------------------------------------
+      m.after_add=function(record,dbv,res){
+          if(
+                (
+                    record.between_18_65!='Yes' ||
+                    record.english!='Yes' ||
+                    record.smartphone!='Yes' ||
+                    record.baby!='No' ||
+                    record.shift!='No' ||
+                    record.disease!='No' ||
+                    record.mental_health!='No' ||
+                    record.time_difference_2h!='No' ||
+                    record.time_difference_1h!='No'
+                )
+                ||
+                (
+                    parseInt(record.ISI_2)+parseInt(record.ISI_3)+parseInt(record.ISI_4)
+                    +parseInt(record.ISI_5)+parseInt(record.ISI_1a)+parseInt(record.ISI_1b)+parseInt(record.ISI_1c)
+                    <= 15
+                )
+          ){
+                $vm.load_module_v2(m.prefix+'screen-failure-thank-you-page','',{});
+          }
+          else{
+              $vm.load_module_v2(m.prefix+'consent-form','',{first_uid:res.uid});
+          }
+      }
+      /*
       var this_module=$vm.module_list[$vm.vm['__ID'].name];
       var prefix=this_module.prefix;  if(prefix==undefined) prefix="";
-      //-------------------------------------
-      $('#D__ID').on('load',function(){
-        $('#F__ID')[0].reset();
-        $('#submit__ID').show();
-        var record=$vm.vm['__ID'].input.record;
-        $vm.deserialize(record,'#F__ID');
-      })
       //-------------------------------------
       $('#F__ID').submit(function(event){
         //--------------------------------------------------------
@@ -250,6 +275,7 @@
         //--------------------------------------------------------
       })
       //--------------------------------------------------------
+      */
     }
   </script>
   <style>

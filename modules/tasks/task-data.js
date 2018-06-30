@@ -8,7 +8,3 @@ m.before_submit=function(record,dbv){
    return r;
 };
 //-------------------------------------
-$('#new__ID').off('click').on('click',function(){$vm.load_module_v2(m.form_module,'',{goback:1})})
-//-------------------------------------
-$('#D__ID').on('load',function(){  if(m.preload==true) return; m.set_req(); m.request_data(); })
-//-------------------------------------
