@@ -41,6 +41,20 @@
   </div>
   <script>
     function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/module/form.v1.js
+        m.add_anonymous=1;
+        //-------------------------------------
+        $("#D__ID input[name=Consent]").on('click',function(){
+          if($(this).attr('value')=='Yes') $('#submit__ID').show();
+          else $('#submit__ID').hide();
+        })
+        //-------------------------------------
+        m.after_add=function(record,dbv,res){
+            $vm.load_module_v2(m.prefix+'registration-thank-you-page','',{record,data,first_uid:m.input.first_uid});
+        }
+        //-------------------------------------
+        /*
       //-------------------------------------
       var this_module=$vm.module_list[$vm.vm['__ID'].name];
       //-------------------------------------
@@ -88,6 +102,7 @@
         //--------------------------------------------------------
       })
       //--------------------------------------------------------
+      */
     }
   </script>
   <style>
