@@ -1,7 +1,7 @@
 <div id=D__ID>
   <div id=form_container__ID>
     <div id=header__ID>
-      Consent
+      PIS
     </div>
     <form id=F__ID>
       <div class="container">
@@ -21,9 +21,9 @@
 		    </div>
         <div class="row row__ID">
           <div class=col>
-            <span class=label__ID>By ticking 'Yes', I hereby agree to participate in all aspects of this research study.</span>
+            <span class=label__ID>By ticking 'Yes', I have read and understand the information given.</span>
             <div class=radio__ID style='padding-left:50px'>
-              <label><input type="radio" name="Consent" value="Yes" required > Yes, I consent to taking part in the study</label><br>
+              <label><input type="radio" name="Consent" value="Yes" > Yes</label><br>
               <label><input type="radio" name="Consent" value="No"> No</label><br>
             </div>
           </div>
@@ -31,7 +31,7 @@
         <br>
         <div class="row">
           <div class=col>
-            <button id=submit__ID type="submit" class="btn btn-secondary" >Submit</button>
+            <button id=submit__ID type="button" class="btn btn-secondary" >Submit</button>
           </div>
         </div>
       </div>
@@ -41,16 +41,10 @@
     function F__ID(){
         //-------------------------------------
         VmInclude:__COMPONENT__/module/form.v1.js
-        m.add_anonymous=1;
         //-------------------------------------
         m.load=function(){
             m.input=$vm.vm['__ID'].input; if(m.input==undefined) m.input={};
-            $('#F__ID')[0].reset();
-            $('#submit__ID').show();
             var grid_record=m.input.record;
-            $('#delete__ID').hide(); if(grid_record!=undefined && grid_record.ID!==undefined) $('#delete__ID').show();
-            $vm.deserialize(grid_record,'#F__ID');
-
             if(grid_record==undefined) $('#submit__ID').hide();
         }
         //-------------------------------
@@ -59,51 +53,10 @@
           else $('#submit__ID').hide();
         })
         //-------------------------------------
-        m.after_add=function(record,dbv,res){
-            $vm.load_module_v2(m.prefix+'registration-form','',{first_uid:m.input.first_uid});
-        }
+        $('#submit__ID').on('click',function(){
+            $vm.load_module_v2(m.prefix+"consent-form",'',{first_uid:m.input.first_uid})
+        })
         //-------------------------------------
-        /*
-      var this_module=$vm.module_list[$vm.vm['__ID'].name];
-      //-------------------------------------
-      $('#D__ID').on('load',function(){
-        $('#submit__ID').hide();
-        $('#F__ID')[0].reset();
-        var record=$vm.vm['__ID'].input.record;
-        $vm.deserialize(record,'#F__ID');
-      })
-      //--------------------------------------------------------
-      $('#F__ID').submit(function(event){
-        //--------------------------------------------------------
-        event.preventDefault();
-        $('#submit__ID').hide();
-        //--------------------------------------------------------
-        var data=$vm.serialize('#F__ID');
-        var dbv={
-        }
-        if($vm.vm['__ID'].input.first_uid!=undefined) dbv.PUID=$vm.vm['__ID'].input.first_uid;
-        //--------------------------------------------------------
-        var db_pid=this_module.table_id;
-        var rid=undefined; if($vm.vm['__ID'].input.record!=undefined) rid=$vm.vm['__ID'].input.record.ID;
-        var req={cmd:"add_json_record_anonymous",db_pid:db_pid,data:data,dbv:dbv};
-        if(rid!=undefined) req={cmd:"modify_json_record",rid:rid,db_pid:db_pid,data:data,dbv:dbv};
-        $VmAPI.request({data:req,callback:function(res){
-          $vm.refresh=1;
-          if(rid!=undefined){ window.history.go(-1); return;} //modify
-          if($vm.vm['__ID'].input!=undefined && $vm.vm['__ID'].input.goback!=undefined){ window.history.go(-1); return;}   //new from grid
-          if($vm.vm['__ID'].input.first_uid!=undefined){ //from screning
-            var prefix=this_module.prefix; if(prefix==undefined) prefix="";
-            $vm.load_module_v2(prefix+'registration-form','',{first_uid:$vm.vm['__ID'].input.first_uid});
-            return;
-          }
-          else{ //from test
-            $vm.alert('Your data has been successfully submitted');
-          }
-        }});
-        //--------------------------------------------------------
-      })
-      //--------------------------------------------------------
-      */
     }
   </script>
   <style>

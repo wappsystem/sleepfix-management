@@ -38,6 +38,7 @@ VmInclude:__COMPONENT__/module/form-toolbar.html
         //-------------------------------------
         m.before_submit=function(record,dbv){
             dbv.S1=record.Role;
+            dbv.S2=record.Permission;
             return true;
         }
         //-------------------------------------

@@ -25,6 +25,12 @@
         </div>
         <div class="row row__ID">
           <div class=col>
+            <span class=label__ID>SMS Alert</span><br>
+            <input type="checkbox" _class="form-control" name="SMS" /> I want to have sms alert when an email has been sent.
+          </div>
+        </div>
+        <div class="row row__ID">
+          <div class=col>
             <span class=label__ID>Email</span>
             <input type="email" class="form-control" id=Email__ID name="Email" placeholder="Email" required>
           </div>
@@ -36,6 +42,10 @@
             <button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
           </div>
         </div>
+      </div>
+      <div style='display:none'>
+          <input type="text" name=Password />
+          <input type="text" name=Start_Date />
       </div>
     </form>
   </div>
@@ -50,8 +60,15 @@
           else $('#submit__ID').hide();
         })
         //-------------------------------------
+        m.before_submit=function(record,dbv){
+            dbv.S2=record.Email;
+            if(record.Password==""){ dbv.S3=record.Password=$vm.vm_password(8,false); record.Password;}
+            if(record.Start_Date==""){ dbv.DT1=record.Start_Date=$vm.date_to_string_yyyymmdd(new Date());}
+            dbv.V1=0; if(record.SMS='on') dbv.V1=1;
+        }
         m.after_add=function(record,dbv,res){
-            $vm.load_module_v2(m.prefix+'registration-thank-you-page','',{record,data,first_uid:m.input.first_uid});
+            //We should send email here
+            $vm.load_module_v2(m.prefix+'registration-thank-you-page','',{record:record,first_uid:m.input.first_uid});
         }
         //-------------------------------------
         /*
