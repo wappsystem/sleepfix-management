@@ -1,6 +1,6 @@
 <div id=D__ID>
 
-<!--third html start -->
+    <!--third html start -->
     <div class="container mt-95 mb-3">
       <div class="row" >
 
@@ -281,9 +281,9 @@
          </div>
         </div>
       </div>
-  </div>
+    </div>
 
-  <style>
+    <style third-party>
       .formbox h3 {
         font-family: RobotoSlab-Regular;
         font-size: 24px;
@@ -449,22 +449,22 @@
         line-height: 21px;
         padding-top: 20px;
       }
-    .form-group .questiongroup {
-        margin-left: 15px;
-    }
-    .form-group .questiongroup label.radiobuttons {
-        margin-right: 10px;
-    }
-  </style>
-<!--third css end -->
-  <script>
-    function F__ID(){
-      //-------------------------------------
-      VmInclude:__COMPONENT__/module/form.v1.js
-      //-------------------------------------
-      m.after_add=function(record,dbv,res){
-          if(
-                (
+        .form-group .questiongroup {
+            margin-left: 15px;
+        }
+        .form-group .questiongroup label.radiobuttons {
+            margin-right: 10px;
+        }
+    </style>
+    <!--third css end -->
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/module/form.v1.js
+            //-------------------------------------
+            m.after_add=function(record,dbv,res){
+                if(
+                    (
                     record.between_18_65!='Yes' ||
                     record.english!='Yes' ||
                     record.smartphone!='Yes' ||
@@ -481,20 +481,19 @@
                     +parseInt(record.ISI_5)+parseInt(record.ISI_1a)+parseInt(record.ISI_1b)+parseInt(record.ISI_1c)
                     <= 15
                 )
-          ){
+            ){
                 $vm.load_module_v2(m.prefix+'screen-failure-thank-you-page','',{});
-          }
-          else{
-              $vm.load_module_v2(m.prefix+'pis-form','',{first_uid:res.uid});
-          }
-      }
+            }
+            else{
+                $vm.load_module_v2(m.prefix+'pis-form','',{first_uid:res.uid});
+            }
+        }
     }
-  </script>
+    </script>
   <style>
     #D__ID{
       height:100%;
       animation: vm_module_fadein 1.0s;
-      /*background-color: #fff;*/
     }
   </style>
   </div>

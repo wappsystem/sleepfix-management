@@ -1,6 +1,6 @@
 <div id=D__ID>
 
-<!--third html start -->
+    <!--third html start -->
     <div class="container mt-95 mb-3">
       <div class="row" >
 
@@ -71,13 +71,16 @@
         m.after_add=function(record,dbv,res){
             $vm.load_module_v2(m.prefix+'registration-form','',{first_uid:m.input.first_uid});
         }
+        //--------------------------------------------------------
+        $('#D__ID').css('min-height',$vm.min_height);
+        //--------------------------------------------------------
     }
   </script>
   <style>
       #D__ID{
         height:100%;
         animation: vm_module_fadein 1.0s;
-        /*background-color: #fff;*/
+        overflow: auto;
       }
       .formbox h3 {
         font-family: RobotoSlab-Regular;

@@ -33,20 +33,19 @@
         	<div id=vm_loader class="loader__ID"></div>
         </div>
     </div>
-    <div>
-        <div footer id=footer__ID>
-        	<span id=text__ID></span>
-        	<span id=vm_system_info style='color:#555;float:right'></span>
-        </div>
+    <div footer id=footer__ID>
+    	<span id=text__ID></span>
     </div>
 </div>
 <div system-html>
     <div top-right-corner id=top_right_corner__ID class='d-none d-xl-block'>
         <div>
-            <span id=database_p__ID><span style='color:green'>&#11044; </span>Connected to a private database<br></span>
-            <span id=database_d__ID><span style='color:red'>&#11044; </span>Connected to a public database<br></span>
             <span id=username__ID></span>
         </div>
+    </div>
+    <div style='position:absolute;right:20px;bottom:0'>
+        <span id=database_p__ID style='color:green'>.</span>
+        <span id=database_d__ID style='color:red'>. <span id=vm_system_info style='color:#555';></span></span>
     </div>
     <div alert class="modal fade" id="vm_alert_information" tabindex="-1" role="dialog" aria-labelledby="vm_dialog" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog" role="document">
@@ -57,7 +56,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style='word-wrap: break-word;'>
 
                 </div>
                 <div class="modal-footer">
@@ -75,9 +74,8 @@
         var set_height=function(){
 			var header_height=$('#header__ID').outerHeight(); $vm.header_height=header_height;
 			var footer_height=$('#footer__ID').outerHeight();
-            $vm.min_height=($(window).height()-header_height-footer_height-1);
-			$('#content_container__ID').css({'min-height':($vm.min_height)+'px'});
-            $('#content__ID').css({'height':(($(window).height()-header_height-1))+'px'});
+			$vm.min_height=($(window).height()-header_height-footer_height);
+			$('#content_container__ID').css({'height':($vm.min_height)+'px'});
 		}
 		//------------------------------------
 		set_height();window.onresize=function(){set_height();}
@@ -90,7 +88,7 @@
     $vm.footer=function(){
         $vm.root_layout_footer='footer__ID';
         //-----------------------------------------------------
-        $('#text__ID').html("Copyright © "+(new Date()).getFullYear()+", Your company name. <span id=FL__ID>Open source code on GitHub (<a style='color:#fff' target=_blank href=https://github.com/vmiis>https://github.com/vmiis</a>).  </span>");
+        $('#text__ID').html("Copyright © "+(new Date()).getFullYear()+", SleepFix. <span id=FL__ID>Powered by Wappsystem</span>");
         //------------------------------------
     }
     //---------------------------------------------
@@ -143,14 +141,15 @@
     }
 </script>
 <style layout-css>
-    html,body{
+	html,body{
         width: 100%;
         height: 100%;
         padding:0;
         margin:0;
         font-family:Arial;
-    }
+	}
     body{
+        background-color: #004955 !important;
         background-image: url(layout.jpg);
         background-size: cover;
         background-repeat: repeat-x;
@@ -160,13 +159,13 @@
     /*----------------------*/
     /*layout*/
     #vm_framework{
+        height:100%;
     }
     #layout__ID {
+        height: 100%;
         display: grid;
-        grid-template-rows: auto 1fr;
-    }
-    #content__ID {
-        overflow:auto;
+        grid-template-rows: auto 1fr auto;
+        overflow:hidden;
     }
     .vm_module{
         width:100%;
@@ -195,7 +194,7 @@
     #vm_logo_label_B{
         font-family: Arial, sans-serif;
         color:#fff;
-        font-size: 93%;
+        font-size: 132%;
         line-height:80%;
         display:inline-block;
     }
@@ -350,9 +349,9 @@
     /*----------------------*/
     /*content*/
     #content_container__ID{
-        /*position:fixed;*/
+        position:fixed;
         width:100%;
-        /*overflow:hidden;*/
+        overflow:auto;
     }
     #vm_loader{
         display:none;

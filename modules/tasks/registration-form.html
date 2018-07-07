@@ -1,6 +1,6 @@
 <div id=D__ID>
 
-<!--third html start -->
+    <!--third html start -->
     <div class="container mt-95 mb-3">
       <div class="row" >
 
@@ -269,35 +269,35 @@
         margin-right: 10px;
     }
   </style>
-<!--third css end -->
-<script>
-  function F__ID(){
-      //-------------------------------------
-      VmInclude:__COMPONENT__/module/form.v1.js
-      m.add_anonymous=1;
-      //-------------------------------------
-      $("#D__ID input[name=Consent]").on('click',function(){
-        if($(this).attr('value')=='Yes') $('#submit__ID').show();
-        else $('#submit__ID').hide();
-      })
-      //-------------------------------------
-      m.before_submit=function(record,dbv){
-          dbv.S2=record.Email;
-          if(record.Password==""){ dbv.S3=record.Password=$vm.vm_password(8,false); record.Password;}
-          if(record.Start_Date==""){ dbv.DT1=record.Start_Date=$vm.date_to_string_yyyymmdd(new Date());}
-          dbv.V1=0; if(record.SMS='on') dbv.V1=1;
+  <!--third css end -->
+    <script>
+      function F__ID(){
+          //-------------------------------------
+          VmInclude:__COMPONENT__/module/form.v1.js
+          m.add_anonymous=1;
+          //-------------------------------------
+          $("#D__ID input[name=Consent]").on('click',function(){
+            if($(this).attr('value')=='Yes') $('#submit__ID').show();
+            else $('#submit__ID').hide();
+          })
+          //-------------------------------------
+          m.before_submit=function(record,dbv){
+              dbv.S2=record.Email;
+              if(record.Password==""){ dbv.S3=record.Password=$vm.vm_password(8,false); record.Password;}
+              if(record.Start_Date==""){ dbv.DT1=record.Start_Date=$vm.date_to_string_yyyymmdd(new Date());}
+              dbv.V1=0; if(record.SMS='on') dbv.V1=1;
+          }
+          m.after_add=function(record,dbv,res){
+              //We should send email here
+              $vm.load_module_v2(m.prefix+'registration-thank-you-page','',{record:record,first_uid:m.input.first_uid});
+          }
       }
-      m.after_add=function(record,dbv,res){
-          //We should send email here
-          $vm.load_module_v2(m.prefix+'registration-thank-you-page','',{record:record,first_uid:m.input.first_uid});
-      }
-  }
-  </script>
-  <style>
-    #D__ID{
-      height:100%;
-      animation: vm_module_fadein 1.0s;
-      /*background-color: #fff;*/
-    }
-  </style>
+      </script>
+      <style>
+        #D__ID{
+          height:100%;
+          animation: vm_module_fadein 1.0s;
+          /*background-color: #fff;*/
+        }
+      </style>
   </div>
