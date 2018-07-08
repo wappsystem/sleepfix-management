@@ -30,7 +30,7 @@
 
                   <h3>Baseline Questionnaire</h3>
                  <div class="form-group">
-                     <h4>1. What is your gender?</h4>
+                     <h4>What is your gender?</h4>
      				<div class="questiongroup">
                          <fieldset>
                              <label class="radiobuttons">
@@ -52,7 +52,7 @@
                    </fieldset>
                  </div>
                  <div class="form-group">
-                     <h4>3.	Which of these best describes the highest level of education you have completed?</h4>
+                     <h4>Which of these best describes the highest level of education you have completed?</h4>
      				<div class="questiongroup">
                          <fieldset>
                              <label class="radiobuttons">
@@ -71,7 +71,7 @@
                     </div>
      		     </div>
                  <div class="form-group">
-                     <h4>4.	What is your current employment status? (select all that apply)</h4>
+                     <h4>What is your current employment status? (select all that apply)</h4>
      				<div class="questiongroup">
                          <fieldset>
                              <label class="checkboxes">
@@ -101,13 +101,35 @@
      		     </div>
                  <div id=Occupation__ID >
                  <div class="form-group" >
-                     <h4>5.	What is your current occupation?</h4>
+                     <h4>What is your current occupation?</h4>
      				<div class="questiongroup">
                          <fieldset>
                                <input type="text" class="form-control" name="Occupation" required >
                          </fieldset>
                     </div>
      		     </div>
+             </div>
+             <div class="form-group">
+                 <h4>What is your relationship status?</h4>
+                <div class="questiongroup">
+                     <fieldset>
+                         <label class="radiobuttons">
+                           <input type="radio" name="Relationship" value="Single" required>
+                           <span class="checkmark"></span> Single</label><br>
+                         <label class="radiobuttons">
+                           <input type="radio" name="Relationship" value="Defacto">
+                           <span class="checkmark"></span> Defacto</label><br>
+                         <label class="radiobuttons">
+                           <input type="radio" name="Relationship" value="Married">
+                           <span class="checkmark"></span> Married</label><br>
+                       <label class="radiobuttons">
+                         <input type="radio" name="Relationship" value="Divorced">
+                         <span class="checkmark"></span> Divorced</label><br>
+                         <label class="radiobuttons">
+                           <input type="radio" name="Relationship" value="Widowed">
+                           <span class="checkmark"></span> Widowed</label><br>
+                     </fieldset>
+                </div>
              </div>
                  <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
               </form>

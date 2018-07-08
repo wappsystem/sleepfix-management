@@ -26,10 +26,12 @@
                       <label for="mobileNumber">Mobile</label>
                       <input type="text" class="form-control" name="Mobile_Phone" id="mobileNumber" required placeholder="Mobile">
                       <label class="checkboxes">
-                        <input type="checkbox" name="english" >
-                        <span class="check_checkmark"></span>I want to have sms alert when an email has been sent. </label><br>
-                      <label for="emailAddress">Email</label>
-                      <input type="email" class="form-control" name="Email" id="emailAddress" required placeholder="Email">
+                     <input type="checkbox" name="SMS" >
+                     <span class="check_checkmark"></span>I want to have sms alert when an email has been sent. </label><br>
+                     <label for="emailAddress">Email</label>
+                     <input type="email" class="form-control" name="Email" id="emailAddress" required placeholder="Email">
+                     <label for="emailconfirmationAddress">Email Confirmation</label>
+                     <input type="email" class="form-control" name="Email_Confirmation" id="emailconfirmationAddress" required placeholder="Email">
                       <label for="address">Address</label>
                       <input type="text" class="form-control" name="Address" id="address" required placeholder="Address">
                       <label for="suburb">Street</label>
@@ -282,6 +284,11 @@
           })
           //-------------------------------------
           m.before_submit=function(record,dbv){
+              if(record.Email!=record.Email_Confirmation){
+                  $('#submit__ID').show();
+                  $vm.alert("Email and confirmation email not same");
+                  return false;
+              }
               dbv.S2=record.Email;
               if(record.Password==""){ dbv.S3=record.Password=$vm.vm_password(8,false); record.Password;}
               if(record.Start_Date==""){ dbv.DT1=record.Start_Date=$vm.date_to_string_yyyymmdd(new Date());}

@@ -53,7 +53,7 @@
         "bl-phq9-data":             {"table_id":"20011522","url":"modules/tasks/phq9-data.html","form_module":"bl-phq9-form"},
         "w6-phq9-data":             {"table_id":"20011523","url":"modules/tasks/phq9-data.html","form_module":"w6-phq9-form"},
         "w12-phq9-data":            {"table_id":"20011524","url":"modules/tasks/phq9-data.html","form_module":"w12-phq9-form"},
-        "bl-phq9-form":             {"table_id":"20011522","url":"modules/tasks/phq9-form.html"},
+        "bl-phq9-form":             {"table_id":"20011522","url":"modules/tasks/phq8-form.html"},
         "w6-phq9-form":             {"table_id":"20011523","url":"modules/tasks/phq9-form.html"},
         "w12-phq9-form":            {"table_id":"20011524","url":"modules/tasks/phq9-form.html"},
         "bl-gad7-data":             {"table_id":"20011525","url":"modules/tasks/gad7-data.html","form_module":"bl-gad7-form"},
