@@ -24,7 +24,7 @@
                       <label for="lastName">Last Name</label>
                       <input type="text" class="form-control" name="Last_Name" id="lastName" required placeholder="Last Name">
                       <label for="mobileNumber">Mobile</label>
-                      <input type="text" class="form-control" name="Mobile_Phone" id="mobileNumber" required placeholder="Mobile">
+                      <input type="tel" class="form-control" name="Mobile_Phone" id="mobileNumber" required placeholder="nnnn nnn nnn" pattern="[0-9]{4} [0-9]{3} [0-9]{3}">
                       <label class="checkboxes">
                      <input type="checkbox" name="SMS" >
                      <span class="check_checkmark"></span>I want to have sms alert when an email has been sent. </label><br>
@@ -37,9 +37,18 @@
                       <label for="suburb">Street</label>
                       <input type="text" class="form-control" name="Suburb" id="suburb" required placeholder="Suburb">
                       <label for="postcode">Postcode</label>
-                      <input type="text" class="form-control" name="Postcode" id="postcode" required placeholder="Postcode">
+                      <input type="text" class="form-control" name="Postcode" id="postcode" required placeholder="nnnn" pattern="[0-7]{1}[0-9]{3}">
                       <label for="state">State</label>
-                      <input type="text" class="form-control" name="State" id="state" required placeholder="State">
+                      <select name="State" class="form-control" >
+                            <option value="NSW">NSW</option>
+                            <option value="NT">NT</option>
+                            <option value="SA">SA</option>
+                            <option value="QLD">QLD</option>
+                            <option value="TAS">TAS</option>
+                            <option value="VIC">VIC</option>
+                            <option value="WA">WA</option>
+                      </select>
+                      <!--<input type="text" class="form-control" name="State" id="state" required placeholder="State">-->
                     </fieldset>
                   </div>
                  <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
