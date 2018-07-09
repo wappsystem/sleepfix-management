@@ -39,6 +39,18 @@
                               <span class="checkmark"></span> No</label>
                         </fieldset>
                     </div>
+                    <div id=pis_no_text__ID>
+                        <div class="form-group" >
+                            <fieldset class="subquestions">
+                                <h4>Text shown when No is selected<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                                qui officia deserunt mollit anim id est laborum.
+                                </h4>
+                            </fieldset>
+                        </div>
+                    </div>
                     <button type="button" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
                 </form>
             </div>
@@ -55,11 +67,12 @@
                 m.input=$vm.vm['__ID'].input; if(m.input==undefined) m.input={};
                 var grid_record=m.input.record;
                 if(grid_record==undefined) $('#submit__ID').hide();
+                $('#pis_no_text__ID').hide();
             }
             //-------------------------------
             $("#D__ID input[name=Consent]").on('click',function(){
-              if($(this).attr('value')=='Yes') $('#submit__ID').show();
-              else $('#submit__ID').hide();
+              if($(this).attr('value')=='Yes') {$('#submit__ID').show();$('#pis_no_text__ID').hide();}
+              else {$('#submit__ID').hide();$('#pis_no_text__ID').show();}
             })
             //-------------------------------------
             $('#submit__ID').on('click',function(){

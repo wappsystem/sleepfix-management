@@ -147,10 +147,72 @@
         border-radius: 50%;
         background: white !important;
     }
+    /* CHECK BOX */
+    #D__ID .checkboxes {
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      padding-left: 30px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    #D__ID .checkboxes input {
+      position: absolute !important;
+      opacity: 0 !important;
+      cursor: pointer;
+    }
+    #D__ID .check_checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 22px;
+      width: 22px;
+      background-color: #A2D5CB;
+      border-radius: 0%;
+    }
+    #D__ID .checkboxes:hover input ~ .check_checkmark {
+      background-color: #23807F;
+    }
+    #D__ID .checkboxes input:checked ~ .check_checkmark {
+      background-color: #23807F;
+    }
+    #D__ID .check_checkmark:after {
+      content: "";
+      position: absolute !important;
+      display: none;
+    }
+    /* Show the indicator (dot/circle) when checked */
+    #D__ID .checkboxes input:checked ~ .check_checkmark:after {
+      display: block !important;
+    }
+    /* Style the indicator (dot/circle) */
+    #D__ID .container .check_checkmark:after {
+      top: 0px;
+      left: 6px;
+      color:white;
+      content:"✔";
+    }
     #D__ID .form-group input[type=text] {
         font-family: Nunito-Regular;
         font-size: 16px;
         color: #6D6F72;
+    }
+    #D__ID .form-group input[type=tel] {
+      font-family: Nunito-Regular;
+      font-size: 16px;
+      color: #6D6F72;
+    }
+    #D__ID .form-group input[type=email] {
+      font-family: Nunito-Regular;
+      font-size: 16px;
+      color: #6D6F72;
+    }
+    #D__ID .form-group select {
+      font-family: Nunito-Regular;
+      font-size: 16px;
+      color: #6D6F72;
     }
     #D__ID fieldset.subquestions legend {
         font-family: Nunito-Regular;

@@ -12,7 +12,7 @@
 
               <!-- form start -->
                 <form id=F__ID>
-                    <h3>Screening Questions</h3>
+                    <h3>Consent</h3>
                     <!-- form group -->
                     <div class="form-group">
                         <fieldset class="subquestions">
@@ -39,6 +39,18 @@
                               <span class="checkmark"></span> No</label>
                         </fieldset>
                     </div>
+                    <div id=consent_no_text__ID>
+                        <div class="form-group" >
+                            <fieldset class="subquestions">
+                                <h4>Text shown when No is selected<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                                qui officia deserunt mollit anim id est laborum.
+                                </h4>
+                            </fieldset>
+                        </div>
+                    </div>
                     <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
                 </form>
             </div>
@@ -61,11 +73,12 @@
                 $vm.deserialize(grid_record,'#F__ID');
 
                 if(grid_record==undefined) $('#submit__ID').hide();
+                $('#consent_no_text__ID').hide();
             }
             //-------------------------------
             $("#D__ID input[name=Consent]").on('click',function(){
-                if($(this).attr('value')=='Yes') $('#submit__ID').show();
-                else $('#submit__ID').hide();
+                if($(this).attr('value')=='Yes') {$('#submit__ID').show();$('#consent_no_text__ID').hide();}
+                else {$('#submit__ID').hide();$('#consent_no_text__ID').show();}
             })
             //-------------------------------------
             m.after_add=function(record,dbv,res){

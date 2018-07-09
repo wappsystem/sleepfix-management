@@ -68,7 +68,7 @@
         }
         m.after_add=function(record,dbv,res){
             //We should send email here
-            $vm.load_module_v2(m.prefix+'registration-thank-you-page','',{record:record,first_uid:m.input.first_uid});
+            $vm.load_module_v2(m.prefix+'sleepfix-study-page','',{record:record,first_uid:m.input.first_uid});
         }
         //-------------------------------------
         /*
@@ -110,7 +110,7 @@
           else if($vm.vm['__ID'].input!=undefined && $vm.vm['__ID'].input.goback!=undefined) window.history.go(-1);//new from grid
           else if($vm.vm['__ID'].input.first_uid!=undefined){ //from consent
             var prefix=this_module.prefix; if(prefix==undefined) prefix="";
-            $vm.load_module_v2(prefix+'registration-thank-you-page','',{record,data,first_uid:$vm.vm['__ID'].input.first_uid});
+            $vm.load_module_v2(prefix+'sleepfix-study-page','',{record,data,first_uid:$vm.vm['__ID'].input.first_uid});
           }
           else{ //from test
             $vm.alert('Your data has been successfully submitted');
