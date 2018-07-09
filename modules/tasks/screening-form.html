@@ -86,9 +86,23 @@
                             <span class="checkmark"></span> No</label>
                       </fieldset>
                   </div>
+                <div class="form-group">
+                    <fieldset class="subquestions">
+                        <h4>6. Have you been diagnosed with any of the following physical health
+                        conditions: cardiovascular disease (stroke, heart
+                        failure), neurological disorders (epilepsy, motor neuron disease,
+                        Parkinson’s disease)*</h4>
+                        <label class="radiobuttons">
+                          <input type="radio" name="disease" value="Yes" required >
+                          <span class="checkmark"></span> Yes</label>
+                        <label class="radiobuttons">
+                          <input type="radio" name="disease" value="No">
+                          <span class="checkmark"></span> No</label>
+                    </fieldset>
+                </div>
                   <div class="form-group">
                       <fieldset class="subquestions">
-                          <h4>6. Have you been diagnosed with any of the following mental health
+                          <h4>7. Have you been diagnosed with any of the following mental health
                           conditions: schizophrenia, psychosis, mania*</h4>
                           <label class="radiobuttons">
                             <input type="radio" name="mental_health" value="Yes" required >
@@ -100,7 +114,7 @@
                   </div>
                   <div class="form-group">
                       <fieldset class="subquestions">
-                          <h4>7. Have you travelled to a destination with a time difference of more than 2 hours in the past month?</h4>
+                          <h4>8. Have you travelled to a destination with a time difference of more than 2 hours in the past month?</h4>
                           <label class="radiobuttons">
                             <input type="radio" name="time_difference_2h" value="Yes" required >
                             <span class="checkmark"></span> Yes</label>
@@ -111,7 +125,7 @@
                   </div>
                   <div class="form-group">
                       <fieldset class="subquestions">
-                          <h4>8. Do you anticipate on traveling to a destination more than an hour time difference in the next 12 weeks?</h4>
+                          <h4>9. Do you anticipate on traveling to a destination more than an hour time difference in the next 12 weeks?</h4>
                           <label class="radiobuttons">
                             <input type="radio" name="time_difference_1h" value="Yes" required >
                             <span class="checkmark"></span> Yes</label>
@@ -121,21 +135,21 @@
                       </fieldset>
                   </div>
                   <div class="form-group">
-                      <h4>9. Thoughts that you would be better off dead or of hurting yourself in some way</h4>
+                      <h4>10. Thoughts that you would be better off dead or of hurting yourself in some way</h4>
       				  <div class="questiongroup">
                           <fieldset>
                               <label class="radiobuttons">
                                 <input type="radio" name="phq_9" value="0" required>
-                                <span class="checkmark"></span> (0) Not at all</label><br>
+                                <span class="checkmark"></span> Not at all</label><br>
                               <label class="radiobuttons">
                                 <input type="radio" name="phq_9" value="1">
-                                <span class="checkmark"></span> (1) Several days</label><br>
+                                <span class="checkmark"></span> Several days</label><br>
                               <label class="radiobuttons">
                                 <input type="radio" name="phq_9" value="2">
-                                <span class="checkmark"></span> (2) More than half the days</label><br>
+                                <span class="checkmark"></span> More than half the days</label><br>
                               <label class="radiobuttons">
                                 <input type="radio" name="phq_9" value="3">
-                                <span class="checkmark"></span> (3) Nearly every day</label><br>
+                                <span class="checkmark"></span> Nearly every day</label><br>
                           </fieldset>
                      </div>
       		      </div>
@@ -295,6 +309,7 @@
                     </div>
      		     </div>
                  <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                 <input type="text" style="display:none" name="Eligible" />
               </form>
             </div>
          </div>
@@ -314,6 +329,7 @@
                     record.smartphone!='Yes' ||
                     record.baby!='No' ||
                     record.shift!='No' ||
+                    record.disease!='No' ||
                     record.mental_health!='No' ||
                     record.time_difference_2h!='No' ||
                     record.time_difference_1h!='No'
