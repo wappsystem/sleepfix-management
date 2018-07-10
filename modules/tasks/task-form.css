@@ -209,6 +209,11 @@
       font-size: 16px;
       color: #6D6F72;
     }
+    #D__ID .form-group input[type=number] {
+      font-family: Nunito-Regular;
+      font-size: 16px;
+      color: #6D6F72;
+    }
     #D__ID .form-group select {
       font-family: Nunito-Regular;
       font-size: 16px;
