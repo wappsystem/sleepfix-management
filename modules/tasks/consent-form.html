@@ -80,6 +80,10 @@
                 if($(this).attr('value')=='Yes') {$('#submit__ID').show();$('#consent_no_text__ID').hide();}
                 else {$('#submit__ID').hide();$('#consent_no_text__ID').show();}
             })
+            //-------------------------------
+            m.before_submit=function(record,dbv){
+                dbv.PUID=m.input.first_uid;
+            }
             //-------------------------------------
             m.after_add=function(record,dbv,res){
                 $vm.load_module_v2(m.prefix+'registration-form','',{first_uid:m.input.first_uid});
