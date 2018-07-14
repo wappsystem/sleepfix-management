@@ -10,6 +10,11 @@
         "permission-role-table-group-form":     {"table_id":"20011573","url":"permissions/role-table-group-form.html"},
     	"permission-query-data":                {"table_id":"20011572","url":"permissions/query-data.html","form_module":"permission-query-form"},
         "permission-query-form":                {"table_id":"20011572","url":"permissions/query-form.html"},
+        "email-setup":                          {"table_id":"20011578","url":"emails/setup.html"},
+        "email-log":                            {"table_id":"20011579","url":"emails/log.html"},
+        "reminding":                            {                      "url":"emails/reminding.html"},
+        "email-01":                             {                      "url":"emails/email-01.html"},
+        "send-email-test":                      {                      "url":"emails/send-email-test.html"},
 
 
         "screening-form":           {"table_id":"20011503","url":"tasks/screening-form.html"},

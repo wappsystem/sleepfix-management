@@ -11,6 +11,7 @@ $vm.app_config={
     "api_path_production":"https://cbs.wappsystem.com/pro/",
     "default_production":"No",
 }
+$vm.qid='20011572';
 //------------------------------------
 $vm.website_module_list_for_search=[];
 //------------------------------------

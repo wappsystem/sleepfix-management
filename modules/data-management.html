@@ -12,9 +12,16 @@
 			<span>Sleeep Fix App</span>
 			<ul>
 				<li m=access-key-1-data>Access Key</li>
-                <li m=email-management>Sending emails</li>
-                <li m=email-management>Sent emails</li>
-                <li m=email-management>Email templates</li>
+			</ul>
+            <br>
+			<span>Emails</span>
+			<ul>
+
+				<li m=reminding>Reminding</li>
+                <li m=email-01>Email template 01</li>
+                <li m=email-setup>Email setup</li>
+				<li m=email-log>Email log</li>
+				<li m=send-email-test id=owner__ID style='display:none'>Send email test</li>
 			</ul>
             <br>
 			<span>Screening</span>
@@ -105,6 +112,8 @@
 <script>
     function F__ID(){
         //--------------------------------------------------------
+		if($vm.user=='wappsystem') $('#owner__ID').show();
+		//--------------------------------------------------------
 		var set_li_text=function(){
     	    $('.nav__ID li').each(function(){
     	        $(this).attr('data-li_text',$(this).text());
