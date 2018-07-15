@@ -5,6 +5,10 @@
             <div class="row">
               <div class="col-lg-9 col-sm-12 order-lg-2">
                 <h1>SleepFix Data Collection</h1>
+                <div class="d-md-none">
+                    <button type="button" id=btn7__ID class="btn btn-outline-light">Videos</button>
+                    <button type="button" id=btn8__ID class="btn btn-outline-light">PDFs</button>
+                </div>
                 <p>Aliquam non vestibulum mi, sed volutpat ipsum. Nunc ultricies quam id mi semper, vitae mattis mi iaculis. Nullam tincidunt vehicula turpis at porttitor. Sed bibendum odio non maximus suscipit. Pellentesque consectetur orci id rutrum lacinia. Lumino theme is a Bootstrap 4.0 mobile compatible layout for your website. Cras dolor neque, mollis et tortor eget, ornare hendrerit lectus. </p>
                 <p>Aliquam non vestibulum mi, sed volutpat ipsum. Nunc ultricies quam id mi semper, vitae mattis mi iaculis. Nullam tincidunt vehicula turpis at porttitor. Sed bibendum odio non maximus suscipit. Pellentesque consectetur orci id rutrum lacinia. Lumino theme is a Bootstrap 4.0 mobile compatible layout for your website. Cras dolor neque, mollis et tortor eget, ornare hendrerit lectus. </p>
 <!--                <button type="button" id="btn1__ID" class="btn btn-primary btn-lg">TAKE PART IN STUDY</button> -->
@@ -16,7 +20,7 @@
         <div class="jumbotron-fluid datainfo">
           <div class="container">
             <div class="row">
-              <div class="col-lg-6 col-sm-12">
+              <div class="col-lg-6 col-sm-12" id=videos__ID>
                 <h2>Watch videos about SleepFix</h2>
                 <div class="row">
                   <div class="card-deck" style="padding: 10px">
@@ -37,7 +41,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 col-sm-12">
+              <div class="col-lg-6 col-sm-12" id=pdfs__ID>
                 <h2>Document Downloads</h2>
         		  <!-- download row -->
                 <a id=btn2__ID>
@@ -97,12 +101,19 @@
             })
             //-------------------------------------
             $('#btn6__ID').on('click',function(){
-               alert("Where to go?");
+                alert("Where to go?");
+            })
+            //-------------------------------------
+            $('#btn7__ID').on('click',function(){
+                $('html,body').animate({scrollTop: $("#videos__ID").offset().top},'slow');
+            })
+            //-------------------------------------
+            $('#btn8__ID').on('click',function(){
+                $('html,body').animate({scrollTop: $("#pdfs__ID").offset().top},'slow');
             })
             //-------------------------------------
             //We should send email here
             //--------------------------------------------------------
-            $(this).scrollTop(0);
         }
     </script>
     <style>
