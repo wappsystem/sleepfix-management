@@ -23,7 +23,7 @@
                       <input type="text" class="form-control" name="First_Name" id="firstName" required placeholder="First Name">
                       <label for="lastName">Last Name</label>
                       <input type="text" class="form-control" name="Last_Name" id="lastName" required placeholder="Last Name">
-                      <label for="mobileNumber">Mobile</label>
+                      <label for="mobileNumber">Mobile (xxxx-xxx-xxx)</label>
                       <input type="tel" class="form-control" name="Mobile_Phone" id="mobileNumber" required placeholder="XXXX-XXX-XXX" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}">
                       <label class="checkboxes">
                      <input type="checkbox" name="SMS" id="SMS__ID" >
@@ -88,6 +88,13 @@
               $vm.load_module_v2(m.prefix+'sleepfix-study-page','',{});
           }
           $(this).scrollTop(0);
+          //-------------------------------------
+          $('#emailconfirmationAddress').on('paste',function(){
+              setTimeout(function() {
+                  $('#emailconfirmationAddress').val('');
+                }, 100);
+          })
+
       }
       </script>
       <style>

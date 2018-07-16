@@ -233,7 +233,7 @@
         margin-right: 10px;
     }
     @media (min-width: 600px) {
-    #D__ID  fieldset.subquestions br { content: ' '; }
+    #D__ID  fieldset.subquestions br { display: none; }
     }
 
 </style>
