@@ -20,24 +20,24 @@
                     <h4>Please enter your details below:</h4>
                     <fieldset>
                       <label for="firstName">First Name</label>
-                      <input type="text" class="form-control" name="First_Name" id="firstName" required placeholder="First Name">
+                      <input type="text" class="form-control" name="First_Name" id="firstName__ID" required placeholder="First Name">
                       <label for="lastName">Last Name</label>
-                      <input type="text" class="form-control" name="Last_Name" id="lastName" required placeholder="Last Name">
-                      <label for="mobileNumber">Mobile (xxxx-xxx-xxx)</label>
-                      <input type="tel" class="form-control" name="Mobile_Phone" id="mobileNumber" required placeholder="XXXX-XXX-XXX" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}">
+                      <input type="text" class="form-control" name="Last_Name" id="lastName__ID" required placeholder="Last Name">
+                      <label for="mobileNumber">Mobile</label>
+                      <input type="tel" class="form-control" name="Mobile_Phone" id="mobileNumber__ID" required placeholder="XXXX-XXX-XXX" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}">
                       <label class="checkboxes">
                      <input type="checkbox" name="SMS" id="SMS__ID" >
                      <span class="check_checkmark"></span>I want to have sms alert when an email has been sent. </label><br>
                      <label for="emailAddress">Email</label>
-                     <input type="email" class="form-control" name="Email" id="emailAddress" required placeholder="Email">
+                     <input type="email" class="form-control" name="Email" id="emailAddress__ID" required placeholder="Email">
                      <label for="emailconfirmationAddress">Email Confirmation</label>
-                     <input type="email" class="form-control" name="Email_Confirmation" id="emailconfirmationAddress" required placeholder="Email">
+                     <input type="email" class="form-control" name="Email_Confirmation" id="emailconfirmationAddress__ID" required placeholder="Email">
                       <label for="address">Address</label>
-                      <input type="text" class="form-control" name="Address" id="address" required placeholder="Address">
+                      <input type="text" class="form-control" name="Address" id="address__ID" required placeholder="Address">
                       <label for="suburb">Street</label>
-                      <input type="text" class="form-control" name="Suburb" id="suburb" required placeholder="Suburb">
+                      <input type="text" class="form-control" name="Suburb" id="suburb__ID" required placeholder="Suburb">
                       <label for="postcode">Postcode</label>
-                      <input type="text" class="form-control" name="Postcode" id="postcode" required placeholder="XXXX" pattern="[0-7]{1}[0-9]{3}">
+                      <input type="text" class="form-control" name="Postcode" id="postcode__ID" required placeholder="XXXX" pattern="[0-7]{1}[0-9]{3}">
                       <label for="state">State</label>
                       <select name="State" class="form-control" >
                             <option value="NSW">NSW</option>
@@ -89,10 +89,17 @@
           }
           $(this).scrollTop(0);
           //-------------------------------------
-          $('#emailconfirmationAddress').on('paste',function(){
+          $('#emailconfirmationAddress__ID').on('paste',function(){
               setTimeout(function() {
-                  $('#emailconfirmationAddress').val('');
+                  $('#emailconfirmationAddress__ID').val('');
                 }, 100);
+          })
+          //-------------------------------------
+          $('#mobileNumber__ID').on('change',function(){
+              var mn=$('#mobileNumber__ID').val();
+              if(mn.length==10){
+                  $('#mobileNumber__ID').val(mn.substring(0,4)+'-'+mn.substring(4,7)+'-'+mn.substring(7,10))
+              }
           })
 
       }
