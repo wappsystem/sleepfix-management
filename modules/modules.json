@@ -21,6 +21,7 @@
         "screening-data":           {"table_id":"20011503","url":"tasks/screening-data.html","form_module":"screening-form"},
 
         "pis-form":                 {"url":"tasks/pis-form.html"},
+        "sp-form":                  {"url":"tasks/sp-form.html"},
         "sleepfix-study-page": {"url":"tasks/sleepfix-study-page.html"},
 
         "consent-form":             {"table_id":"20011504","url":"tasks/consent-form.html"},

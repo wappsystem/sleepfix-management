@@ -1,0 +1,61 @@
+<div id=D__ID>
+
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+      <div class="row" >
+
+        <!-- form container start -->
+
+        <div class="col-12 col-lg-7 col-md-11 col-sm-12 mx-auto formbox">
+          <div class="row">
+            <div class="col-12">
+
+              <!-- form start -->
+                <form id=F__ID>
+                    <h3>PHQ 9 Information Sheet</h3>
+                    <!-- form group -->
+                    <div class="form-group">
+                        <fieldset class="subquestions">
+                            <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                                                qui officia deserunt mollit anim id est laborum.
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                                                qui officia deserunt mollit anim id est laborum.</h4>
+                        </fieldset>
+                    </div>
+                    <button type="button" id="submit__ID" class="btn btn-primary btn-lg">OK</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/module/form.v1.js
+            VmInclude:__CURRENT_PATH__/task-form.js
+            //-------------------------------------
+            $('#submit__ID').on('click',function(){
+                $vm.refresh=1;
+                window.history.go(-1);
+            })
+            $(this).scrollTop(0);
+        }
+    </script>
+    <style>
+        #D__ID{
+          height:100%;
+          animation: vm_module_fadein 1.0s;
+          /*background-color: #fff;*/
+          overflow:auto;
+        }
+      </style>
+      VmInclude:__CURRENT_PATH__/task-form.css
+    </div>
+</div>

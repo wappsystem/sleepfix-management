@@ -217,6 +217,13 @@
             return true;
           }
           //-------------------------------------
+          m.after_add=function(record,dbv){
+              if(parseInt(record.phq_9)>0) $vm.load_module_v2(m.prefix+"sp-form",'',{})
+              else{
+                  $vm.refresh=1;
+                  window.history.go(-1);
+              }
+          }
       }
 </script>
 <style>
