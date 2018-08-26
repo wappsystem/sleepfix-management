@@ -182,6 +182,10 @@
       VmInclude:__COMPONENT__/module/form.v1.js
       VmInclude:__CURRENT_PATH__/task-form.js
       //-------------------------------------
+      m.load_2=function(){
+          $('#week__ID').text($vm.module_list[$vm.vm['__ID'].name].w)
+      }
+      //-------------------------------------
       m.before_submit_2=function(record,dbv){
           record.ISI=(parseInt(record.ISI_2)+parseInt(record.ISI_3)+parseInt(record.ISI_4)+parseInt(record.ISI_5)+parseInt(record.ISI_1a)+parseInt(record.ISI_1b)+parseInt(record.ISI_1c)).toString();
           record.ISI_1=(parseInt(record.ISI_1a)+parseInt(record.ISI_1b)+parseInt(record.ISI_1c)).toString();

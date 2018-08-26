@@ -203,22 +203,50 @@
                   </div>
                   <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
                   <div id=phq9-info style="display:none">
-                      <h3>PHQ 9 Information Sheet</h3>
+                      <h3>Ineligible Page</h3>
+                      <!-- form group -->
                       <div class="form-group">
                           <fieldset class="subquestions">
-                              <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                                  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                  qui officia deserunt mollit anim id est laborum.
-                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                                  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                  qui officia deserunt mollit anim id est laborum.</h4>
+                              <h4>
+                                          <p>We are concerned about your responses on this questionnaire. A member of the SleepFix research team will be in contact in the next 48-72 hours. We also recommend that you make contact with a mental health service or GP for help and support as soon as possible.</p>
+                                          <ul>
+                                              <li>Speak with your GP. If you don’t have a GP, there are some online service locators to help you find a GP or other services. You may also call them on their phone line open 24 hours a day, 7 days a week:</li>
+                                              <ul>
+                                                  <li><a href="https://www.healthdirect.gov.au" target="_blank">Healthdirect</a> 1800 022 222</li>
+                                              </ul>
+                                              <li>There are several phone lines if you need help, to get a referral or just talk to someone. Many of these services also provide an online chat service and other helpful resources available on their website:</li>
+                                              <ul>
+                                                  <li><a href="http://www.lifeline.org.au" target="_blank">Lifeline</a> 13 11 14 (24 hours/7 days a week) </li>
+                                                  <li><a href="http://www.beyondblue.org.au" target="_blank">Healthdirect</a> 1300 224 636 (24 hours/7 days a week)</li>
+                                                  <li><a href="https://www.suicidecallbackservice.org.au" target="_blank">Suicide Call Back Service</a> 1300 659 467 	(24 hours/7 days a week)</li>
+                                                  <li><a href="https://wayahead.org.au" target="_blank">NSW Health Mental Health Information Line</a> 1300 794 991  (Mon-Fri, 9:00am-5:00pm AEST)</li>
+                                                  <li><a href="https://www.sane.org/get-help" target="_blank">SANE Australia Helpline</a> 1800 187 263	 (Mon-Fr, 10:00am-10:00pm AEST)</li>
+                                                  <li>Women’s Information and Referral Service 1800 817 227 (24 hours/7 days a week)</li>
+                                                  <li><a href="https://mensline.org.au" target="_blank">Men’s Line</a> 1300 78 99 78: Trained professionals who can provide information, support and referral for men	 (24 hours/7 days a week).</li>
+                                              </ul>
+                                              <p>Service locator at <a href="https://protect-au.mimecast.com/s/xd7XC6X13RtQBpoOsmVR9c?domain=menslineaus.org.au" target="_blank">http://menslineaus.org.au/Services-Database.html</a></p>
+                                              <li>Speak to your GP about making an appointment with a psychologist/psychiatrist at a clinic or find a psychologist in your local area: </li>
+                                              <ul>
+                                                  <li>You can find a private psychologist in your area by using the ‘Find a Psychologist’ page on the Australian Psychological Society (APS) website <a href="https://protect-au.mimecast.com/s/BF2iC71ZgLt3J8mpsNJ4-1?domain=psychology.org.au" target="_blank">http://www.psychology.org.au/FindaPsychologist</a>. Note this does not need a GP referral however you will not be able to claim Medicare rebate without a mental health care plan. </li>
+                                              </ul>
+                                           </ul>
+                                           <p>You can save this page by downloading it as a PDF file <a id=btn1__ID><img src="https://www.sfix.com.au/images/pdf-icon.png" width="48" height="auto" alt="download pdf"/></a></p>
+                                           <p></p>
+                                       </h4>
+                                       </fieldset>
+                                   </div>
+                                   <div>
+                                       <fieldset>
+
+                                       <div class="form-group">
+                                         <p class="note">In case of any questions, please contact the research team at:</p>
+                                          <p class="note">SleepFix Research Team<br>
+                                             <b>Phone:</b> (02) 9114 0481<br>
+                                             <b>Email:</b> sleepfix@woolcock.org.au</p>
+                                      </div>
                           </fieldset>
                       </div>
-                      <button type="button" id="continue__ID" class="btn btn-primary btn-lg">OK</button>
+                      <button type="button" id="continue__ID" class="btn btn-primary btn-lg">Next</button>
                   </div>
               </form>
             </div>
@@ -242,6 +270,7 @@
               if(parseInt(record.phq_9)>0){
                   $('#phq9-base').hide();
                   $('#phq9-info').show();
+                  //$('#phq9-info').scrollTop();
               }
               else{
                   window.history.go(-1);

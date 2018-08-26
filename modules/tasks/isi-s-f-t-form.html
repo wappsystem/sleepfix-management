@@ -21,6 +21,12 @@
                       </div>
                     </div>
                   </div>
+                  <h3>Weekly Questionnaires</h3>
+                  <div class="form-group">
+                      <fieldset class="subquestions">
+                          <h4>Welcome back. Thank you for completing week <a id="week__ID"></a> of the study.<br><br>We would like to assess if there have been any changes in your sleep and general wellbeing in the past week. The questionnaires will take approximately 1 minute to complete. Please respond to the following questions and click "Submit" when you have finished. </h4>
+                      </fieldset>
+                  </div>
                  <h3>Insomnia Severity Index</h3>
                  <div class="form-group">
                      <h4>1. Please rate the CURRENT (i.e. PAST WEEK) SEVERITY of your insomnia problem(s).</h4>
@@ -328,6 +334,10 @@
       //-------------------------------------
       VmInclude:__COMPONENT__/module/form.v1.js
       VmInclude:__CURRENT_PATH__/task-form.js
+      //-------------------------------------
+      m.load_2=function(){
+          $('#week__ID').text($vm.module_list[$vm.vm['__ID'].name].w)
+      }
       //-------------------------------------
       m.before_submit_2=function(record,dbv){
           record.ISI=(parseInt(record.ISI_2)+parseInt(record.ISI_3)+parseInt(record.ISI_4)+parseInt(record.ISI_5)+parseInt(record.ISI_1a)+parseInt(record.ISI_1b)+parseInt(record.ISI_1c)).toString();
