@@ -160,9 +160,11 @@
           m.load_2=function(){
               if($('#Employment_Full_Time__ID').is(":checked")==true || $('#Employment_Part_Time__ID').is(":checked")==true ){
                   $('#Occu__ID').show() ;
+                  $('#Occupation__ID').prop('required', true);
               }
               else {
                   $('#Occu__ID').hide();
+                  $('#Occupation__ID').prop('required',false);
               }
               if($('#Other__ID').is(":checked")==true ){
                   $('#specify__ID').show() ;
