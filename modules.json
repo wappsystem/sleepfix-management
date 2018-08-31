@@ -21,6 +21,8 @@
         "pis-form":                 {"url":"https://management.sfix.com.au/modules/tasks/pis-form.html"},
         "sp-form":                  {"url":"https://management.sfix.com.au/modules/tasks/sp-form.html"},
         "sleepfix-study-page": {"url":"https://management.sfix.com.au/modules/tasks/sleepfix-study-page.html"},
+        "screen-failure-thank-you-page": {"url":"https://management.sfix.com.au/modules/tasks/screen-failure-thank-you-page.html"},
+        "screen-failure-phq-9": {"url":"https://management.sfix.com.au/modules/tasks/screen-failure-phq-9.html"},
 
         "consent-form":             {"table_id":"20011504","url":"https://management.sfix.com.au/modules/tasks/consent-form.html"},
         "consent-data":             {"table_id":"20011504","url":"https://management.sfix.com.au/modules/tasks/consent-data.html","form_module":"consent-form"},
