@@ -30,19 +30,24 @@
                       <div class="card-body">
                         <p class="card-text">What is sleep consolidation therapy?</p>
                       </div>
-                      <a id=btn5__ID>
-                          <!--                      <div class="videoplay" style="background-image: url(images/asleep02.png); background-position: center; background-size: cover; height: 8rem; position: relative;"> <img src="https://www.sfix.com.au/images/play-button.png" width="110px" height="auto" alt="play video" class="mx-auto d-block"/> </div>
-                          </a> </div> -->
-                          <div class="videoplay" style=""> <img src="https://www.sfix.com.au/images/play-button.png" width="110px" height="auto" alt="play video" class="mx-auto d-block"/> </div>
-                          </a> </div>
+                      <a href="https://rt.woolcock.org.au/sleepfix/what_is_sleep_consolidation_therapy.mp4" target=_blank>
+                          <div class="videoplay" style="">
+                              <img src="https://www.sfix.com.au/images/play-button.png" width="110px" height="auto" alt="play video" class="mx-auto d-block"/>
+
+                          </div>
+                      </a>
+                    </div>
                     <div class="card">
                       <div class="card-body">
                         <p class="card-text">How does Sleep Fix work?</p>
                       </div>
-                      <a id=btn6__ID>
+                      <a href="https://rt.woolcock.org.au/sleepfix/how_does_sleepfix_work.mp4" target=_blank>
 <!--                          <div class="videoplay" style="background-image: url(images/asleep01.png); background-position: center; background-size: cover; height: 8rem; position: relative;"> <img src="https://www.sfix.com.au/images/play-button.png" width="110px" height="auto" alt="play video" class="mx-auto d-block"/> </div>-->
-                          <div class="videoplay" style=""> <img src="https://www.sfix.com.au/images/play-button.png" width="110px" height="auto" alt="play video" class="mx-auto d-block"/> </div>
-                      </a> </div>
+                          <div class="videoplay" style="">
+                              <img src="https://www.sfix.com.au/images/play-button.png" width="110px" height="auto" alt="play video" class="mx-auto d-block"/>
+                          </div>
+                      </a>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -102,11 +107,11 @@
             })
             //-------------------------------------
             $('#btn5__ID').on('click',function(){
-               alert("Where to go?");
+               	$vm.load_module_v2('video_1','',{});
             })
             //-------------------------------------
             $('#btn6__ID').on('click',function(){
-                alert("Where to go?");
+                $vm.load_module_v2('video_2','',{});
             })
 /*            //-------------------------------------
             $('#btn7__ID').on('click',function(){
