@@ -144,6 +144,39 @@
                          </fieldset>
                     </div>
      		     </div>
+                 <div class="form-group">
+                     <h4>Do you own a Fitbit wearable device?</h4>
+     				<div class="questiongroup">
+                         <fieldset>
+                             <label class="radiobuttons">
+                               <input type="radio" name="Fitbit" value="Yes" required>
+                               <span class="checkmark"></span> Yes</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="Fitbit" value="No">
+                               <span class="checkmark"></span> No</label><br>
+                         </fieldset>
+                    </div>
+     		     </div>
+                 <div id=fitbit__ID >
+                     <div class="form-group" >
+                         <h4>We can track your sleep using the Fitbit models below. Please select your Fitbit model. If your Fitbit is not listed, please select other.</h4>
+         				<div class="questiongroup">
+                             <fieldset>
+                                   <select class="form-control" name="Fitbit_Type" id=Fitbit_Type__ID required >
+                                       <option></option>
+                                       <option>Fitbit Alta HR</option>
+                                       <option>Fitbit Blaze</option>
+                                       <option>Fitbit Charge 2</option>
+                                       <option>Fitbit Charge 3</option>
+                                       <option>Fitbit Ionic</option>
+                                       <option>Fitbit Surge</option>
+                                       <option>Fitbit Versa</option>
+                                       <option>Other</option>
+                                   </select>
+                             </fieldset>
+                        </div>
+         		     </div>
+                 </div>
                  <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
               </form>
             </div>
@@ -174,6 +207,14 @@
                   $('#Other_Specify__ID').prop('required',false);
                   $('#specify__ID').hide();
               }
+              if($('input[name=Fitbit]:checked').val()=='Yes'){
+                  $('#fitbit__ID').show()
+                  $('#Fitbit_Type__ID').prop('required', true);
+              }
+              else{
+                  $('#fitbit__ID').hide();
+                  $('#Fitbit_Type__ID').prop('required', false);
+              }
           }
           //-------------------------------------
           m.before_submit_2=function(record,dbv){
@@ -187,6 +228,16 @@
               }
           }
           //-------------------------------------
+          $('input[name=Fitbit]').on('click', function(){
+              if($('input[name=Fitbit]:checked').val()=='Yes'){
+                  $('#fitbit__ID').show()
+                  $('#Fitbit_Type__ID').prop('required', true);
+              }
+              else{
+                  $('#fitbit__ID').hide();
+                  $('#Fitbit_Type__ID').prop('required', false);
+              }
+          })
           $('#Employment_Full_Time__ID').on('click', function(){
               if($('#Employment_Full_Time__ID').is(":checked")==true || $('#Employment_Part_Time__ID').is(":checked")==true ){
                   $('#Occu__ID').show() ;
