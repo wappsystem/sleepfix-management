@@ -9,15 +9,9 @@
       $('#new__ID').hide();
       $('#save__ID').hide();
       //-------------------------------------
-      var fields="Subject,To";
+      var fields="TP|V2,Subject,Participant ID|V1,To";
       m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
       m.form_fields=fields;
-      //-------------------------------------
-      m.before_submit=function(record,dbv){
-          dbv.S1=record.Subject;
-          dbv.S2=record.To;
-          return true;
-      }
       //-------------------------------------
     }
   </script>

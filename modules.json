@@ -13,7 +13,12 @@
         "email-log":                            {"table_id":"20011579","url":"https://management.sfix.com.au/modules/emails/log.html"},
         "reminding":                            {                      "url":"https://management.sfix.com.au/modules/emails/reminding.html"},
         "email-01":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-01.html"},
+        "email-02":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-02.html"},
+        "email-03":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-03.html"},
+        "email-06":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-06.html"},
+        "email-12":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-12.html"},
         "send-email-test":                      {                      "url":"https://management.sfix.com.au/modules/emails/send-email-test.html"},
+        "email-management":                     {"table_id":"20011505","url":"https://management.sfix.com.au/modules/emails/email-management.html"},
 
         "screening-form":           {"table_id":"20011503","url":"https://management.sfix.com.au/modules/tasks/screening-form.html"},
         "screening-data":           {"table_id":"20011503","url":"https://management.sfix.com.au/modules/tasks/screening-data.html","form_module":"screening-form"},

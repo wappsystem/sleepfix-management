@@ -3,11 +3,11 @@
         SleepFix Week 12
     </div>
     <div id=email__ID>
-        Hi [FIRSTNAME],
+        Hi <span id=first_name__ID>[FIRSTNAME]</span>,
         <br><br>
         <div style='max-width:500px'>
             <p>This is your final questionnaire and it is very important to document your progress over the course of this study. This information will provide details on whether the SleepFix therapy has been effective for you. Please see link below.</p>
-            <p>[LINK]</p>
+            <p><span link__ID>[LINK]</span></p>
             <p>You will have received a call by now from the SleepFix research team to book in a 20-minute telehealth consult with a psychologist. If you have not received this call, please contact us on 02 9114 0481 or Woolcock.Sleepfix@sydney.edu.au.</p>
             <p>We greatly appreciate your continuing participation as this information is invaluable for us to further improve the app for future users.</p>
             <p>If you have any questions or are experiencing technical difficulties, please do not hesitate to contact us.</p>
@@ -16,6 +16,44 @@
         The SleepFix Research Team<br><br>
         02 9114 0481<br><br>
     </div>
+    <input type=password id=dev_password__ID placeholder="email password" /><br>
+    <button type=button id=send__ID>Send</button>
+    <script>
+        function F__ID(){
+            //-----------------------------------------------
+            var email_to;
+            var email_subject="Week 12";
+            var email_body;
+            var uid;
+            //-----------------------------------------------
+            $('#D__ID').on('load',function(){
+                $('#dev_password__ID').hide();
+                if($vm.server=="development") $('#dev_password__ID').show();
+                var record=$vm.vm['__ID'].input.record;
+                $('#first_name__ID').text(record.First_Name);
+                uid=record.UID;
+                email_to=record.Email;
+                email_body=$('#email__ID').html();
+            })
+            //-----------------------------------------------
+            $('#send__ID').on('click',function(){
+                var req={cmd:'send-email','permission-query':'send-email',db_pid:'20011578',qid:$vm.qid,To:email_to,Subject:email_subject,Body:email_body,Password:$('#dev_password__ID').val()}
+                $VmAPI.request({data:req,callback:function(res){
+                    if(res.ret==1){
+                        $vm.alert("The email has been sent out to "+email_to);
+                        var data={Subject:email_subject,To:email_to}
+                        var dbv={S1:email_subject,S2:email_to,V1:uid,V2:12}
+                        var req={cmd:"add",qid:$vm.qid,db_pid:'20011579',data:data,dbv:dbv};
+                        $VmAPI.request({data:req,callback:function(res){
+                        }});
+                    }
+                    else{
+                        $vm.alert("Error");
+                    }
+                }});
+            })
+        }
+    </script>
     <style>
       #D__ID{
           height:100%;
