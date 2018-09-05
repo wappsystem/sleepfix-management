@@ -25,6 +25,13 @@
         letter-spacing: 0;
         line-height: 28px;
     }
+    #D__ID .form-group h6 {
+        font-family: 'Roboto Slab';
+        font-size: 14px;
+        color: #45496A;
+        letter-spacing: 0;
+        line-height: 28px;
+    }
     #D__ID label {
         font-family: 'Nunito Sans';
         font-weight:600;
@@ -32,7 +39,6 @@
         color: #444645;
         line-height: 21px;
     }
-
     #D__ID input[type="radio"] {
         margin-right: 5px !important
     }
