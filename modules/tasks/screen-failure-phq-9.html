@@ -40,11 +40,19 @@
                                                     <li>You can find a private psychologist in your area by using the ‘Find a Psychologist’ page on the Australian Psychological Society (APS) website <a href="https://protect-au.mimecast.com/s/BF2iC71ZgLt3J8mpsNJ4-1?domain=psychology.org.au" target="_blank">http://www.psychology.org.au/FindaPsychologist</a>. Note this does not need a GP referral however you will not be able to claim Medicare rebate without a mental health care plan. </li>
                                                 </ul>
                                              </ul>
-                                             <p>You can save this page by downloading it as a PDF file <a id=btn1__ID><img src="https://www.sfix.com.au/images/pdf-icon.png" width="48" height="auto" alt="download pdf"/></a></p>
-                                             <p></p>
                                          </h4>
                                          </fieldset>
                                      </div>
+                                     <div class="col-lg-12 col-sm-12" id=pdfs__ID>
+                                         <a href="" target="_blank">
+                                             <div class="downloads">
+                                                 <div class="col-lg-12 col-sm-12 pl-0 pr-0"> <img src="https://www.sfix.com.au/images/pdf-icon.png" width="48" height="auto" alt="download pdf"/>
+                                                     <h5>You can save this page by downloading it as a PDF file</h5>
+                                                     <p>DOCUMENT MISSING</p>
+                                                 </div>
+                                             </div>
+                                         </a>
+                                    </div>
                                      <div>
                                          <fieldset>
 
@@ -68,6 +76,8 @@
         //VmI nclude:__COMPONENT__/module/form.v1.js
         //-------------------------------------
         $('#D__ID').css('min-height',$vm.min_height);
+        $('#D__ID').scrollTop(0);
+        $('#layout').scrollTop(0);
         //--------------------------------------------------------
         $('#btn1__ID').on('click',function(){
            alert("pdf document missing");
@@ -76,12 +86,45 @@
     }
   </script>
   <style>
-      #D__ID{
-        height:100%;
-        animation: vm_module_fadein 1.0s;
-        /*background-color: #fff;*/
-        overflow:auto;
+  #D__ID{
+    height:100%;
+    animation: vm_module_fadein 1.0s;
+    /*background-color: #fff;*/
+    overflow:auto;
+  }
+  #D__ID .downloads {
+      border-top-style: solid;
+      border-top-color: white;
+      border-top-width: 1px;
+      display: inline-block;
+      width: 100%;
+      padding-top: 10px;
+      margin-top: 10px;
+      margin-bottom: -10px;
+  }
+  #D__ID 	.downloads:hover {
+          opacity: 0.95;
       }
+  #D__ID .downloads h5 {
+      font-family: 'Roboto Slab';
+      font-size: 22px;
+      color: #45496A;
+      letter-spacing: 0;
+  }
+
+  #D__ID 	.downloads h5:hover {
+          text-decoration: underline;
+      }
+  #D__ID .downloads p {
+      font-family: 'Nunito Sans';
+      font-size: 14px;
+      color: #000;
+      letter-spacing: 0;
+  }
+  #D__ID .downloads img {
+      float: right;
+      margin-left: 5px
+  }
     </style>
     VmInclude:__CURRENT_PATH__/task-form.css
 </div>

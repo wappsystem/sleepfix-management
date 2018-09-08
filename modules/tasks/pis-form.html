@@ -1,15 +1,11 @@
 <div id=D__ID>
-
     <!--third html start -->
     <div class="container mt-95 mb-3">
       <div class="row" >
-
         <!-- form container start -->
-
         <div class="col-12 col-lg-7 col-md-11 col-sm-12 mx-auto formbox">
           <div class="row">
             <div class="col-12">
-
               <!-- form start -->
                 <form id=F__ID>
                     <h3>Information Sheet</h3>
@@ -183,6 +179,8 @@
                 var grid_record=m.input.record;
                 if(grid_record==undefined) $('#submit__ID').hide();
                 $('#pis_no_text__ID').hide();
+                $('#D__ID').scrollTop(0);
+                $('#layout').scrollTop(0);
             }
             //-------------------------------
             $("#D__ID input[name=Consent]").on('click',function(){
@@ -194,7 +192,6 @@
                 $vm.load_module_v2(m.prefix+"consent-form",'',{first_uid:m.input.first_uid})
             })
             //-------------------------------------
-            $(this).scrollTop(0);
         }
     </script>
     <style>
@@ -240,4 +237,3 @@
       </style>
       VmInclude:__CURRENT_PATH__/task-form.css
     </div>
-</div>

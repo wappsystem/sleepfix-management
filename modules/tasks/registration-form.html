@@ -99,11 +99,15 @@
                   $('#mobileNumber__ID').val(mn.substring(0,4)+'-'+mn.substring(4,7)+'-'+mn.substring(7,10))
               }
           })
+          //-------------------------------------
           m.default_load=m.load;
           m.load=function(){
               m.default_load();
+              $('#D__ID').scrollTop(0);
+              $('#layout').scrollTop(0);
               custom_field_process();
           }
+          //-------------------------------------
           var custom_field_process=function(){
               $('#F__ID div[data-custom=1]').each(function(){
                   var field=$(this).attr('data-id');
@@ -122,8 +126,8 @@
                                       var postcode=ui.item.label.split('/')[2];
                                       var state=ui.item.label.split('/')[1];
                                       ui.item.value=suburb
-                                      $('input[name=Postcode').val(postcode);
-                                      $('select[name=State').val(state);
+                                      $('input[name=Postcode]').val(postcode);
+                                      $('select[name=State]').val(state);
                                   }
                               })
 
@@ -143,8 +147,8 @@
                                       var postcode=ui.item.label.split('/')[2];
                                       var state=ui.item.label.split('/')[1];
                                       ui.item.value=postcode
-                                      $('input[name=Suburb').val(suburb);
-                                      $('select[name=State').val(state);
+                                      $('input[name=Suburb]').val(suburb);
+                                      $('select[name=State]').val(state);
                                   }
                               })
 

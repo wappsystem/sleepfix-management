@@ -326,6 +326,13 @@
             //-------------------------------------
             VmInclude:__COMPONENT__/module/form.v1.js
             //-------------------------------------
+            m.default_load=m.load;
+            m.load=function(){
+                m.default_load();
+                $('#D__ID').scrollTop(0);
+                $('#layout').scrollTop(0);
+            }
+            //-------------------------------------
             m.before_submit=function(record,dbv){
                 if((record.between_18_65!='Yes' || record.english!='Yes' || record.smartphone!='Yes' || record.baby!='No' || record.shift!='No' || record.disease!='No' || record.mental_health!='No' || record.time_difference_2h!='No' || record.time_difference_1h!='No')
                     ||
@@ -351,7 +358,6 @@
             //--------------------------------------------------------
             $('#D__ID').css('min-height',$vm.min_height);
             //--------------------------------------------------------
-            $(this).scrollTop(0);
     }
     </script>
     <style>
