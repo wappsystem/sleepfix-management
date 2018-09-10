@@ -44,7 +44,7 @@
         <!----------------------------------------------->
         <script>
             //------------------------------------
-            $vm={};$VmAPI={};$vm.ver=[231,231];
+            $vm={};$VmAPI={};$vm.ver=[233,233];
             $vm.start_time=new Date().getTime();
             $vm.api_path_development="https://cbs.wappsystem.com/dev/";
             $vm.api_path_production="https://cbs.wappsystem.com/pro/";
@@ -159,9 +159,9 @@
                 height: 100%;
                 display: grid;
                 grid-template-rows: auto 1fr auto;
-                    overflow:scroll;
-                    -webkit-overflow-scrolling:touch;
-                /*overflow:hidden;*/
+                /*overflow:scroll;
+                  -webkit-overflow-scrolling:touch;*/
+                overflow:hidden;
             }
             #content{
                 overflow:auto;
