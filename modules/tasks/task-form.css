@@ -246,5 +246,8 @@
     @media (min-width: 600px) {
     #D__ID  fieldset.subquestions br { display: none; }
     }
-
+    #D__ID{
+        overflow:scroll;
+        -webkit-overflow-scrolling:touch;
+    }
 </style>
