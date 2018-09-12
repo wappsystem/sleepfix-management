@@ -37,7 +37,6 @@
             })
             //-----------------------------------------------
             $('#send__ID').on('click',function(){
-                email_to="zzm.vmiis@gmail.com"
                 var req={cmd:'send-email','permission-query':'send-email',db_pid:'20011578',qid:$vm.qid,To:email_to,Subject:email_subject,Body:email_body,Password:$('#dev_password__ID').val()}
                 $VmAPI.request({data:req,callback:function(res){
                     if(res.ret==1){

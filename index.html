@@ -89,16 +89,13 @@
         }
         //------------------------------------
         $vm.show=function(id){
+            $vm.active_id=id;
             document.title=$vm.default_title;
             $("meta[name='description']").attr("content", "SleepFix Management");
             $("body").removeClass();
             $("body").addClass('body_background_default');
-            if(id!=undefined && $vm.vm[id]!=undefined && $vm.vm[id].show!=undefined){
-                $vm.vm[id].show();
-            }
-            if(id!=undefined && $vm.vm[id]!=undefined){
-                $('#D'+id).css('min-height',($('body').height()-$('#header').outerHeight()-$('#footer').outerHeight())+"px");
-            }
+            if(id!=undefined && $vm.vm[id]!=undefined && $vm.vm[id].show!=undefined) $vm.vm[id].show();
+            if(id!=undefined) $('#D'+id).css('min-height',($('body').height()-$('#header').outerHeight()-$('#footer').outerHeight())+"px");
         }
         //------------------------------------
         $vm.show();
