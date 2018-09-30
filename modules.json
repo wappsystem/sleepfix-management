@@ -17,6 +17,8 @@
         "email-03":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-03.html"},
         "email-06":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-06.html"},
         "email-12":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-12.html"},
+        "email-r1-01":                          {                      "url":"https://management.sfix.com.au/modules/emails/email-r1-01.html"},
+        "email-r2-01":                          {                      "url":"https://management.sfix.com.au/modules/emails/email-r2-01.html"},
         "send-email-test":                      {                      "url":"https://management.sfix.com.au/modules/emails/send-email-test.html"},
         "email-management":                     {"table_id":"20011505","url":"https://management.sfix.com.au/modules/emails/email-management.html"},
 
