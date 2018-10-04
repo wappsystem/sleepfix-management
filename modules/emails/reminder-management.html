@@ -1,0 +1,294 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/module/grid.v1.html
+    </div>
+    <script>
+        function F__ID(){
+          //-------------------------------------
+          VmInclude:__COMPONENT__/module/grid.v1.js
+          //-------------------------------------
+          var fields="Participant ID|UID,First_Name,Last_Name,Email,Start_Date,Week_1,Week_1_R1,Week_1_R2,Week_2,Week_2_R1,Week_2_R2,Week_3,Week_3_R1,Week_3_R2,Week_6,Week_6_R1,Week_6_R2,Week_12,Week_12_R1,Week_12_R2";
+          m.fields=""+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
+          m.form_fields=fields;
+          //-------------------------------------
+          $('#new__ID').hide();
+          $('#save__ID').hide();
+          //-------------------------------------
+          m.cell_render=function(records,I,field,td,set_value,source){
+            switch(field){
+                case 'UID':
+                case 'First_Name':
+                case 'Last_Name':
+                case 'Mobile_Name':
+                case 'Email':
+                case 'Start_Date':
+                    records[I].vm_readonly[field]=true;
+                    break;
+                case 'Week_1':
+                case 'Week_2':
+                case 'Week_3':
+                case 'Week_6':
+                case 'Week_12':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>");
+                        td.css('color','green')
+                    }
+                    else{
+                        td.html("");
+                    }
+                    break;
+                case 'Week_1_R1':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>");
+                    }
+                    else{
+                        var html="";
+                        var s=records[I]["Start_Date"]
+                        if(s!='' && s!=null && s!=undefined){
+                            var ds=$vm.date_yyyymmdd_parse(s);
+                            var d=$vm.date_add_days(ds,9);
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                        }
+                        td.html(html);
+                        td.find('u').on('click',function(){
+                            $vm.load_module_v2('email-r1-01','',{record:records[I]})
+                        })
+                    }
+                    break;
+                case 'Week_1_R2':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>");
+                    }
+                    else{
+                        var html="";
+                        var s=records[I]["Start_Date"]
+                        if(s!='' && s!=null && s!=undefined){
+                            var ds=$vm.date_yyyymmdd_parse(s);
+                            var d=$vm.date_add_days(ds,11);
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                        }
+                        td.html(html);
+                        td.find('u').on('click',function(){
+                            $vm.load_module_v2('email-r2-01','',{record:records[I]})
+                        })
+                    }
+                    break;
+                    case 'Week_2_R1':
+                        records[I].vm_readonly[field]=true;
+                        var v=records[I][field];
+                        if(v!='' && v!=null && v!=undefined){
+                            td.html("<i class='fa fa-check'></i>");
+                        }
+                        else{
+                            var html="";
+                            var s=records[I]["Start_Date"]
+                            if(s!='' && s!=null && s!=undefined){
+                                var ds=$vm.date_yyyymmdd_parse(s);
+                                var d=$vm.date_add_days(ds,16);
+                                html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                            }
+                            td.html(html);
+                            td.find('u').on('click',function(){
+                                $vm.load_module_v2('email-r1-02','',{record:records[I]})
+                            })
+                        }
+                        break;
+                    case 'Week_2_R2':
+                        records[I].vm_readonly[field]=true;
+                        var v=records[I][field];
+                        if(v!='' && v!=null && v!=undefined){
+                            td.html("<i class='fa fa-check'></i>");
+                        }
+                        else{
+                            var html="";
+                            var s=records[I]["Start_Date"]
+                            if(s!='' && s!=null && s!=undefined){
+                                var ds=$vm.date_yyyymmdd_parse(s);
+                                var d=$vm.date_add_days(ds,18);
+                                html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                            }
+                            td.html(html);
+                            td.find('u').on('click',function(){
+                                $vm.load_module_v2('email-r2-02','',{record:records[I]})
+                            })
+                        }
+                        break;
+                case 'Week_3_R1':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>");
+                    }
+                    else{
+                        var html="";
+                        var s=records[I]["Start_Date"]
+                        if(s!='' && s!=null && s!=undefined){
+                            var ds=$vm.date_yyyymmdd_parse(s);
+                            var d=$vm.date_add_days(ds,23);
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                        }
+                        td.html(html);
+                        td.find('u').on('click',function(){
+                            $vm.load_module_v2('email-r1-03','',{record:records[I]})
+                        })
+                    }
+                    break;
+                case 'Week_3_R2':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>");
+                    }
+                    else{
+                        var html="";
+                        var s=records[I]["Start_Date"]
+                        if(s!='' && s!=null && s!=undefined){
+                            var ds=$vm.date_yyyymmdd_parse(s);
+                            var d=$vm.date_add_days(ds,25);
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                        }
+                        td.html(html);
+                        td.find('u').on('click',function(){
+                            $vm.load_module_v2('email-r2-03','',{record:records[I]})
+                        })
+                    }
+                    break;
+                case 'Week_6_R1':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>");
+                    }
+                    else{
+                        var html="";
+                        var s=records[I]["Start_Date"]
+                        if(s!='' && s!=null && s!=undefined){
+                            var ds=$vm.date_yyyymmdd_parse(s);
+                            var d=$vm.date_add_days(ds,44);
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                        }
+                        td.html(html);
+                        td.find('u').on('click',function(){
+                            $vm.load_module_v2('email-r1-06','',{record:records[I]})
+                        })
+                    }
+                    break;
+                case 'Week_6_R2':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>");
+                    }
+                    else{
+                        var html="";
+                        var s=records[I]["Start_Date"]
+                        if(s!='' && s!=null && s!=undefined){
+                            var ds=$vm.date_yyyymmdd_parse(s);
+                            var d=$vm.date_add_days(ds,46);
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                        }
+                        td.html(html);
+                        td.find('u').on('click',function(){
+                            $vm.load_module_v2('email-r2-06','',{record:records[I]})
+                        })
+                    }
+                    break;
+                case 'Week_12_R1':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>");
+                    }
+                    else{
+                        var html="";
+                        var s=records[I]["Start_Date"]
+                        if(s!='' && s!=null && s!=undefined){
+                            var ds=$vm.date_yyyymmdd_parse(s);
+                            var d=$vm.date_add_days(ds,86);
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                        }
+                        td.html(html);
+                        td.find('u').on('click',function(){
+                            $vm.load_module_v2('email-r1-12','',{record:records[I]})
+                        })
+                    }
+                    break;
+                case 'Week_12_R2':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>");
+                    }
+                    else{
+                        var html="";
+                        var s=records[I]["Start_Date"]
+                        if(s!='' && s!=null && s!=undefined){
+                            var ds=$vm.date_yyyymmdd_parse(s);
+                            var d=$vm.date_add_days(ds,88);
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                        }
+                        td.html(html);
+                        td.find('u').on('click',function(){
+                            $vm.load_module_v2('email-r2-12','',{record:records[I]})
+                        })
+                    }
+                    break;
+            }
+          }
+          //-------------------------------------
+          m.set_req=function(){
+              var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+              sql+=",w1 as (select Week_1=ID,PUID from [TABLE-20011509]) "
+              sql+=",log_w1_R1 as (select Week_1_R1=ID,PUID from [TABLE-20011579] where V2=101) "
+              sql+=",log_w1_R2 as (select Week_1_R2=ID,PUID from [TABLE-20011579] where V2=201) "
+              sql+=",w2 as (select Week_2=ID,PUID from [TABLE-20011510]) "
+              sql+=",log_w2_R1 as (select Week_2_R1=ID,PUID from [TABLE-20011579] where V2=102) "
+              sql+=",log_w2_R2 as (select Week_2_R2=ID,PUID from [TABLE-20011579] where V2=202) "
+              sql+=",w3 as (select Week_3=ID,PUID from [TABLE-20011511]) "
+              sql+=",log_w3_R1 as (select Week_3_R1=ID,PUID from [TABLE-20011579] where V2=103) "
+              sql+=",log_w3_R2 as (select Week_3_R2=ID,PUID from [TABLE-20011579] where V2=203) "
+              sql+=",w6 as (select Week_6=ID,PUID from [TABLE-20011571]) "
+              sql+=",log_w6_R1 as (select Week_6_R1=ID,PUID from [TABLE-20011579] where V2=106) "
+              sql+=",log_w6_R2 as (select Week_6_R2=ID,PUID from [TABLE-20011579] where V2=206) "
+              sql+=",w12 as (select Week_12=ID,PUID from [TABLE-20011544]) "
+              sql+=",log_w12_R1 as (select Week_12_R1=ID,PUID from [TABLE-20011579] where V2=112) "
+              sql+=",log_w12_R2 as (select Week_12_R2=ID,PUID from [TABLE-20011579] where V2=212) "
+              sql+="select Information,Week_1,Week_1_R1,Week_1_R2,Week_2,Week_2_R1,Week_2_R2,Week_3,Week_3_R1,Week_3_R2,Week_6,Week_6_R1,Week_6_R2,Week_12,Week_12_R1,Week_12_R2,ID,UID,DateTime,Modified,Author,RowNum from tb ";
+              sql+=" left join w1 on tb.UID=w1.PUID ";
+              sql+=" left join log_w1_R1 on tb.UID=log_w1_R1.PUID ";
+              sql+=" left join log_w1_R2 on tb.UID=log_w1_R2.PUID ";
+              sql+=" left join w2 on tb.UID=w2.PUID";
+              sql+=" left join log_w2_R1 on tb.UID=log_w2_R1.PUID ";
+              sql+=" left join log_w2_R2 on tb.UID=log_w2_R2.PUID ";
+              sql+=" left join w3 on tb.UID=w3.PUID";
+              sql+=" left join log_w3_R1 on tb.UID=log_w3_R1.PUID ";
+              sql+=" left join log_w3_R2 on tb.UID=log_w3_R2.PUID ";
+              sql+=" left join w6 on tb.UID=w6.PUID";
+              sql+=" left join log_w6_R1 on tb.UID=log_w6_R1.PUID ";
+              sql+=" left join log_w6_R2 on tb.UID=log_w6_R2.PUID ";
+              sql+=" left join w12 on tb.UID=w12.PUID";
+              sql+=" left join log_w12_R1 on tb.UID=log_w12_R1.PUID ";
+              sql+=" left join log_w12_R2 on tb.UID=log_w12_R2.PUID ";
+              sql+=" where RowNum between @I6 and @I7";
+              var sql_n="select count(ID) from [TABLE-"+m.db_pid+"-@S1]";
+          	m.req={cmd:'read',qid:m.qid,sql:sql,sql_n:sql_n,s1:'"'+$('#keyword__ID').val()+'"',I:$('#I__ID').text(),page_size:$('#page_size__ID').val()}
+          }
+          //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/module/grid.v1.css
+        #D__ID{
+          height:100%;
+          overflow:auto;
+          animation: vm_module_fadein 1.0s;
+          background-color: #fff;
+        }
+    </style>
+</div>
