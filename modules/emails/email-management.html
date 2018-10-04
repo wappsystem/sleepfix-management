@@ -8,7 +8,7 @@
           VmInclude:__COMPONENT__/module/grid.v1.js
           //-------------------------------------
           var fields="Participant ID|UID,First_Name,Last_Name,Email,Start_Date,Week_1,Week_2,Week_3,Week_6,Week_12";
-          m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
+          m.fields=""+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
           m.form_fields=fields;
           //-------------------------------------
           $('#new__ID').hide();
@@ -21,14 +21,23 @@
                 case 'Last_Name':
                 case 'Mobile_Name':
                 case 'Email':
+                    records[I].vm_readonly[field]=true;
+                    break;
                 case 'Start_Date':
                     records[I].vm_readonly[field]=true;
+                    var s=records[I][field]
+                    if(s!='' && s!=null && s!=undefined){
+                        records[I].vm_readonly[field]=true;
+                        ds=$vm.date_yyyymmdd_parse(records[I][field])
+                        td.html($vm.date_to_string_dmy(ds));
+                    }
+                    else td.html("");
                     break;
                 case 'Week_1':
                     var v=records[I][field];
                     records[I].vm_readonly[field]=true;
                     if(v!='' && v!=null && v!=undefined){
-                        td.html("<i class='fa fa-check'></i>");
+                        td.html("<i class='fa fa-check'></i>"+records[I][field].substring(0,10));
                     }
                     else{
                         var html="";
@@ -36,7 +45,7 @@
                         if(s!='' && s!=null && s!=undefined){
                             var ds=$vm.date_yyyymmdd_parse(s);
                             var d=$vm.date_add_days(ds,7);
-                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_dmy(d)+"</u>";
                         }
                         td.html(html);
                         td.find('u').on('click',function(){
@@ -48,7 +57,7 @@
                     var v=records[I][field];
                     records[I].vm_readonly[field]=true;
                     if(v!='' && v!=null && v!=undefined){
-                        td.html("<i class='fa fa-check'></i>");
+                        td.html("<i class='fa fa-check'></i>"+records[I][field].substring(0,10));
                     }
                     else{
                         var html="";
@@ -56,7 +65,7 @@
                         if(s!='' && s!=null && s!=undefined){
                             var ds=$vm.date_yyyymmdd_parse(s);
                             var d=$vm.date_add_days(ds,14);
-                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_dmy(d)+"</u>";
                         }
                         td.html(html);
                         td.find('u').on('click',function(){
@@ -68,7 +77,7 @@
                     var v=records[I][field];
                     records[I].vm_readonly[field]=true;
                     if(v!='' && v!=null && v!=undefined){
-                        td.html("<i class='fa fa-check'></i>");
+                        td.html("<i class='fa fa-check'></i>"+records[I][field].substring(0,10));
                     }
                     else{
                         var html="";
@@ -76,7 +85,7 @@
                         if(s!='' && s!=null && s!=undefined){
                             var ds=$vm.date_yyyymmdd_parse(s);
                             var d=$vm.date_add_days(ds,21);
-                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_dmy(d)+"</u>";
                         }
                         td.html(html);
                         td.find('u').on('click',function(){
@@ -88,7 +97,7 @@
                     var v=records[I][field];
                     records[I].vm_readonly[field]=true;
                     if(v!='' && v!=null && v!=undefined){
-                        td.html("<i class='fa fa-check'></i>");
+                        td.html("<i class='fa fa-check'></i>"+records[I][field].substring(0,10));
                     }
                     else{
                         var html="";
@@ -96,7 +105,7 @@
                         if(s!='' && s!=null && s!=undefined){
                             var ds=$vm.date_yyyymmdd_parse(s);
                             var d=$vm.date_add_days(ds,42);
-                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_dmy(d)+"</u>";
                         }
                         td.html(html);
                         td.find('u').on('click',function(){
@@ -108,7 +117,7 @@
                     var v=records[I][field];
                     records[I].vm_readonly[field]=true;
                     if(v!='' && v!=null && v!=undefined){
-                        td.html("<i class='fa fa-check'></i>");
+                        td.html("<i class='fa fa-check'></i>"+records[I][field].substring(0,10));
                     }
                     else{
                         var html="";
@@ -116,7 +125,7 @@
                         if(s!='' && s!=null && s!=undefined){
                             var ds=$vm.date_yyyymmdd_parse(s);
                             var d=$vm.date_add_days(ds,84);
-                            html="<u style='cursor:pointer'>"+$vm.date_to_string_yyyymmdd(d)+"</u>";
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_dmy(d)+"</u>";
                         }
                         td.html(html);
                         td.find('u').on('click',function(){
@@ -129,11 +138,11 @@
           //-------------------------------------
           m.set_req=function(){
               var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
-              sql+=",log_w1 as (select Week_1=ID,PUID from [TABLE-20011579] where V2=1) "
-              sql+=",log_w2 as (select Week_2=ID,PUID from [TABLE-20011579] where V2=2) "
-              sql+=",log_w3 as (select Week_3=ID,PUID from [TABLE-20011579] where V2=3) "
-              sql+=",log_w6 as (select Week_6=ID,PUID from [TABLE-20011579] where V2=6) "
-              sql+=",log_w12 as (select Week_12=ID,PUID from [TABLE-20011579] where v2=12) "
+              sql+=",log_w1 as (select Week_1=DateTime,PUID from [TABLE-20011579] where V2=1) "
+              sql+=",log_w2 as (select Week_2=DateTime,PUID from [TABLE-20011579] where V2=2) "
+              sql+=",log_w3 as (select Week_3=DateTime,PUID from [TABLE-20011579] where V2=3) "
+              sql+=",log_w6 as (select Week_6=DateTime,PUID from [TABLE-20011579] where V2=6) "
+              sql+=",log_w12 as (select Week_12=DateTime,PUID from [TABLE-20011579] where v2=12) "
               sql+="select Information,Week_1,Week_2,Week_3,Week_6,Week_12,ID,UID,DateTime,Modified,Author,RowNum from tb ";
               sql+=" left join log_w1 on tb.UID=log_w1.PUID ";
               sql+=" left join log_w2 on tb.UID=log_w2.PUID";
