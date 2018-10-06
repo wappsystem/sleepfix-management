@@ -343,22 +343,8 @@
                 else{record.Eligible="Yes"};
             }
             //-------------------------------------
-            m.send_alert_email=function(record){
-                var email_body="alert!!! ";
-                var req={cmd:'send-email','permission-query':'send-email',db_pid:'20011578',qid:$vm.qid,To:'woolcock_sleepfix@sydney.edu.au',Subject:"screening alert",Body:email_body}
-                $VmAPI.request({data:req,callback:function(res){
-                    if(res.ret==1){
-                        console.log("The email has been sent out to "+email_to);
-                    }
-                    else{
-                        console.log("Error");
-                    }
-                }});
-            }
-            //-------------------------------------
             m.after_add=function(record,dbv,res){
                 if(parseInt(record.phq_9) >0) {
-                    m.send_alert_email();
                     $vm.load_module_v2(m.prefix+'screen-failure-phq-9','',{});
                 }
                 else if((record.between_18_65!='Yes' || record.english!='Yes' || record.smartphone!='Yes' || record.baby!='No' || record.shift!='No' || record.disease!='No' || record.mental_health!='No' || record.time_difference_2h!='No' || record.time_difference_1h!='No')
