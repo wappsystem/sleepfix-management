@@ -19,7 +19,7 @@ $('#send__ID').on('click',function(){
         if(res.ret==1){
             $vm.alert("The email has been sent out to "+email_to);
             var data={Subject:email_subject,To:email_to,TP:v2}
-            var dbv={S1:email_subject,S2:email_to,V1:uid,V2:v2}
+            var dbv={S1:email_subject,S2:email_to,PUID:uid,V1:uid,V2:v2}
             var req={cmd:"add",qid:$vm.qid,db_pid:'20011579',data:data,dbv:dbv};
             $VmAPI.request({data:req,callback:function(res){
             }});
