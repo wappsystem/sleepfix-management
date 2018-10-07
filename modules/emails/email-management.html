@@ -7,7 +7,7 @@
           //-------------------------------------
           VmInclude:__COMPONENT__/module/grid.v1.js
           //-------------------------------------
-          var fields="Participant ID|UID,First_Name,Last_Name,Email,Start_Date,Week_1,Week_2,Week_3,Week_6,Week_12";
+          var fields="Participant ID|UID,First_Name,Last_Name,Email,Start_Date,Baseline,AccessCode,Week_1,Week_2,Week_3,Week_6,Week_12";
           m.fields=""+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
           m.form_fields=fields;
           //-------------------------------------
@@ -32,6 +32,42 @@
                         td.html($vm.date_to_string_dmy(ds));
                     }
                     else td.html("");
+                    break;
+                case 'Baseline':
+                    var v=records[I][field];
+                    records[I].vm_readonly[field]=true;
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>"+records[I][field].substring(0,10));
+                    }
+                    else{
+                        var html="";
+                        var s=records[I]["Start_Date"]
+                        if(s!='' && s!=null && s!=undefined){
+                            html="<u style='cursor:pointer'>Baseline</u>";
+                        }
+                        td.html(html);
+                        td.find('u').on('click',function(){
+                            $vm.load_module_v2('email-bl','',{record:records[I]})
+                        })
+                    }
+                    break;
+                case 'AccessCode':
+                    var v=records[I][field];
+                    records[I].vm_readonly[field]=true;
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>"+records[I][field].substring(0,10));
+                    }
+                    else{
+                        var html="";
+                        var s=records[I]["Access_Code"]
+                        if(s!='' && s!=null && s!=undefined){
+                            html="<u style='cursor:pointer'>"+s+"</ul>";
+                        }
+                        td.html(html);
+                        td.find('u').on('click',function(){
+                            $vm.load_module_v2('email-ac','',{record:records[I]})
+                        })
+                    }
                     break;
                 case 'Week_1':
                     var v=records[I][field];
@@ -138,12 +174,16 @@
           //-------------------------------------
           m.set_req=function(){
               var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+              sql+=",log_ac as (select AccessCode=DateTime,PUID from [TABLE-20011579] where V2=99) "
+              sql+=",log_bl as (select Baseline=DateTime,PUID from [TABLE-20011579] where V2=0) "
               sql+=",log_w1 as (select Week_1=DateTime,PUID from [TABLE-20011579] where V2=1) "
               sql+=",log_w2 as (select Week_2=DateTime,PUID from [TABLE-20011579] where V2=2) "
               sql+=",log_w3 as (select Week_3=DateTime,PUID from [TABLE-20011579] where V2=3) "
               sql+=",log_w6 as (select Week_6=DateTime,PUID from [TABLE-20011579] where V2=6) "
               sql+=",log_w12 as (select Week_12=DateTime,PUID from [TABLE-20011579] where v2=12) "
-              sql+="select Information,Week_1,Week_2,Week_3,Week_6,Week_12,ID,UID,DateTime,Modified,Author,RowNum from tb ";
+              sql+="select Information,AccessCode,Baseline,Week_1,Week_2,Week_3,Week_6,Week_12,ID,UID,DateTime,Modified,Author,RowNum from tb ";
+              sql+=" left join log_ac on tb.UID=log_ac.PUID ";
+              sql+=" left join log_bl on tb.UID=log_bl.PUID ";
               sql+=" left join log_w1 on tb.UID=log_w1.PUID ";
               sql+=" left join log_w2 on tb.UID=log_w2.PUID";
               sql+=" left join log_w3 on tb.UID=log_w3.PUID";

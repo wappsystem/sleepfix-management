@@ -12,6 +12,8 @@
         "email-setup":                          {"table_id":"20011578","url":"https://management.sfix.com.au/modules/emails/setup.html"},
         "email-log":                            {"table_id":"20011579","url":"https://management.sfix.com.au/modules/emails/log.html"},
         "reminding":                            {                      "url":"https://management.sfix.com.au/modules/emails/reminding.html"},
+        "email-bl":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-bl.html"},
+        "email-ac":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-ac.html"},
         "email-01":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-01.html"},
         "email-02":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-02.html"},
         "email-03":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-03.html"},

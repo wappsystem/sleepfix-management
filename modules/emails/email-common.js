@@ -8,6 +8,7 @@ $('#D__ID').on('load',function(){
         //var h="https://online-questionnaire.sfix.com.au/index.html?TP="+TP+"&username="+record.Email+"&password="+record.Password
         $('#link__ID').html("<a target=_blank href="+h+">"+h+"</a>");
     }
+    if(TP=="AC") {$('#link__ID').html("Access Code = "+record.Access_Code);}
     uid=record.UID;
     email_to=record.Email;
     email_body=$('#email__ID').html();
