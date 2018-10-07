@@ -267,7 +267,7 @@
           //-------------------------------------
           m.send_alert_email=function(record){
               var email_body="PHQ 9 alert for "+$vm.user+". Pariticipant ID="+record.Participant_uid;
-              var req={cmd:'send-email','permission-query':'send-email',db_pid:'20011578',qid:$vm.qid,To:'woolcock_sleepfix@sydney.edu.au',Subject:"PHQ9 alert",Body:email_body}
+              var req={cmd:'send-email',db_pid:'20011578',qid:$vm.qid,To:'woolcock_sleepfix@sydney.edu.au',Subject:"PHQ9 alert",Body:email_body}
               //var req={cmd:'send-email','permission-query':'send-email',db_pid:'20011578',qid:$vm.qid,To:'gunnar.unger@sgmail.com',Subject:"PHQ9 alert",Body:email_body}
               $VmAPI.request({data:req,callback:function(res){
                   if(res.ret==1){
