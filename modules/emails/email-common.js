@@ -4,8 +4,8 @@ $('#D__ID').on('load',function(){
     var record=$vm.vm['__ID'].input.record;
     $('#first_name__ID').text(record.First_Name);
     if(typeof(TP)!='undefined'){
-        var h="http://127.0.0.1:8000/wappsystem/sleepfix-online-questionnaire/index.html?TP="+TP+"&username="+record.Email+"&password="+record.Password
-        //var h="https://online-questionnaire.sfix.com.au/index.html?TP="+TP+"&username="+record.Email+"&password="+record.Password
+        //var h="http://127.0.0.1:8000/wappsystem/sleepfix-online-questionnaire/index.html?TP="+TP+"&username="+record.Email+"&password="+record.Password
+        var h="https://online-questionnaire.sfix.com.au/index.html?TP="+TP+"&username="+record.Email+"&password="+record.Password
         $('#link__ID').html("<a target=_blank href="+h+">"+h+"</a>");
     }
     if(TP=="AC") {$('#link__ID').html("Access Code = "+record.Access_Code);}
