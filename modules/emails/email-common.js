@@ -15,7 +15,7 @@ $('#D__ID').on('load',function(){
 })
 //-----------------------------------------------
 $('#send__ID').on('click',function(){
-    var req={cmd:'send-email','permission-query':'send-email',db_pid:'20011578',qid:$vm.qid,To:email_to,Subject:email_subject,Body:email_body,Password:$('#dev_password__ID').val()}
+    var req={cmd:'send-email',db_pid:'20011578',qid:$vm.qid,To:email_to,Subject:email_subject,Body:email_body,Password:$('#dev_password__ID').val()}
     $VmAPI.request({data:req,callback:function(res){
         if(res.ret==1){
             $vm.alert("The email has been sent out to "+email_to);
