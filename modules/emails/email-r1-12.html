@@ -15,6 +15,17 @@
         The SleepFix Research Team<br>
         02 9114 0481<br><br>
     </div>
+    <hr>
+    <div id=mobile_email__ID>
+        Hi <span id=mobile_first_name__ID>[FIRSTNAME]</span>,
+        <br><br>
+        <div style='max-width:500px'>
+            <p>Thank you for your continuing participation in the SleepFix study. We have noticed you have not submitted your final questionnaires to complete the study. Please fill out the questionnaires using the link provided
+                <span id=mobile_link__ID>[LINK]</span>. We rely on this information to assess your progress. If you are having any issues, please contact us on 02 9114 0481 or Woolcock.sleepfix@sydney.edu.au. </p>
+            <p>Thanks, SleepFix Research Team</p>
+        </div>
+    </div>
+    <hr>
     <input type=password id=dev_password__ID placeholder="email password" /><br>
     <button type=button id=send__ID>Send</button>
     <script>
@@ -22,6 +33,7 @@
             //-----------------------------------------------
             var email_subject="SleepFix Week 12 Questionnaire - Reminder";
             var v2=112; //time point
+            var TP="w12Pai3In"; //time point for link
             var email_to;
             var email_body;
             var uid; //participant UID
