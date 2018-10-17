@@ -7,7 +7,7 @@
           //-------------------------------------
           VmInclude:__COMPONENT__/module/grid.v1.js
           //-------------------------------------
-          var fields="Participant ID|UID,First_Name,Last_Name,Email,Start_Date,Week_1,Week_1_R1,Week_1_R2,Week_2,Week_2_R1,Week_2_R2,Week_3,Week_3_R1,Week_3_R2,Week_6,Week_6_R1,Week_6_R2,Week_12,Week_12_R1,Week_12_R2";
+          var fields="Participant ID|UID,First_Name,Last_Name,Email,Start_Date,Baseline,Baseline_R1,Baseline_R2,Week_1,Week_1_R1,Week_1_R2,Week_2,Week_2_R1,Week_2_R2,Week_3,Week_3_R1,Week_3_R2,Week_6,Week_6_R1,Week_6_R2,Week_12,Week_12_R1,Week_12_R2";
           m.fields=""+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
           m.form_fields=fields;
           //-------------------------------------
@@ -36,16 +36,72 @@
                 case 'Week_1':
                 case 'Week_2':
                 case 'Week_3':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-smile'></i>");
+                        td.css('color','green')
+                    }
+                    else{
+                        td.html("");
+                    }
+                    break;
+                case 'Baseline':
                 case 'Week_6':
                 case 'Week_12':
                     records[I].vm_readonly[field]=true;
                     var v=records[I][field];
                     if(v!='' && v!=null && v!=undefined){
-                        td.html("<i class='fa fa-check'></i>");
+                        td.html("<i class='fa fa-smile'></i>");
                         td.css('color','green')
                     }
+                    v=records[I][field+"b"];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-meh'></i>");
+                        td.css('color','orange')
+                    }
                     else{
-                        td.html("");
+                        td.html("")
+                    }
+                    break;
+                case 'Baseline_R1':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>"+records[I][field].substring(0,10));
+                    }
+                    else{
+                        var html="";
+                        var s=records[I]["Start_Date"]
+                        if(s!='' && s!=null && s!=undefined){
+                            var ds=$vm.date_yyyymmdd_parse(s);
+                            var d=$vm.date_add_days(ds,2);
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_dmy(d)+"</u>";
+                        }
+                        td.html(html);
+                        td.find('u').on('click',function(){
+                            $vm.load_module_v2('email-r1-bl','',{record:records[I]})
+                        })
+                    }
+                    break;
+                case 'Baseline_R2':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html("<i class='fa fa-check'></i>"+records[I][field].substring(0,10));
+                    }
+                    else{
+                        var html="";
+                        var s=records[I]["Start_Date"]
+                        if(s!='' && s!=null && s!=undefined){
+                            var ds=$vm.date_yyyymmdd_parse(s);
+                            var d=$vm.date_add_days(ds,4);
+                            html="<u style='cursor:pointer'>"+$vm.date_to_string_dmy(d)+"</u>";
+                        }
+                        td.html(html);
+                        td.find('u').on('click',function(){
+                            $vm.load_module_v2('email-r2-bl','',{record:records[I]})
+                        })
                     }
                     break;
                 case 'Week_1_R1':
@@ -253,6 +309,10 @@
           //-------------------------------------
           m.set_req=function(){
               var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+              sql+=",baselineb as (select Baselineb=ID,PUID from [TABLE-20011570]) "
+              sql+=",baseline as (select Baseline=ID,PUID from [TABLE-20011515]) "
+              sql+=",log_baseline_R1 as (select Baseline_R1=DateTime,PUID from [TABLE-20011579] where V2=100) "
+              sql+=",log_baseline_R2 as (select Baseline_R2=DateTime,PUID from [TABLE-20011579] where V2=200) "
               sql+=",w1 as (select Week_1=ID,PUID from [TABLE-20011509]) "
               sql+=",log_w1_R1 as (select Week_1_R1=DateTime,PUID from [TABLE-20011579] where V2=101) "
               sql+=",log_w1_R2 as (select Week_1_R2=DateTime,PUID from [TABLE-20011579] where V2=201) "
@@ -262,13 +322,19 @@
               sql+=",w3 as (select Week_3=ID,PUID from [TABLE-20011511]) "
               sql+=",log_w3_R1 as (select Week_3_R1=DateTime,PUID from [TABLE-20011579] where V2=103) "
               sql+=",log_w3_R2 as (select Week_3_R2=DateTime,PUID from [TABLE-20011579] where V2=203) "
+              sql+=",w6b as (select Week_6b=ID,PUID from [TABLE-20011512]) "
               sql+=",w6 as (select Week_6=ID,PUID from [TABLE-20011571]) "
               sql+=",log_w6_R1 as (select Week_6_R1=DateTime,PUID from [TABLE-20011579] where V2=106) "
               sql+=",log_w6_R2 as (select Week_6_R2=DateTime,PUID from [TABLE-20011579] where V2=206) "
+              sql+=",w12b as (select Week_12b=ID,PUID from [TABLE-20011513]) "
               sql+=",w12 as (select Week_12=ID,PUID from [TABLE-20011544]) "
               sql+=",log_w12_R1 as (select Week_12_R1=DateTime,PUID from [TABLE-20011579] where V2=112) "
               sql+=",log_w12_R2 as (select Week_12_R2=DateTime,PUID from [TABLE-20011579] where V2=212) "
-              sql+="select Information,Week_1,Week_1_R1,Week_1_R2,Week_2,Week_2_R1,Week_2_R2,Week_3,Week_3_R1,Week_3_R2,Week_6,Week_6_R1,Week_6_R2,Week_12,Week_12_R1,Week_12_R2,ID,UID,DateTime,Modified,Author,RowNum from tb ";
+              sql+="select Information,Baseline,Baselineb,Baseline_R1,Baseline_R2,Week_1,Week_1_R1,Week_1_R2,Week_2,Week_2_R1,Week_2_R2,Week_3,Week_3_R1,Week_3_R2,Week_6,Week_6b,Week_6_R1,Week_6_R2,Week_12,Week_12b,Week_12_R1,Week_12_R2,ID,UID,DateTime,Modified,Author,RowNum from tb ";
+              sql+=" left join baselineb on tb.UID=baselineb.PUID";
+              sql+=" left join baseline on tb.UID=baseline.PUID";
+              sql+=" left join log_baseline_R1 on tb.UID=log_baseline_R1.PUID ";
+              sql+=" left join log_baseline_R2 on tb.UID=log_baseline_R2.PUID ";
               sql+=" left join w1 on tb.UID=w1.PUID ";
               sql+=" left join log_w1_R1 on tb.UID=log_w1_R1.PUID ";
               sql+=" left join log_w1_R2 on tb.UID=log_w1_R2.PUID ";
@@ -278,9 +344,11 @@
               sql+=" left join w3 on tb.UID=w3.PUID";
               sql+=" left join log_w3_R1 on tb.UID=log_w3_R1.PUID ";
               sql+=" left join log_w3_R2 on tb.UID=log_w3_R2.PUID ";
+              sql+=" left join w6b on tb.UID=w6b.PUID";
               sql+=" left join w6 on tb.UID=w6.PUID";
               sql+=" left join log_w6_R1 on tb.UID=log_w6_R1.PUID ";
               sql+=" left join log_w6_R2 on tb.UID=log_w6_R2.PUID ";
+              sql+=" left join w12b on tb.UID=w12b.PUID";
               sql+=" left join w12 on tb.UID=w12.PUID";
               sql+=" left join log_w12_R1 on tb.UID=log_w12_R1.PUID ";
               sql+=" left join log_w12_R2 on tb.UID=log_w12_R2.PUID ";

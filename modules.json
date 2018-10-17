@@ -19,11 +19,13 @@
         "email-03":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-03.html"},
         "email-06":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-06.html"},
         "email-12":                             {                      "url":"https://management.sfix.com.au/modules/emails/email-12.html"},
+        "email-r1-bl":                          {                      "url":"https://management.sfix.com.au/modules/emails/email-r1-bl.html"},
         "email-r1-01":                          {                      "url":"https://management.sfix.com.au/modules/emails/email-r1-01.html"},
         "email-r1-02":                          {                      "url":"https://management.sfix.com.au/modules/emails/email-r1-02.html"},
         "email-r1-03":                          {                      "url":"https://management.sfix.com.au/modules/emails/email-r1-03.html"},
         "email-r1-06":                          {                      "url":"https://management.sfix.com.au/modules/emails/email-r1-06.html"},
         "email-r1-12":                          {                      "url":"https://management.sfix.com.au/modules/emails/email-r1-12.html"},
+        "email-r2-bl":                          {                      "url":"https://management.sfix.com.au/modules/emails/email-r2-bl.html"},
         "email-r2-01":                          {                      "url":"https://management.sfix.com.au/modules/emails/email-r2-01.html"},
         "email-r2-02":                          {                      "url":"https://management.sfix.com.au/modules/emails/email-r2-02.html"},
         "email-r2-03":                          {                      "url":"https://management.sfix.com.au/modules/emails/email-r2-03.html"},
@@ -35,10 +37,13 @@
 
         "screening-form":           {"table_id":"20011503","url":"https://management.sfix.com.au/modules/tasks/screening-form.html"},
         "screening-data":           {"table_id":"20011503","url":"https://management.sfix.com.au/modules/tasks/screening-data.html","form_module":"screening-form"},
+        "random-high-data":          {"table_id":"20011623","url":"https://management.sfix.com.au/modules/tasks/random-data.html"},
+        "random-low-data":           {"table_id":"20011622","url":"https://management.sfix.com.au/modules/tasks/random-data.html"},
 
         "pis-form":                 {"url":"https://management.sfix.com.au/modules/tasks/pis-form.html"},
         "sp-form":                  {"url":"https://management.sfix.com.au/modules/tasks/sp-form.html"},
         "sleepfix-study-page": {"url":"https://management.sfix.com.au/modules/tasks/sleepfix-study-page.html"},
+        "sleepfix-study-page-tmp": {"url":"https://management.sfix.com.au/modules/tasks/sleepfix-study-page-tmp.html"},
         "screen-failure-thank-you-page": {"url":"https://management.sfix.com.au/modules/tasks/screen-failure-thank-you-page.html"},
         "screen-failure-phq-9": {"url":"https://management.sfix.com.au/modules/tasks/screen-failure-phq-9.html"},
 

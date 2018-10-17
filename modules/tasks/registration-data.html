@@ -4,15 +4,67 @@
   </div>
   <script>
     function F__ID(){
+        var isi_cutoff=20;
       //-------------------------------------
       VmInclude:__COMPONENT__/module/grid.v1.js
       //-------------------------------------
-      var fields="Screening Record ID|PUID,Participant ID|UID,First_Name,Last_Name,Mobile_Phone,Email,Email_Confirmation,Password,Address,Suburb,Postcode,State,Start_Date,Access_Code,SMS";
+      var fields="Screening Record ID|PUID,Participant ID|UID,ISI|V1,Randomisation_Number,Group,Access_Code,First_Name,Last_Name,Mobile_Phone,Email,Password,Address,Suburb,Postcode,State,Start_Date,SMS";
       m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
-      m.form_fields=fields;
+      m.form_fields=fields+",Email_Confirmation";
       //-------------------------------------
       m.cell_render=function(records,I,field,td,set_value,source){
         switch(field){
+            case 'Group':
+            case 'Access_Code':
+                records[I].vm_readonly[field]=true;
+                break;
+            case 'Randomisation_Number':
+                records[I].vm_readonly[field]=true;
+                if(records[I][field]!==undefined && records[I][field]!==''){
+                    if (parseInt(records[I]['V1'])>isi_cutoff){
+                        td.html('High - '+records[I][field]);
+                    }
+                    else{
+                        td.html('Low - '+records[I][field]);
+                    }
+                }
+                if(records[I][field]==undefined || records[I][field]==''){
+                    td.on('click', function(){
+                        var sql='';
+                        if (parseInt(records[I]['V1'])>isi_cutoff){
+                            sql="select top 1 RN=max(V3) from [TABLE-"+m.db_pid+"]";
+                        }
+                        else {
+                            sql="select top 1 RN=max(V2) from [TABLE-"+m.db_pid+"]";
+                        }
+                        if(sql!=''){
+                            $VmAPI.request({data:{cmd:'read',qid:m.qid,sql:sql},callback:function(res){
+                                if(res.records.length==1){
+                                    var RN=parseInt(res.records[0].RN)+1;
+                                    RN=RN.toString()
+                                    //RN='R'+RN;
+                                    td.html(RN);
+                                    records[I].Randomised_by=$vm.user;
+                                    set_value(RN,records,I,field);
+                                    if (parseInt(records[I]['V1'])>isi_cutoff){
+                                        sql="select S2,S3 from [TABLE-20011623] where UID="+RN;
+                                    }
+                                    else {
+                                        sql="select S2,S3 from [TABLE-20011622] where UID="+RN;
+                                    }
+                                    $VmAPI.request({data:{cmd:'read',qid:m.qid,sql:sql},callback:function(res){
+                                        if(res.records.length==1){
+                                            set_value(res.records[0].S2,records,I,'Group');
+                                            set_value(res.records[0].S3,records,I,'Access_Code');
+                                        }
+                                    }})
+                                }
+                            }})
+                        }
+                    })
+                }
+                break;
+          case 'V1':
           case 'UID':
           case 'PUID':
             records[I].vm_readonly[field]=true;
@@ -31,9 +83,31 @@
         }
       }
       //-------------------------------------
-      m.before_submit_2=function(record,dbv){
+      m.set_req=function(){
+          var sql="with tb as (select Information,ID,UID,PUID,V2,V3,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+          sql+=",screening_tb as (select V1,scuid=UID from [TABLE-20011503]) "
+          sql+="select Information,ID,UID,PUID,V1,DateTime,Modified,Author,RowNum from tb ";
+          sql+="left join screening_tb on scuid=tb.PUID "
+          sql+="where RowNum between @I6 and @I7";
+          var sql_n="select count(ID) from [TABLE-"+m.db_pid+"-@S1]";
+      	m.req={cmd:'read',qid:m.qid,sql:sql,sql_n:sql_n,s1:'"'+$('#keyword__ID').val()+'"',I:$('#I__ID').text(),page_size:$('#page_size__ID').val()}
+      }
+      //-------------------------------------
+      m.before_submit=function(record,dbv){
         dbv.S2=record.Email;
         dbv.S3=record.Password;
+        dbv.V1=0; if(record.SMS=='on') dbv.V1=1;
+        if(record.Randomisation_Number!=undefined && record.Randomisation_Number!=''){
+            if(parseInt(record.V1)>isi_cutoff) {
+                 dbv.V3=record.Randomisation_Number;
+                 dbv.V2=0;
+             }
+             else{
+                 dbv.V2=record.Randomisation_Number;
+                 dbv.V3=0;
+             }
+
+        }
         return true;
       }
       //-------------------------------------

@@ -7,7 +7,7 @@
       //-------------------------------------
       VmInclude:__COMPONENT__/module/grid.v1.js
       //-------------------------------------
-      var fields="between_18_65,english,smartphone,baby,shift,disease,mental_health,time_difference_2h,time_difference_1h,phq_9,ISI_1a, ISI_1b, ISI_1c, ISI_2, ISI_3, ISI_4, ISI_5,Eligible";
+      var fields="australia,between_18_65,english,smartphone,baby,shift,disease,mental_health,time_difference_2h,time_difference_1h,phq_9,ISI_1a, ISI_1b, ISI_1c, ISI_2, ISI_3, ISI_4, ISI_5,ISI|V1,Eligible";
       m.fields="_Form,Record ID|UID,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
       m.form_fields=fields;
       //-------------------------------------
@@ -18,6 +18,17 @@
             td.html(records[I].UID);
             break;
         }
+      }
+      //-------------------------------------
+      m.before_submit=function(record,dbv){
+          dbv.V1=parseInt(record.ISI_2)+parseInt(record.ISI_3)+parseInt(record.ISI_4)+parseInt(record.ISI_5)+parseInt(record.ISI_1a)+parseInt(record.ISI_1b)+parseInt(record.ISI_1c);
+      }
+      //-------------------------------------
+      m.set_req=function(){
+          var sql="with tb as (select Information,ID,UID,PUID,V1,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+          sql+="select Information,ID,UID,PUID,V1,DateTime,Modified,Author,RowNum from tb where RowNum between @I6 and @I7";
+          var sql_n="select count(ID) from [TABLE-"+m.db_pid+"-@S1]";
+      	m.req={cmd:'read',qid:m.qid,sql:sql,sql_n:sql_n,s1:'"'+$('#keyword__ID').val()+'"',I:$('#I__ID').text(),page_size:$('#page_size__ID').val()}
       }
       //-------------------------------------
       //$('#new__ID').off('click').on('click',function(){$vm.load_module_v2(m.form_module,'',{goback:1})})
