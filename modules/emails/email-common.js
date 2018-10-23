@@ -14,7 +14,7 @@ $('#D__ID').on('load',function(){
         $('#link__ID').html("<a target=_blank href="+h+">"+h+"</a>");
         $('#mobile_link__ID').html("<a target=_blank href="+h+">"+h+"</a>");
     }
-    if(TP=="AC") {$('#link__ID').html("Access Code = "+record.Access_Code);}
+    if(TP=="AC") {$('#link__ID').html('<b>'+record.Access_Code+'</b>');}
     uid=record.UID;
     email_to=record.Email;
     email_body=$('#email__ID').html();
