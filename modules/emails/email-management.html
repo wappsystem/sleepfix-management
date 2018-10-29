@@ -41,10 +41,10 @@
                     }
                     else{
                         var html="";
-                        var s=records[I]["Start_Date"]
-                        if(s!='' && s!=null && s!=undefined){
+                        //var s=records[I]["Start_Date"]
+                        //if(s!='' && s!=null && s!=undefined){
                             html="<u style='cursor:pointer'>Baseline</u>";
-                        }
+                        //}
                         td.html(html);
                         td.find('u').on('click',function(){
                             $vm.load_module_v2('email-bl','',{record:records[I]})

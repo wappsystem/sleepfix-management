@@ -7,7 +7,7 @@
           //-------------------------------------
           VmInclude:__COMPONENT__/module/grid.v1.js
           //-------------------------------------
-          var fields="Participant ID|UID,First_Name,Last_Name,Email,Start_Date,Baseline,Baseline_R1,Baseline_R2,Week_1,Week_1_R1,Week_1_R2,Week_2,Week_2_R1,Week_2_R2,Week_3,Week_3_R1,Week_3_R2,Week_6,Week_6_R1,Week_6_R2,Week_12,Week_12_R1,Week_12_R2";
+          var fields="Participant ID|UID,First_Name,Last_Name,Email,Baseline,Baseline_date,Baseline_R1,Baseline_R2,Start_Date,Week_1,Week_1_R1,Week_1_R2,Week_2,Week_2_R1,Week_2_R2,Week_3,Week_3_R1,Week_3_R2,Week_6,Week_6_R1,Week_6_R2,Week_12,Week_12_R1,Week_12_R2";
           m.fields=""+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
           m.form_fields=fields;
           //-------------------------------------
@@ -64,6 +64,16 @@
                         td.html("")
                     }
                     break;
+                case 'Baseline_date':
+                    records[I].vm_readonly[field]=true;
+                    var v=records[I][field];
+                    if(v!='' && v!=null && v!=undefined){
+                        td.html(records[I][field].substring(0,10));
+                    }
+                    else{
+                        var html="";
+                    }
+                    break;
                 case 'Baseline_R1':
                     records[I].vm_readonly[field]=true;
                     var v=records[I][field];
@@ -72,9 +82,9 @@
                     }
                     else{
                         var html="";
-                        var s=records[I]["Start_Date"]
+                        var s=records[I]["Baseline_date"].substring(0,10)
                         if(s!='' && s!=null && s!=undefined){
-                            var ds=$vm.date_yyyymmdd_parse(s);
+                            var ds=$vm.date_parse(s);
                             var d=$vm.date_add_days(ds,2);
                             html="<u style='cursor:pointer'>"+$vm.date_to_string_dmy(d)+"</u>";
                         }
@@ -92,9 +102,9 @@
                     }
                     else{
                         var html="";
-                        var s=records[I]["Start_Date"]
+                        var s=records[I]["Baseline_date"].substring(0,10)
                         if(s!='' && s!=null && s!=undefined){
-                            var ds=$vm.date_yyyymmdd_parse(s);
+                            var ds=$vm.date_parse(s);
                             var d=$vm.date_add_days(ds,4);
                             html="<u style='cursor:pointer'>"+$vm.date_to_string_dmy(d)+"</u>";
                         }
@@ -311,6 +321,7 @@
               var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
               sql+=",baselineb as (select Baselineb=ID,PUID from [TABLE-20011570]) "
               sql+=",baseline as (select Baseline=ID,PUID from [TABLE-20011515]) "
+              sql+=",log_baseline as (select Baseline_date=DateTime,PUID from [TABLE-20011579] where V2=0) "
               sql+=",log_baseline_R1 as (select Baseline_R1=DateTime,PUID from [TABLE-20011579] where V2=100) "
               sql+=",log_baseline_R2 as (select Baseline_R2=DateTime,PUID from [TABLE-20011579] where V2=200) "
               sql+=",w1 as (select Week_1=ID,PUID from [TABLE-20011509]) "
@@ -330,9 +341,10 @@
               sql+=",w12 as (select Week_12=ID,PUID from [TABLE-20011544]) "
               sql+=",log_w12_R1 as (select Week_12_R1=DateTime,PUID from [TABLE-20011579] where V2=112) "
               sql+=",log_w12_R2 as (select Week_12_R2=DateTime,PUID from [TABLE-20011579] where V2=212) "
-              sql+="select Information,Baseline,Baselineb,Baseline_R1,Baseline_R2,Week_1,Week_1_R1,Week_1_R2,Week_2,Week_2_R1,Week_2_R2,Week_3,Week_3_R1,Week_3_R2,Week_6,Week_6b,Week_6_R1,Week_6_R2,Week_12,Week_12b,Week_12_R1,Week_12_R2,ID,UID,DateTime,Modified,Author,RowNum from tb ";
+              sql+="select Information,Baseline,Baseline_date,Baselineb,Baseline_R1,Baseline_R2,Week_1,Week_1_R1,Week_1_R2,Week_2,Week_2_R1,Week_2_R2,Week_3,Week_3_R1,Week_3_R2,Week_6,Week_6b,Week_6_R1,Week_6_R2,Week_12,Week_12b,Week_12_R1,Week_12_R2,ID,UID,DateTime,Modified,Author,RowNum from tb ";
               sql+=" left join baselineb on tb.UID=baselineb.PUID";
               sql+=" left join baseline on tb.UID=baseline.PUID";
+              sql+=" left join log_baseline on tb.UID=log_baseline.PUID ";
               sql+=" left join log_baseline_R1 on tb.UID=log_baseline_R1.PUID ";
               sql+=" left join log_baseline_R2 on tb.UID=log_baseline_R2.PUID ";
               sql+=" left join w1 on tb.UID=w1.PUID ";
