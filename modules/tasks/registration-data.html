@@ -19,7 +19,7 @@
                 records[I].vm_readonly[field]=true;
                 break;
             case 'Randomisation_Number':
-                records[I].vm_readonly[field]=true;
+                //records[I].vm_readonly[field]=true;
                 if(records[I][field]!==undefined && records[I][field]!==''){
                     if (parseInt(records[I]['V1'])>isi_cutoff){
                         td.html('High - '+records[I][field]);
