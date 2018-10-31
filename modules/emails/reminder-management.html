@@ -51,12 +51,12 @@
                 case 'Week_12':
                     records[I].vm_readonly[field]=true;
                     var v=records[I][field];
-                    if(v!='' && v!=null && v!=undefined){
+                    var vb=records[I][field+"b"];
+                    if(v!='' && v!=null && v!=undefined && vb!='' && vb!=null && vb!=undefined){
                         td.html("<i class='fa fa-smile'></i>");
                         td.css('color','green')
                     }
-                    v=records[I][field+"b"];
-                    if(v!='' && v!=null && v!=undefined){
+                    else if(vb!='' && vb!=null && vb!=undefined){
                         td.html("<i class='fa fa-meh'></i>");
                         td.css('color','orange')
                     }
