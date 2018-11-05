@@ -7,7 +7,6 @@
         var isi_cutoff=18;
       //-------------------------------------
       VmInclude:__COMPONENT__/module/grid.v1.js
-      VmInclude:__CURRENT_PATH__/task-data.js
       //-------------------------------------
       var fields="Screening Record ID|PUID,Participant ID|UID,ISI|V1,Randomisation_Number,Group,Access_Code,First_Name,Last_Name,Mobile_Phone,Email,Password,Address,Suburb,Postcode,State,Start_Date,SMS";
       m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
@@ -92,6 +91,12 @@
           sql+="where RowNum between @I6 and @I7";
           var sql_n="select count(ID) from [TABLE-"+m.db_pid+"-@S1]";
       	m.req={cmd:'read',qid:m.qid,sql:sql,sql_n:sql_n,s1:'"'+$('#keyword__ID').val()+'"',I:$('#I__ID').text(),page_size:$('#page_size__ID').val()}
+      }
+      //-------------------------------------
+      m.set_req_export=function(i1,i2){
+          var sql="with tb as (select Information,UID,PUID,DateTime,Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+          sql+="select Information,UID,PUID,DateTime,Author from tb where RowNum between @I1 and @I2";
+          m.req={cmd:'read',qid:m.qid,sql:sql,i1:i1,i2:i2};
       }
       //-------------------------------------
       m.before_submit=function(record,dbv){

@@ -6,7 +6,6 @@
     function F__ID(){
       //-------------------------------------
       VmInclude:__COMPONENT__/module/grid.v1.js
-      VmInclude:__CURRENT_PATH__/task-data.js      
       //-------------------------------------
       var fields="australia,between_18_65,english,smartphone,baby,shift,disease,mental_health,time_difference_2h,time_difference_1h,phq_9,ISI_1a, ISI_1b, ISI_1c, ISI_2, ISI_3, ISI_4, ISI_5,ISI|V1,Eligible";
       m.fields="_Form,Record ID|UID,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
@@ -34,6 +33,12 @@
       //-------------------------------------
       //$('#new__ID').off('click').on('click',function(){$vm.load_module_v2(m.form_module,'',{goback:1})})
       //$('#D__ID').on('load',function(){  if(m.preload==true) return; m.set_req(); m.request_data(); })
+      //-------------------------------------
+      m.set_req_export=function(i1,i2){
+          var sql="with tb as (select Information,UID,PUID,DateTime,Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+          sql+="select Information,UID,PUID,DateTime,Author from tb where RowNum between @I1 and @I2";
+          m.req={cmd:'read',qid:m.qid,sql:sql,i1:i1,i2:i2};
+      }
       //-------------------------------------
     }
   </script>
