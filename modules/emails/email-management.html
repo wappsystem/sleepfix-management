@@ -173,6 +173,28 @@
           }
           //-------------------------------------
           m.set_req=function(){
+                var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+                sql+=",log_ac as (select AccessCode=DateTime,PUID from [TABLE-20011579] where V2=99) "
+                sql+=",log_bl as (select Baseline=DateTime,PUID from [TABLE-20011579] where V2=0) "
+                sql+=",log_w1 as (select Week_1=DateTime,PUID from [TABLE-20011579] where V2=1) "
+                sql+=",log_w2 as (select Week_2=DateTime,PUID from [TABLE-20011579] where V2=2) "
+                sql+=",log_w3 as (select Week_3=DateTime,PUID from [TABLE-20011579] where V2=3) "
+                sql+=",log_w6 as (select Week_6=DateTime,PUID from [TABLE-20011579] where V2=6) "
+                sql+=",log_w12 as (select Week_12=DateTime,PUID from [TABLE-20011579] where v2=12) "
+                sql+="select Information,AccessCode,Baseline,Week_1,Week_2,Week_3,Week_6,Week_12,ID,UID,DateTime,Modified,Author,RowNum from tb ";
+                sql+=" left join log_ac on tb.UID=log_ac.PUID ";
+                sql+=" left join log_bl on tb.UID=log_bl.PUID ";
+                sql+=" left join log_w1 on tb.UID=log_w1.PUID ";
+                sql+=" left join log_w2 on tb.UID=log_w2.PUID";
+                sql+=" left join log_w3 on tb.UID=log_w3.PUID";
+                sql+=" left join log_w6 on tb.UID=log_w6.PUID";
+                sql+=" left join log_w12 on tb.UID=log_w12.PUID";
+                sql+=" where RowNum between @I6 and @I7";
+                var sql_n="select count(ID) from [TABLE-"+m.db_pid+"-@S1]";
+                m.req={cmd:'read',qid:m.qid,sql:sql,sql_n:sql_n,s1:'"'+$('#keyword__ID').val()+'"',I:$('#I__ID').text(),page_size:$('#page_size__ID').val()}
+          }
+          //-------------------------------------
+          m.set_req_export=function(i1,i2){
               var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
               sql+=",log_ac as (select AccessCode=DateTime,PUID from [TABLE-20011579] where V2=99) "
               sql+=",log_bl as (select Baseline=DateTime,PUID from [TABLE-20011579] where V2=0) "
@@ -189,11 +211,12 @@
               sql+=" left join log_w3 on tb.UID=log_w3.PUID";
               sql+=" left join log_w6 on tb.UID=log_w6.PUID";
               sql+=" left join log_w12 on tb.UID=log_w12.PUID";
-              sql+=" where RowNum between @I6 and @I7";
-              var sql_n="select count(ID) from [TABLE-"+m.db_pid+"-@S1]";
-          	m.req={cmd:'read',qid:m.qid,sql:sql,sql_n:sql_n,s1:'"'+$('#keyword__ID').val()+'"',I:$('#I__ID').text(),page_size:$('#page_size__ID').val()}
+              sql+=" where RowNum between @I1 and @I2";
+              //var sql="with tb as (select Information,DateTime,Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+              //sql+="select Information,DateTime,Author from tb where RowNum between @I1 and @I2";
+          	  m.req={cmd:'read',qid:m.qid,sql:sql,i1:i1,i2:i2};
           }
-          //-------------------------------------
+          //-----------------------------------------------
         }
     </script>
     <style>
