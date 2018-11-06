@@ -369,6 +369,59 @@
           	m.req={cmd:'read',qid:m.qid,sql:sql,sql_n:sql_n,s1:'"'+$('#keyword__ID').val()+'"',I:$('#I__ID').text(),page_size:$('#page_size__ID').val()}
           }
           //-------------------------------------
+          m.set_req_export=function(i1,i2){
+              var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+              sql+=",baselineb as (select Baselineb=ID,PUID from [TABLE-20011570]) "
+              sql+=",baseline as (select Baseline=ID,PUID from [TABLE-20011515]) "
+              sql+=",log_baseline as (select Baseline_date=DateTime,PUID from [TABLE-20011579] where V2=0) "
+              sql+=",log_baseline_R1 as (select Baseline_R1=DateTime,PUID from [TABLE-20011579] where V2=100) "
+              sql+=",log_baseline_R2 as (select Baseline_R2=DateTime,PUID from [TABLE-20011579] where V2=200) "
+              sql+=",w1 as (select Week_1=ID,PUID from [TABLE-20011509]) "
+              sql+=",log_w1_R1 as (select Week_1_R1=DateTime,PUID from [TABLE-20011579] where V2=101) "
+              sql+=",log_w1_R2 as (select Week_1_R2=DateTime,PUID from [TABLE-20011579] where V2=201) "
+              sql+=",w2 as (select Week_2=ID,PUID from [TABLE-20011510]) "
+              sql+=",log_w2_R1 as (select Week_2_R1=DateTime,PUID from [TABLE-20011579] where V2=102) "
+              sql+=",log_w2_R2 as (select Week_2_R2=DateTime,PUID from [TABLE-20011579] where V2=202) "
+              sql+=",w3 as (select Week_3=ID,PUID from [TABLE-20011511]) "
+              sql+=",log_w3_R1 as (select Week_3_R1=DateTime,PUID from [TABLE-20011579] where V2=103) "
+              sql+=",log_w3_R2 as (select Week_3_R2=DateTime,PUID from [TABLE-20011579] where V2=203) "
+              sql+=",w6b as (select Week_6b=ID,PUID from [TABLE-20011512]) "
+              sql+=",w6 as (select Week_6=ID,PUID from [TABLE-20011571]) "
+              sql+=",log_w6_R1 as (select Week_6_R1=DateTime,PUID from [TABLE-20011579] where V2=106) "
+              sql+=",log_w6_R2 as (select Week_6_R2=DateTime,PUID from [TABLE-20011579] where V2=206) "
+              sql+=",w12b as (select Week_12b=ID,PUID from [TABLE-20011513]) "
+              sql+=",w12 as (select Week_12=ID,PUID from [TABLE-20011544]) "
+              sql+=",log_w12_R1 as (select Week_12_R1=DateTime,PUID from [TABLE-20011579] where V2=112) "
+              sql+=",log_w12_R2 as (select Week_12_R2=DateTime,PUID from [TABLE-20011579] where V2=212) "
+              sql+="select Information,Baseline,Baseline_date,Baselineb,Baseline_R1,Baseline_R2,Week_1,Week_1_R1,Week_1_R2,Week_2,Week_2_R1,Week_2_R2,Week_3,Week_3_R1,Week_3_R2,Week_6,Week_6b,Week_6_R1,Week_6_R2,Week_12,Week_12b,Week_12_R1,Week_12_R2,ID,UID,DateTime,Modified,Author,RowNum from tb ";
+              sql+=" left join baselineb on tb.UID=baselineb.PUID";
+              sql+=" left join baseline on tb.UID=baseline.PUID";
+              sql+=" left join log_baseline on tb.UID=log_baseline.PUID ";
+              sql+=" left join log_baseline_R1 on tb.UID=log_baseline_R1.PUID ";
+              sql+=" left join log_baseline_R2 on tb.UID=log_baseline_R2.PUID ";
+              sql+=" left join w1 on tb.UID=w1.PUID ";
+              sql+=" left join log_w1_R1 on tb.UID=log_w1_R1.PUID ";
+              sql+=" left join log_w1_R2 on tb.UID=log_w1_R2.PUID ";
+              sql+=" left join w2 on tb.UID=w2.PUID";
+              sql+=" left join log_w2_R1 on tb.UID=log_w2_R1.PUID ";
+              sql+=" left join log_w2_R2 on tb.UID=log_w2_R2.PUID ";
+              sql+=" left join w3 on tb.UID=w3.PUID";
+              sql+=" left join log_w3_R1 on tb.UID=log_w3_R1.PUID ";
+              sql+=" left join log_w3_R2 on tb.UID=log_w3_R2.PUID ";
+              sql+=" left join w6b on tb.UID=w6b.PUID";
+              sql+=" left join w6 on tb.UID=w6.PUID";
+              sql+=" left join log_w6_R1 on tb.UID=log_w6_R1.PUID ";
+              sql+=" left join log_w6_R2 on tb.UID=log_w6_R2.PUID ";
+              sql+=" left join w12b on tb.UID=w12b.PUID";
+              sql+=" left join w12 on tb.UID=w12.PUID";
+              sql+=" left join log_w12_R1 on tb.UID=log_w12_R1.PUID ";
+              sql+=" left join log_w12_R2 on tb.UID=log_w12_R2.PUID ";
+              sql+=" where RowNum between @I1 and @I2";
+              //var sql="with tb as (select Information,DateTime,Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+              //sql+="select Information,DateTime,Author from tb where RowNum between @I1 and @I2";
+          	  m.req={cmd:'read',qid:m.qid,sql:sql,i1:i1,i2:i2};
+          }
+          //-----------------------------------------------
         }
     </script>
     <style>
