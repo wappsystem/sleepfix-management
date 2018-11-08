@@ -47,6 +47,8 @@
         "screen-failure-thank-you-page": {"url":"https://management.sfix.com.au/modules/tasks/screen-failure-thank-you-page.html"},
         "screen-failure-phq-9": {"url":"https://management.sfix.com.au/modules/tasks/screen-failure-phq-9.html"},
 
+        "notes-form":             {"table_id":"20011624","url":"https://management.sfix.com.au/modules/tasks/notes-form.html"},
+        "notes-data":             {"table_id":"20011624","url":"https://management.sfix.com.au/modules/tasks/notes-data.html","form_module":"notes-form"},
         "consent-form":             {"table_id":"20011504","url":"https://management.sfix.com.au/modules/tasks/consent-form.html"},
         "consent-data":             {"table_id":"20011504","url":"https://management.sfix.com.au/modules/tasks/consent-data.html","form_module":"consent-form"},
         "registration-form":        {"table_id":"20011505","url":"https://management.sfix.com.au/modules/tasks/registration-form.html"},

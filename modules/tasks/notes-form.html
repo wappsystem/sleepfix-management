@@ -1,0 +1,126 @@
+<div id=D__ID>
+
+<!--third html start -->
+    <div class="container mt-95 mb-3">
+      <div class="row" >
+        <!-- form container start -->
+        <div class="col-12 col-lg-7 col-md-11 col-sm-12 mx-auto formbox">
+          <div class="row">
+            <div class="col-12">
+              <!-- form start -->
+              <form id="F__ID">
+                  <h3> Notes and files</h3>
+                      <!-- participant name and study id -->
+                  <div class="form-group">
+                    <div class="row" style="padding-bottom:10px">
+                      <div class="col-lg-9 col-sm-12">
+                        <label for="participant-name">Select Participant ID from list. Next field should get the same number. </label>
+                        <input type="text" class="form-control" name="Participant" id=Participant__ID placeholder="">
+                      </div>
+                      <div class="col-lg-3 col-sm-12">
+                        <label for="participant-id">Participant ID</label>
+                        <input type="text" class="form-control" name="Participant_uid" placeholder="" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="questiongroup ">
+                         <fieldset class="">
+                            <label style="width:100%"><span class="">Notes</span>
+                                <textarea class="form-control" name="Notes" placeholder="" ></textarea>
+                            </label><br>
+                          </fieldset>
+                      </div>
+                  </div>
+                  <div class="form-group">
+      				 <div class="questiongroup ">
+                         <fieldset class="">
+                             <label ><span class="">Document (Attach file by clicking on <i class="fa fa-paperclip"></i> below)</span>
+                            </label>
+                            <div id=File_Name__ID data-id=File_Name></div>
+                            <br>
+                          </fieldset>
+                      </div>
+          			<br>
+              		<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+              	</div>
+              </form>
+            </div>
+         </div>
+        </div>
+      </div>
+  </div>
+  <script>
+  //-------------------------------------
+  $vm.open_link_v2=function(rid,filename,minutes){
+      var req={cmd:'get_s3_download_url',qid:$vm.qid,rid:rid,filename:filename,minutes:minutes};
+      $VmAPI.request({data:req,callback:function(res){
+          var link = document.createElement("a");
+          link.href = res.s3_download_url;
+          link.style = "visibility:hidden";
+          var fn=filename.split('-');
+          link.download = filename.replace(fn[0]+'-','').replace(/ /g,'_');
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+      }});
+  }
+  //-------------------------------------
+      function F__ID(){
+          //-------------------------------------
+          VmInclude:__COMPONENT__/module/form.v1.js
+          //-------------------------------------
+          //haed code
+          var participant_tid  ='20011505';
+          var participant_sql	="Convert(varchar,UID)";
+          var participant_name =function(p_record){ return "";}
+          //-------------------------------------
+          var sql="with tb as (select name="+participant_sql+",value2=uid from [TABLE-"+participant_tid+"])";
+          sql+=" select top 10 name,value=name,value2 from tb where Name like '%'+@S1+'%' ";
+          $vm.autocomplete($('#Participant__ID'),sql,function(key,value){
+            $("#F__ID input[name=Participant_uid]").val($vm.text(value));
+          })
+          //-------------------------------------
+          m.load=function(){
+              m.input=$vm.vm['__ID'].input; if(m.input==undefined) m.input={};
+              $('#row_participant__ID').hide();
+              $('#F__ID')[0].reset();
+              $('#submit__ID').show();
+              var grid_record=m.input.record;
+              $vm.deserialize(grid_record,'#F__ID');
+              //--------------------------
+              var participant_record=m.input.participant_record;
+              if(grid_record==undefined && participant_record!=undefined && participant_record.UID!=undefined){
+                 $("#F__ID input[name=Participant]").val(participant_record.UID+participant_name(participant_record));
+                 $("#F__ID input[name=Participant_uid]").val(participant_record.UID);
+              }
+              $('#F__ID input[name=Participant]').prop('disabled',false); if($("#F__ID input[name=Participant_uid]").val()!='') $('#F__ID input[name=Participant]').prop('disabled',true);
+              //--------------------------
+              $vm.render_file_field_v2(m.input.record,'__ID',$('#File_Name__ID'));
+              //--------------------------
+              if(m.load_2!=undefined) m.load_2();
+              //--------------------------
+          }
+          //-------------------------------------
+          m.before_submit=function(record,dbv){
+             var r=true; if(m.before_submit_2!=undefined) r=m.before_submit_2(record,dbv); if(r==false) { $('#submit__ID').show();return false; }
+             if(record.Participant_uid!=""){
+                 dbv.PUID=record.Participant_uid;
+                 dbv.S3=$vm.status_of_data(record);
+             }
+             return r;
+          };
+          //-------------------------------------
+          //-------------------------------------
+      }
+</script>
+<style>
+    #D__ID{
+      height:100%;
+      animation: vm_module_fadein 1.0s;
+      /*background-color: #fff;*/
+      overflow:auto;
+    }
+  </style>
+  VmInclude:__CURRENT_PATH__/task-form.css
+</div>
