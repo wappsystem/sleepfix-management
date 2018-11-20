@@ -319,7 +319,7 @@
           }
           //-------------------------------------
           m.set_req=function(){
-              var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+              var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] where B1<>'True' )";
               sql+=",baselineb as (select Baselineb=ID,PUID from [TABLE-20011570]) "
               sql+=",baseline as (select Baseline=ID,PUID from [TABLE-20011515]) "
               sql+=",log_baseline as (select Baseline_date=DateTime,PUID from [TABLE-20011579] where V2=0) "
@@ -371,7 +371,7 @@
           }
           //-------------------------------------
           m.set_req_export=function(i1,i2){
-              var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+              var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"-@S1] where B1<>'True' )";
               sql+=",baselineb as (select Baselineb=ID,PUID from [TABLE-20011570]) "
               sql+=",baseline as (select Baseline=ID,PUID from [TABLE-20011515]) "
               sql+=",log_baseline as (select Baseline_date=DateTime,PUID from [TABLE-20011579] where V2=0) "

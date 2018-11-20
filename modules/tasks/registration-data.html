@@ -8,12 +8,19 @@
       //-------------------------------------
       VmInclude:__COMPONENT__/module/grid.v1.js
       //-------------------------------------
-      var fields="Screening Record ID|PUID,Participant ID|UID,ISI|V1,Randomisation_Number,Group,Access_Code,First_Name,Last_Name,Mobile_Phone,Email,Password,Address,Suburb,Postcode,State,Start_Date,SMS";
+      var fields="Screening Record ID|PUID,Participant ID|UID,ISI|V1,Randomisation_Number,Group,Access_Code,First_Name,Last_Name,Mobile_Phone,Email,Password,Address,Suburb,Postcode,State,Start_Date,Drop_out,SMS";
       m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
       m.form_fields=fields+",Email_Confirmation";
       //-------------------------------------
       m.cell_render=function(records,I,field,td,set_value,source){
         switch(field){
+            case 'Drop_out':
+                var html="<select style='border:0;''>"
+                html+="<option value=''></option>";
+                html+="<option>Drop out</option>";
+                html+="</select>"
+                $vm.render_select_field(records[I],'__ID',td,html)
+            break;
             case 'Group':
             case 'Access_Code':
                 records[I].vm_readonly[field]=true;
@@ -103,6 +110,8 @@
         dbv.S2=record.Email;
         dbv.S3=record.Password;
         dbv.V1=0; if(record.SMS=='on') dbv.V1=1;
+        if(record.Drop_out=='Drop out') dbv.B1=1;
+        else dbv.B1=0;
         if(record.Randomisation_Number!=undefined && record.Randomisation_Number!=''){
             if(parseInt(record.V1)>isi_cutoff) {
                  dbv.V3=record.Randomisation_Number;
