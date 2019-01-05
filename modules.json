@@ -166,6 +166,8 @@
         "bl-questionnaire-form":    {"table_id":"20011570","url":"https://management.sfix.com.au/modules/tasks/bl-questionnaire-form.html"},
         "w6-two-item-fu-data":      {"table_id":"20011571","url":"https://management.sfix.com.au/modules/tasks/two-item-fu-data.html","form_module":"w6-two-item-fu-form"},
         "w6-two-item-fu-form":      {"table_id":"20011571","url":"https://management.sfix.com.au/modules/tasks/two-item-fu-form.html"},
-        "import-sleep-data":        {"table_id":"20011625","url":"https://management.sfix.com.au/modules/tasks/import-sleep.html"}
+        "import-sleep-data":        {"table_id":"20011625","url":"https://management.sfix.com.au/modules/tasks/import-sleep.html"},
+        "import-sleep-02-data":     {"table_id":"20011625","url":"https://management.sfix.com.au/modules/tasks/import-sleep-data.02.html","form_module":"import-sleep-02-form"},
+        "import-sleep-02-form":     {"table_id":"20011625","url":"https://management.sfix.com.au/modules/tasks/import-sleep-form.02.html"}
     }
 }

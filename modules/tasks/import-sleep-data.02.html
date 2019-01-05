@@ -1,0 +1,61 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/module/grid.import.v1.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/module/grid.v1.js
+            VmInclude:__COMPONENT__/module/import.v1.js
+            //-------------------------------------
+            var fields="userId,startTime,minutesToFallAsleep,minutesAwake,endTime,dateOfSleep,sleepRating,tags,valid,sleepWindow,SE,timeZone,id,created,programId";
+            m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
+            m.form_fields=fields;
+            //-------------------------------------
+            $('#new__ID').hide();
+            $('#save__ID').hide();
+            //-------------------------------------
+            m.before_submit=function(record,dbv){
+                dbv.DT1=string_to_datetime(record.startTime);
+                dbv.DT2=string_to_datetime(record.endTime);
+                dbv.S1=record.userId;
+                dbv.S2=record.id;
+                return true;
+            }
+            //-------------------------------------
+            var string_to_datetime=function(timestring){
+                var ampm = timestring.split(' ');
+                var sdate= ampm[0].split('-');
+                var stime=ampm[1].split(':')
+                if(ampm[2]=='AM'){
+                    if(stime[0]=='12') stime[0]='0';
+                }
+                else if(stime[0]!='12') stime[0]=(parseInt(stime[0])+12).toString();
+                var datetime=new Date(sdate[0], sdate[1] - 1, sdate[2], stime[0], stime[1])
+                //        alert(sdate[0]+','+sdate[1]+','+sdate[2]+','+stime[0]+','+stime[1])
+                return datetime;
+            }
+            //-------------------------------------
+            m.import_check_first_record=function(first_item,callback){
+                //callback(0) stop
+                //callback(1) start importing
+                
+                //check first_item
+
+                var id_a=first_item[12];
+                var id_b=m.records[0].id;  
+
+alert(id_a+"---"+id_b)
+                //run the check logic
+                if(1!=2){
+                    alert('The first record was found in the database. It is possible all other records have been imported.');
+                    callback(0);
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/module/grid.v1.css
+    </style>
+</div>
