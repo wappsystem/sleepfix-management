@@ -36,21 +36,10 @@
                 return datetime;
             }
             //-------------------------------------
-            m.import_check_first_record=function(first_item,callback){
-                //callback(0) stop
-                //callback(1) start importing
-                
-                //check first_item
-
-                var id_a=first_item[12];
-                var id_b=m.records[0].id;  
-
-alert(id_a+"---"+id_b)
-                //run the check logic
-                if(1!=2){
-                    alert('The first record was found in the database. It is possible all other records have been imported.');
-                    callback(0);
-                }
+            m.import_check_record=function(record,dev,callback){
+                //callback(1);  //1--add
+                callback(0);    //0 skip to next, no add
+                //callback(-1); //-1 stop, jump to end
             }
             //-------------------------------------
         }
