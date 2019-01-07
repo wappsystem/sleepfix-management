@@ -8,7 +8,7 @@
             VmInclude:__COMPONENT__/module/grid.v1.js
             VmInclude:__COMPONENT__/module/import.v1.js
             //-------------------------------------
-            var fields="userId,startTime,minutesToFallAsleep,minutesAwake,endTime,dateOfSleep,sleepRating,tags,SE,id,created";
+            var fields="userId,waketime,bedtime,startDate,scheduled,window,timeZone,id";
             m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
             m.form_fields=fields;
             //-------------------------------------
@@ -16,9 +16,8 @@
             $('#save__ID').hide();
             //-------------------------------------
             m.before_submit=function(record,dbv){
-                dbv.DT1=string_to_datetime(record.startTime);
-                dbv.DT2=string_to_datetime(record.endTime);
-                dbv.DT3=string_to_datetime(record.dateOfSleep);
+                dbv.DT1=string_to_datetime(record.startDate);
+                //dbv.DT2=string_to_datetime(record.endTime);
                 dbv.S1=record.userId;
                 dbv.S2=record.id;
                 return true;

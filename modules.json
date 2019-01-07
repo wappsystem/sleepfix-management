@@ -167,6 +167,10 @@
         "w6-two-item-fu-data":      {"table_id":"20011571","url":"https://management.sfix.com.au/modules/tasks/two-item-fu-data.html","form_module":"w6-two-item-fu-form"},
         "w6-two-item-fu-form":      {"table_id":"20011571","url":"https://management.sfix.com.au/modules/tasks/two-item-fu-form.html"},
         "import-sleep-data":     {"table_id":"20011625","url":"https://management.sfix.com.au/modules/tasks/import-sleep-data.html","form_module":"import-sleep-form"},
-        "import-sleep-form":     {"table_id":"20011625","url":"https://management.sfix.com.au/modules/tasks/import-sleep-form.html"}
+        "import-sleep-form":     {"table_id":"20011625","url":"https://management.sfix.com.au/modules/tasks/import-sleep-form.html"},
+        "import-fitbit-data":     {"table_id":"20011626","url":"https://management.sfix.com.au/modules/tasks/import-fitbit-data.html","form_module":"import-fitbit-form"},
+        "import-fitbit-form":     {"table_id":"20011626","url":"https://management.sfix.com.au/modules/tasks/import-fitbit-form.html"},
+        "import-program-user-data":     {"table_id":"20011627","url":"https://management.sfix.com.au/modules/tasks/import-program-user-data.html","form_module":"import-program-user-form"},
+        "import-program-user-form":     {"table_id":"20011627","url":"https://management.sfix.com.au/modules/tasks/import-program-user-form.html"}
     }
 }
