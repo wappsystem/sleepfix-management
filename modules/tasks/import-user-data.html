@@ -1,0 +1,63 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/module/grid.import.v1.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/module/grid.v1.js
+            VmInclude:__COMPONENT__/module/import.v1.js
+            //-------------------------------------
+            var fields="access_code,id,created";
+            m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
+            m.form_fields=fields;
+            //-------------------------------------
+            $('#new__ID').hide();
+            $('#save__ID').hide();
+            //-------------------------------------
+            m.before_submit=function(record,dbv){
+                dbv.DT1=string_to_datetime(record.startTime);
+                dbv.DT2=string_to_datetime(record.endTime);
+                dbv.DT3=string_to_datetime(record.dateOfSleep);
+                dbv.S1=record.userId;
+                dbv.S2=record.id;
+                return true;
+            }
+            //-------------------------------------
+            var string_to_datetime=function(timestring){
+                var ampm = timestring.split(' ');
+                var sdate= ampm[0].split('-');
+                var stime=ampm[1].split(':')
+                if(ampm[2]=='AM'){
+                    if(stime[0]=='12') stime[0]='0';
+                }
+                else if(stime[0]!='12') stime[0]=(parseInt(stime[0])+12).toString();
+                var datetime=new Date(sdate[0], sdate[1] - 1, sdate[2], stime[0], stime[1])
+                //        alert(sdate[0]+','+sdate[1]+','+sdate[2]+','+stime[0]+','+stime[1])
+                return datetime;
+            }
+            //-------------------------------------
+            m.data_process_after_render=function(){
+                if(m.records.length>0){
+                    m.last_import=m.records[0].id
+                }
+                else m.last_import='0';
+            }
+            //-------------------------------------
+            m.import_check_record=function(record,dev,callback){
+                if(gTab==',') {alert("Can't import csv. must be tab delimited");callback(-1);}
+                else{
+                    if(record.id>m.last_import) callback(1);
+                    else callback(0);
+                }
+                //callback(1); //1--add
+                //callback(0);  //0 skip to next, no add
+                //callback(-1); //-1 stop, jump to end
+            };
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/module/grid.v1.css
+    </style>
+</div>
