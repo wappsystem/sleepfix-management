@@ -175,6 +175,7 @@
         "import-mood-data":     {"table_id":"20011628","url":"https://management.sfix.com.au/modules/tasks/import-mood-data.html","form_module":"import-mood-form"},
         "import-mood-form":     {"table_id":"20011628","url":"https://management.sfix.com.au/modules/tasks/import-mood-form.html"},
         "import-user-data":     {"table_id":"20011629","url":"https://management.sfix.com.au/modules/tasks/import-user-data.html","form_module":"import-user-form"},
-        "import-user-form":     {"table_id":"20011629","url":"https://management.sfix.com.au/modules/tasks/import-user-form.html"}
+        "import-user-form":     {"table_id":"20011629","url":"https://management.sfix.com.au/modules/tasks/import-user-form.html"},
+        "import-report-data":        {"table_id":"20011505","url":"https://management.sfix.com.au/modules/tasks/import-report-data.html"}
     }
 }

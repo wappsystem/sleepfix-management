@@ -8,7 +8,7 @@
             VmInclude:__COMPONENT__/module/grid.v1.js
             VmInclude:__COMPONENT__/module/import.v1.js
             //-------------------------------------
-            var fields="userId,waketime,bedtime,startDate,scheduled,window,timeZone,id";
+            var fields="userId,waketime,bedtime,startDate,scheduled,window,timeZone,local_time,id";
             m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
             m.form_fields=fields;
             //-------------------------------------
@@ -16,8 +16,17 @@
             $('#save__ID').hide();
             //-------------------------------------
             m.before_submit=function(record,dbv){
-                dbv.DT1=string_to_datetime(record.startDate);
-                //dbv.DT2=string_to_datetime(record.endTime);
+                dbv.DT1=string_to_datetime(record.scheduled);
+                if(record.timeZone.indexOf("Sydney")!="-1") {record.local_time='+11';dbv.V1=11;}
+                if(record.timeZone.indexOf("Melbourne")!="-1") {record.local_time='+11';dbv.V1=11;}
+                if(record.timeZone.indexOf("Adelaide")!="-1") {record.local_time='+10.5';dbv.V1=10.5;}
+                if(record.timeZone.indexOf("Perth")!="-1") {record.local_time='+8';dbv.V1=8;}
+                if(record.timeZone.indexOf("Brisbane")!="-1") {record.local_time='+10';dbv.V1=10;}
+                if(record.timeZone.indexOf("Lord")!="-1") {record.local_time='+11';dbv.V1=11;}
+                if(record.timeZone.indexOf("Darwin")!="-1") {record.local_time='+9.5';dbv.V1=9.5;}
+                if(record.timeZone.indexOf("Eucla")!="-1") {record.local_time='+8.75';dbv.V1=8.75;}
+                if(record.local_time=='') alert("No time zone found: "+record.timeZone);
+                dbv.DT2=string_to_datetime(record.startDate);
                 dbv.S1=record.userId;
                 dbv.S2=record.id;
                 return true;

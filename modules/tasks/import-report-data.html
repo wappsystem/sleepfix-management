@@ -1,0 +1,128 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/module/grid.v1.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/module/grid.v1.js
+            //-------------------------------------
+            var fields="Participant ID|UID,Access_Code,User_ID,Start_Date";
+            m.fields="_Form,"+fields+"";
+            m.form_fields=fields;
+            //-------------------------------------
+            $('#new__ID').hide();
+            $('#save__ID').hide();
+            //-------------------------------------
+            m.set_req=function(){
+                var sql="with tb as (select Access_Code=JSON_VALUE(Information,'$.Access_Code'),Start_Date=JSON_VALUE(Information,'$.Start_Date'),UID,RowNum=row_number() over (order by UID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+                sql+=", acc as (select User_ID=S1,S2 from [TABLE-20011629])";
+                sql+="select User_ID,Access_Code,Start_Date,UID,RowNum from tb left join acc on Access_Code=S2 where RowNum between @I6 and @I7";
+                var sql_n="select count(ID) from [TABLE-"+m.db_pid+"-@S1]";
+            	m.req={cmd:'read',qid:m.qid,sql:sql,sql_n:sql_n,s1:'"'+$('#keyword__ID').val()+'"',I:$('#I__ID').text(),page_size:$('#page_size__ID').val()}
+            }
+            //-------------------------------------
+            m.set_req_export=function(i1,i2){
+                var sql="with tb as (select Access_Code=JSON_VALUE(Information,'$.Access_Code'),Start_Date=JSON_VALUE(Information,'$.Start_Date'),UID from [TABLE-"+m.db_pid+"-@S1])";
+                sql+=", acc as (select User_ID=S1,S2 from [TABLE-20011629])";
+                sql+="select top(10) User_ID,Access_Code,Start_Date,UID from tb left join acc on Access_Code=S2 order by UID DESC";
+                m.req={cmd:'read',qid:m.qid,sql:sql,i1:i1,i2:i2};
+            }
+            //-----------------------------------------------
+            m.export_records=function(){
+                var g_I,gLoop,busy,results,gDialog_module_id;
+            	//g_I page number, 0 is first page
+                var start=$('#start__ID').val();  if(start==="") start=1;
+                var page_size=parseInt($('#page_size__ID').val());
+                var num=$('#num__ID').val(); num=parseInt(num);
+
+                if($('#start__ID').val()==undefined || $('#start__ID').val()=="") start=1;
+                if($('#page_size__ID').val()==undefined) page_size=30;
+                if($('#num__ID').val()==undefined || $('#num__ID').val()=="") num=1;
+                var one_loop=function(){
+            		//page by page (500ms) to get data and save to results
+                    if(busy==1) return;
+                    busy=1;
+
+                    console.log(g_I)
+
+                    var i1=1+(start-1+g_I)*page_size,i2=i1+page_size-1;
+                    m.set_req_export(i1.toString(),i2.toString());
+                    $VmAPI.request({data:m.req,callback:function(res){
+                        busy=0;
+                        $('#export_num'+gDialog_module_id).text("Page "+(g_I+1).toString());
+                        if(res.records.length!=0){
+                            for(var i=0;i<res.records.length;i++){
+/*                                var sql_s="select UID,Access_Code=JSON_VALUE(Information,'$.Access_Code'),Start_Date=JSON_VALUE(Information,'$.Start_Date') from [TABLE-"+m.db_pid+"] order by UID";
+                                m.req_sleep=m.req={cmd:'read',qid:m.qid,sql:sql,i1:i1,i2:i2};
+                                $VmAPI.request({data:m.req_sleep,callback:function(sleep){
+
+                                }})
+*/
+                                results.push(res.records[i]);
+                            }
+                        }
+                        else{
+                            end_export();
+                            return;
+                        }
+                        g_I++;
+                        if(g_I>=num){
+                            end_export();
+                            return;
+                        }
+                    }})
+                }
+                //-------------------------------------
+                var start_export=function(){
+                    g_I=0;busy=0;results=[];
+                    gDialog_module_id=$vm.get_module_id({name:'_system_export_dialog_module'})
+                    $('#export_num'+gDialog_module_id).text("Page 0");
+                    $vm.open_dialog({name:'_system_export_dialog_module'});
+            		gLoop=setInterval(one_loop, 500);
+            		$vm._export_g_loop=gLoop;
+                }
+                //-------------------------------------
+                var end_export=function(){
+                    clearInterval(gLoop);
+                    $vm.close_dialog({name:'_system_export_dialog_module'});
+                    if(m.fields_e===undefined) m.fields_e=m.fields.replace('_Form,','').replace(',_Delete','');
+            		m.records=results;
+            		if(m.data_process!==undefined){ m.data_process(); }
+                    var fn=m.export_filename;
+                    if(fn==undefined) fn="F"+m.db_pid+".csv";
+                    $vm.download_csv({name:fn,data:m.records,fields:m.fields_e});
+                }
+                //-------------------------------------
+                start_export();
+            }
+            //-------------------------------------
+
+            var string_to_datetime=function(timestring){
+                var ampm = timestring.split(' ');
+                var sdate= ampm[0].split('-');
+                var stime=ampm[1].split(':')
+                if(ampm[2]=='AM'){
+                    if(stime[0]=='12') stime[0]='0';
+                }
+                else if(stime[0]!='12') stime[0]=(parseInt(stime[0])+12).toString();
+                var datetime=new Date(sdate[0], sdate[1] - 1, sdate[2], stime[0], stime[1])
+                //        alert(sdate[0]+','+sdate[1]+','+sdate[2]+','+stime[0]+','+stime[1])
+                return datetime;
+            }
+            //-------------------------------------
+            var sleep_duration=function(starttime,endtime){
+                var diffMs = (endtime - starttime); // milliseconds
+                var diffMins = Math.round(diffMs / 60000); // minuts
+                return diffMins;
+            }
+            //-------------------------------------
+            m.data_process_after_render=function(){
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/module/grid.v1.css
+    </style>
+</div>

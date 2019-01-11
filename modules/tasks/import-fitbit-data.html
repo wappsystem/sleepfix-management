@@ -19,6 +19,8 @@
                 dbv.DT1=string_to_datetime(record.startTime);
                 dbv.DT2=string_to_datetime(record.endTime);
                 dbv.DT3=string_to_datetime(record.dateOfSleep);
+                dbv.V1=sleep_duration(string_to_datetime(record.startTime),string_to_datetime(record.endTime));
+                record.sleepDuration=(dbv.V1).toString();
                 dbv.S1=record.userId;
                 dbv.S2=record.id;
                 return true;
@@ -35,6 +37,12 @@
                 var datetime=new Date(sdate[0], sdate[1] - 1, sdate[2], stime[0], stime[1])
                 //        alert(sdate[0]+','+sdate[1]+','+sdate[2]+','+stime[0]+','+stime[1])
                 return datetime;
+            }
+            //-------------------------------------
+            var sleep_duration=function(starttime,endtime){
+                var diffMs = (endtime - starttime); // milliseconds
+                var diffMins = Math.round(diffMs / 60000); // minuts
+                return diffMins;
             }
             //-------------------------------------
             m.data_process_after_render=function(){
