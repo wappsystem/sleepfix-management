@@ -8,7 +8,7 @@
             VmInclude:__COMPONENT__/module/grid.v1.js
             VmInclude:__COMPONENT__/module/import.v1.js
             //-------------------------------------
-            var fields="userId,mood,date,id,created";
+            var fields="userId,mood,mood_number,date,id,created";
             m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
             m.form_fields=fields;
             //-------------------------------------
@@ -16,23 +16,29 @@
             $('#save__ID').hide();
             //-------------------------------------
             m.before_submit=function(record,dbv){
-                dbv.DT1=string_to_datetime(record.startTime);
-                dbv.DT2=string_to_datetime(record.endTime);
-                dbv.DT3=string_to_datetime(record.dateOfSleep);
+                dbv.DT3=string_to_datetime(record.date);
+                switch(record.mood){
+                    case 'Good':
+                      record.mood_number='4'
+                      break;
+                    case 'OK':
+                      record.mood_number='3'
+                      break;
+                    case 'Bad':
+                      record.mood_number='2'
+                      break;
+                    case 'Awful':
+                      record.mood_number='1'
+                      break;
+                }
                 dbv.S1=record.userId;
                 dbv.S2=record.id;
                 return true;
             }
             //-------------------------------------
             var string_to_datetime=function(timestring){
-                var ampm = timestring.split(' ');
-                var sdate= ampm[0].split('-');
-                var stime=ampm[1].split(':')
-                if(ampm[2]=='AM'){
-                    if(stime[0]=='12') stime[0]='0';
-                }
-                else if(stime[0]!='12') stime[0]=(parseInt(stime[0])+12).toString();
-                var datetime=new Date(sdate[0], sdate[1] - 1, sdate[2], stime[0], stime[1])
+                var sdate= timestring.split('/');
+                var datetime=new Date(sdate[2], sdate[0]-1, sdate[1])
                 //        alert(sdate[0]+','+sdate[1]+','+sdate[2]+','+stime[0]+','+stime[1])
                 return datetime;
             }

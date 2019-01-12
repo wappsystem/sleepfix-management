@@ -20,6 +20,7 @@
                 dbv.DT2=string_to_datetime(record.endTime);
                 dbv.DT3=string_to_datetime(record.dateOfSleep);
                 dbv.V1=sleep_duration(string_to_datetime(record.startTime),string_to_datetime(record.endTime));
+                dbv.V2=parseInt(record.minutesAwake);
                 record.sleepDuration=(dbv.V1).toString();
                 dbv.S1=record.userId;
                 dbv.S2=record.id;

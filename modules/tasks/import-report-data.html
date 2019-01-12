@@ -15,7 +15,7 @@
             $('#save__ID').hide();
             //-------------------------------------
             m.set_req=function(){
-                var sql="with tb as (select Access_Code=JSON_VALUE(Information,'$.Access_Code'),Start_Date=JSON_VALUE(Information,'$.Start_Date'),UID,RowNum=row_number() over (order by UID DESC) from [TABLE-"+m.db_pid+"-@S1] )";
+                var sql="with tb as (select Access_Code=JSON_VALUE(Information,'$.Access_Code'),Start_Date=JSON_VALUE(Information,'$.Start_Date'),UID,RowNum=row_number() over (order by UID) from [TABLE-"+m.db_pid+"-@S1] )";
                 sql+=", acc as (select User_ID=S1,S2 from [TABLE-20011629])";
                 sql+="select User_ID,Access_Code,Start_Date,UID,RowNum from tb left join acc on Access_Code=S2 where RowNum between @I6 and @I7";
                 var sql_n="select count(ID) from [TABLE-"+m.db_pid+"-@S1]";
@@ -25,11 +25,36 @@
             m.set_req_export=function(i1,i2){
                 var sql="with tb as (select Access_Code=JSON_VALUE(Information,'$.Access_Code'),Start_Date=JSON_VALUE(Information,'$.Start_Date'),UID from [TABLE-"+m.db_pid+"-@S1])";
                 sql+=", acc as (select User_ID=S1,S2 from [TABLE-20011629])";
-                sql+="select top(10) User_ID,Access_Code,Start_Date,UID from tb left join acc on Access_Code=S2 order by UID DESC";
+                sql+="select User_ID,Access_Code,Start_Date,UID from tb left join acc on Access_Code=S2 order by UID";
                 m.req={cmd:'read',qid:m.qid,sql:sql,i1:i1,i2:i2};
             }
             //-----------------------------------------------
+            m.generate_report_one_line=function(user_id,start_date){
+                jQuery.ajaxSetup({async:false});
+
+                var sql_up="select V1,DT1,Information from [TABLE-20011627] where S1=@S1 order by DT1";
+                m.req={cmd:'read',qid:m.qid,sql:sql_up,s1:user_id}
+                $VmAPI.request({data:m.req,callback:function(res_up){
+                }});
+                var sql_fb="select DT3,Sleep_Duration=sum(V1),Awake_minutes=sum(V2) from [TABLE-20011626] where S1=@S1 group by DT3 order by DT3";
+                m.req={cmd:'read',qid:m.qid,sql:sql_fb,s1:user_id}
+                $VmAPI.request({data:m.req,callback:function(res_fb){
+                }});
+                var sql_s="select DT3,Information from [TABLE-20011625] where S1=@S1 order by DT3";
+                m.req={cmd:'read',qid:m.qid,sql:sql_s,s1:user_id}
+                $VmAPI.request({data:m.req,callback:function(res_s){
+                }});
+                var sql_m="select DT3,Information from [TABLE-20011628] where S1=@S1 order by DT3";
+                m.req={cmd:'read',qid:m.qid,sql:sql_m,s1:user_id}
+                $VmAPI.request({data:m.req,callback:function(res_m){
+                }});
+
+                jQuery.ajaxSetup({async:true});
+            }
+            //-----------------------------------------------
             m.export_records=function(){
+                m.generate_report_one_line('5bd2bfb2ba4efd0a39150845','2018-10-17')
+/*
                 var g_I,gLoop,busy,results,gDialog_module_id;
             	//g_I page number, 0 is first page
                 var start=$('#start__ID').val();  if(start==="") start=1;
@@ -53,12 +78,6 @@
                         $('#export_num'+gDialog_module_id).text("Page "+(g_I+1).toString());
                         if(res.records.length!=0){
                             for(var i=0;i<res.records.length;i++){
-/*                                var sql_s="select UID,Access_Code=JSON_VALUE(Information,'$.Access_Code'),Start_Date=JSON_VALUE(Information,'$.Start_Date') from [TABLE-"+m.db_pid+"] order by UID";
-                                m.req_sleep=m.req={cmd:'read',qid:m.qid,sql:sql,i1:i1,i2:i2};
-                                $VmAPI.request({data:m.req_sleep,callback:function(sleep){
-
-                                }})
-*/
                                 results.push(res.records[i]);
                             }
                         }
@@ -95,7 +114,7 @@
                 }
                 //-------------------------------------
                 start_export();
-            }
+*/            }
             //-------------------------------------
 
             var string_to_datetime=function(timestring){
