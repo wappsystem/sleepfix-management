@@ -26,7 +26,7 @@
                 if(record.timeZone.indexOf("Darwin")!="-1") {record.local_time='+9.5';dbv.V1=9.5;}
                 if(record.timeZone.indexOf("Eucla")!="-1") {record.local_time='+8.75';dbv.V1=8.75;}
                 if(record.local_time=='') alert("No time zone found: "+record.timeZone);
-                dbv.DT2=string_to_datetime(record.scheduled);
+                //dbv.DT2=string_to_datetime(record.scheduled);
                 dbv.S1=record.userId;
                 dbv.S2=record.id;
                 return true;
