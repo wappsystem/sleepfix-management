@@ -26,7 +26,7 @@
                 return true;
             }
             //-------------------------------------
-            var string_to_datetime=function(timestring){
+/*            var string_to_datetime=function(timestring){
                 var ampm = timestring.split(' ');
                 var sdate= ampm[0].split('-');
                 var stime=ampm[1].split(':')
@@ -36,6 +36,14 @@
                 else if(stime[0]!='12') stime[0]=(parseInt(stime[0])+12).toString();
                 var datetime=new Date(sdate[0], sdate[1] - 1, sdate[2], stime[0], stime[1])
                 //        alert(sdate[0]+','+sdate[1]+','+sdate[2]+','+stime[0]+','+stime[1])
+                return datetime;
+            }
+*/            //-------------------------------------
+            var string_to_datetime=function(timestring){
+                var ampm = timestring.split(' ');
+                var sdate= ampm[0].split('/');
+                var stime=ampm[1].split(':')
+                var datetime=new Date(sdate[2], sdate[1] - 1, sdate[0], stime[0], stime[1])
                 return datetime;
             }
             //-------------------------------------

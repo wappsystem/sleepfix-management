@@ -16,7 +16,9 @@
             $('#save__ID').hide();
             //-------------------------------------
             m.before_submit=function(record,dbv){
-                dbv.DT1=string_to_datetime(record.scheduled);
+                if(record.scheduled!=''){
+                    dbv.DT1=string_to_datetime(record.scheduled);
+                }
                 if(record.timeZone.indexOf("Sydney")!="-1") {record.local_time='+11';dbv.V1=11;}
                 if(record.timeZone.indexOf("Melbourne")!="-1") {record.local_time='+11';dbv.V1=11;}
                 if(record.timeZone.indexOf("Adelaide")!="-1") {record.local_time='+10.5';dbv.V1=10.5;}
@@ -32,7 +34,7 @@
                 return true;
             }
             //-------------------------------------
-            var string_to_datetime=function(timestring){
+/*            var string_to_datetime=function(timestring){
                 var ampm = timestring.split(' ');
                 var sdate= ampm[0].split('-');
                 var stime=ampm[1].split(':')
@@ -42,6 +44,14 @@
                 else if(stime[0]!='12') stime[0]=(parseInt(stime[0])+12).toString();
                 var datetime=new Date(sdate[0], sdate[1] - 1, sdate[2], stime[0], stime[1])
                 //        alert(sdate[0]+','+sdate[1]+','+sdate[2]+','+stime[0]+','+stime[1])
+                return datetime;
+            }
+*/            //-------------------------------------
+            var string_to_datetime=function(timestring){
+                var ampm = timestring.split(' ');
+                var sdate= ampm[0].split('/');
+                var stime=ampm[1].split(':')
+                var datetime=new Date(sdate[2], sdate[1] - 1, sdate[0], stime[0], stime[1])
                 return datetime;
             }
             //-------------------------------------
@@ -55,7 +65,7 @@
             m.import_check_record=function(record,dev,callback){
                 if(gTab==',') {alert("Can't import csv. must be tab delimited");callback(-1);}
                 else{
-                    if(record.id>m.last_import) callback(1);
+                    if(record.id>m.last_import && record.scheduled!='') callback(1);
                     else callback(0);
                 }
                 //callback(1); //1--add
