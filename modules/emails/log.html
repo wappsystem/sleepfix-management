@@ -4,15 +4,24 @@
     </div>
     <script>
         function F__ID(){
-          //-------------------------------------
-          VmInclude:__COMPONENT__/module/grid.v1.js
-          $('#new__ID').hide();
-          $('#save__ID').hide();
-          //-------------------------------------
-          var fields="TP|TP,Subject,Participant ID|PUID,To";
-          m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
-          m.form_fields=fields;
-          //-------------------------------------
+            //-------------------------------------
+            VmInclude:__COMPONENT__/module/grid.v1.js
+            $('#new__ID').hide();
+            $('#save__ID').hide();
+            //-------------------------------------
+            var fields="TP|TP,Subject,Participant ID|PUID,To";
+            m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
+            m.form_fields=fields;
+            //-------------------------------------
+            m.set_req=function(){
+                var q="";
+                var p='0'
+                if($('#keyword__ID').val()!='') {q=" where PUID=@I2"; p=$('#keyword__ID').val()}
+                var sql="with tb as (select Information,ID,UID,PUID,DateTime,Modified=Convert(varchar,Modified,127),Author,RowNum=row_number() over (order by ID DESC) from [TABLE-"+m.db_pid+"] "+q+" )";
+                sql+="select Information,ID,UID,PUID,DateTime,Modified,Author,RowNum from tb where RowNum between @I6 and @I7";
+                var sql_n="select count(ID) from [TABLE-"+m.db_pid+"] "+q+"";
+                m.req={cmd:'read',qid:m.qid,sql:sql,sql_n:sql_n,i2:p,I:$('#I__ID').text(),page_size:$('#page_size__ID').val()}
+            }
         }
     </script>
     <style>
